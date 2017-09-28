@@ -1,0 +1,47 @@
+<!doctype html>
+<html>
+  <head>
+  	<link rel="stylesheet" href="./js/external/jquery-ui-1.10.3/ui-lightness/jquery-ui-1.10.3.custom.css" />
+    <link rel="stylesheet" href="./js/external/leaflet/leaflet.css">
+    <link rel="stylesheet" href="./js/external/leaflet/Leaflet.PolylineMeasure.css">
+    <link rel="stylesheet" href="./js/external/leaflet/Leaflet.Coordinates-0.1.5.css">
+    <link rel="stylesheet" href="./js/external/leaflet/leaflet.groupedlayercontrol.css" />
+    <link rel="stylesheet" href="./css/font-awesome-4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="./js/external/leaflet/L.Control.Locate.min.css" />
+    <link rel="stylesheet" href="./js/external/leaflet/L.Control.SmallWidget.css" />
+    <link rel="stylesheet" href="./js/external/leaflet/L.Control.HtmlLegend.css" />
+    <link rel="stylesheet" href="./js/external/leaflet/Leaflet.GraphicScale.min.css" />
+    <link rel="stylesheet" href="./js/external/leaflet/easy-button.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    
+    <title>Water Map for WASAC</title>
+  </head>
+  <body>
+    <div id="map"></div> 
+
+<script type="text/javascript">
+	var jsFiles = [
+	               './js/external/jquery-1.11.1.min.js',
+	               './js/external/jquery-ui-1.10.3/jquery-ui-1.10.3.custom.min.js',
+	               './js/external/leaflet/leaflet.js',
+	               './js/external/leaflet/Leaflet.PolylineMeasure.js',
+	               './js/external/leaflet/Leaflet.Coordinates-0.1.5.min.js',
+	               './js/external/leaflet/leaflet.easyPrint.js',
+	               './js/external/leaflet/leaflet.groupedlayercontrol.js',
+	               './js/external/leaflet/L.Control.Locate.js',
+	               './js/external/leaflet/L.Control.SmallWidget.js',
+	               './js/external/leaflet/L.Control.HtmlLegend.js',
+	               './js/external/leaflet/Leaflet.GraphicScale.min.js',
+	               './js/external/leaflet/easy-button.js',
+	               //'./js/gis/lib/gis.js',
+	               './js/gis/gis.min.js',
+	               './js/app.js',
+	               ];
+	var scriptTags = [];
+	var version = '1.0';
+	for (var i=0; i<jsFiles.length; i++) {scriptTags.push("<script src='" + jsFiles[i] + "?version=" + version + "'><\/script>");}
+	if (scriptTags.length > 0) {document.write(scriptTags.join(""));}
+</script>
+  </body>
+</html>

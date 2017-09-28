@@ -1,0 +1,10 @@
+/*
+
+  gis.js -- Web GIS Library
+
+  Copyright (c) 2017 Jin Igarashi
+  Kokusai Kogyo, Limited.
+
+  this tool use leafletjs, jquery and jquery-ui.
+
+*/
