@@ -20,7 +20,7 @@ var app = {
 		}).addTo(app.map);
 
 		L.easyPrint({
-			elementsToHide : 'a'
+			elementsToHide : ['a','button','.leaflet-small-widget','.leaflet-control-coordinates','.leaflet-control-attribution']
 		}).addTo(app.map);
 		L.control.locate().addTo(app.map);
 		
