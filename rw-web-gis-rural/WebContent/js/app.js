@@ -3,7 +3,7 @@ var app = {
 	/** Initialize * */
 	init : function() {
 
-		app.map = L.map('map').setView([ -1.904962, 30.499550 ], 10);
+		app.map = L.map('map',{zoomControl: false}).setView([ -1.904962, 30.499550 ], 10);
 
 		app.initControls();
 
@@ -14,6 +14,8 @@ var app = {
 	},
 	
 	initControls : function(){
+		L.Control.zoomHome().addTo(app.map);
+		
 		L.control.polylineMeasure({
 			showMeasurementsClearControl : true,
 			showUnitControl : true
