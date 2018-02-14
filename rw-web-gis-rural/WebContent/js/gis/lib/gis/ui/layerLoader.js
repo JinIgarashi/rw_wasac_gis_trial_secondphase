@@ -35,7 +35,7 @@ gis.ui.layerLoader = function(spec,my){
 			cache : false,
 			//async : false
 		}).done(function(layers_define) {
-			var baseMaps = {};
+			var baseMaps = [];
 			var overlays = {};
 
 			for (var i in layers_define){
@@ -43,7 +43,11 @@ gis.ui.layerLoader = function(spec,my){
 				var layer = my.getLayer(obj);
 
 				if (obj.isBaseLayer && obj.isBaseLayer === true){
-					baseMaps[obj.name] = layer;
+					baseMaps.push({
+						title: obj.name,
+						layer:layer,
+						icon:obj.icon
+					});
 				}else{
 					if (!obj.group){
 						overlays[obj.name] = layer;
@@ -60,12 +64,16 @@ gis.ui.layerLoader = function(spec,my){
 				}
 			}
 
+			var iconLayersControl = new L.Control.IconLayers(baseMaps, {
+		        position: 'bottomleft',
+		        maxLayersInRow: 5
+		    }).addTo(my.map);
+			
 			var options = {
 					  exclusiveGroups: ["Area"],
 					  groupCheckboxes: true
 					};
-			
-			L.control.groupedLayers(baseMaps,overlays,options).addTo(my.map);
+			L.control.groupedLayers({},overlays,options).addTo(my.map);
 			
 			if (my.legends.length>0){
 				L.control.htmllegend({

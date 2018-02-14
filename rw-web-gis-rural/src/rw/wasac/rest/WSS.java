@@ -43,12 +43,12 @@ public class WSS {
 			sql.append("  a.wss_name,");
 			sql.append("  a.dist_id, ");
 			sql.append("  b.district, ");
-			sql.append("  st_y(a.geom) as lat, ");
-			sql.append("  st_x(a.geom) as lng ");
+			sql.append("  st_y(st_centroid(b.geom)) as lat, ");
+			sql.append("  st_x(st_centroid(b.geom)) as lng ");
 			sql.append("FROM  wss a ");
 			sql.append("INNER JOIN district b ");
 			sql.append("ON a.dist_id = b.dist_id ");
-			sql.append("WHERE a.geom is not null ");
+			sql.append("WHERE b.geom is not null ");
 			sql.append("ORDER BY ");
 			sql.append("   wss_id ");
 			

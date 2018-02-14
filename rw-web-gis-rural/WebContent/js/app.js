@@ -3,24 +3,25 @@ var app = {
 	/** Initialize * */
 	init : function() {
 
-		app.map = L.map('map',{zoomControl: false}).setView([ -1.904962, 30.499550 ], 10);
-
+		app.map = L.map('map').setView([ -1.904962, 30.499550 ], 10);
 		app.initControls();
 
 		var layerLoader = new gis.ui.layerLoader({
 			map : app.map,
 			defineurl : './js/gis/settings/define.json'
 		}).init();
+		var hash = new L.Hash(app.map);
 	},
 	
 	initControls : function(){
-		L.Control.zoomHome().addTo(app.map);
+		//Top-Right Controls
+		L.Control.geocoder().addTo(app.map);
 		
-		L.control.polylineMeasure({
-			showMeasurementsClearControl : true,
-			showUnitControl : true
-		}).addTo(app.map);
-
+		//Top-Left Controls
+		L.control.navbar().addTo(app.map);
+		
+		L.control.polylineMeasure().addTo(app.map);
+		
 		L.easyPrint({
 			elementsToHide : ['a','button','.leaflet-small-widget','.leaflet-control-coordinates','.leaflet-control-attribution']
 		}).addTo(app.map);
