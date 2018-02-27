@@ -16,8 +16,8 @@ L.Control.SmallWidget = L.Control.extend({
     this._container   = L.DomUtil.create('div', 'leaflet-control leaflet-small-widget leaflet-bar leaflet-' + name + '  ' + this._state);
     this._toggler     = L.DomUtil.create('a',   'leaflet-small-widget-toggle ' + ((this._state == 'closed') ? 'opened' : 'closed'), this._container);
     this._buttonOpen  = L.DomUtil.create('i',   'fa ' + icon,                                                                       this._toggler);
-    //this._buttonClose = L.DomUtil.create('i',   'fa fa-window-close', this._container);
-    //this._buttonClose.setAttribute('aria-hidden', true);
+    this._buttonClose = L.DomUtil.create('i',   'fa fa-window-close', this._container);
+    this._buttonClose.setAttribute('aria-hidden', true);
 
     // Disable events on container
     //if (!L.Browser.touch) {
@@ -28,17 +28,17 @@ L.Control.SmallWidget = L.Control.extend({
     //  L.DomEvent.on(this._container, 'click', L.DomEvent.stopPropagation);
     //}
 
-/*    // Expand/collapse mechanics for the whole legend control
+    // Expand/collapse mechanics for the whole legend control
     L.DomEvent.on(this._toggler, 'click', function () {
       this.toggle();
-    }, this);*/
+    }, this);
 
-/*    // Expand/collapse mechanics for the whole legend control
+    // Expand/collapse mechanics for the whole legend control
     L.DomEvent.on(this._buttonClose, 'click', function () {
       this.toggle();
-    }, this);*/
+    }, this);
     
- // Expand/collapse mechanics for the whole legend control
+/* // Expand/collapse mechanics for the whole legend control
     L.DomEvent.on(this._container, 'mouseenter', function () {
       this.toggle();
     }, this);
@@ -46,7 +46,7 @@ L.Control.SmallWidget = L.Control.extend({
  // Expand/collapse mechanics for the whole legend control
     L.DomEvent.on(this._container, 'mouseleave', function () {
       this.toggle();
-    }, this);
+    }, this);*/
 
     // Custom render method
     if (this.render != undefined) {
