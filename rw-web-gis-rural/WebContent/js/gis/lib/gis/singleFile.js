@@ -5,7 +5,7 @@ var gis = {
     /**
      * Constant: VERSION_NUMBER
      */
-    VERSION_NUMBER: "Release 0.1",
+    VERSION_NUMBER: "Release 1.0",
 
     /**
      * Constant: singleFile

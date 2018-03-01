@@ -41,13 +41,12 @@
 	               './js/external/leaflet/easy-button.js',
 	               './js/external/leaflet/iconLayers/iconLayers.js',
 	               './js/external/leaflet/Control.Geocoder.js',
-	               './js/gis/lib/gis.js',
-	               //'./js/gis/gis.min.js',
+	               //'./js/gis/lib/gis.js',
+	               './js/gis/gis.min.js',
 	               './js/app.js',
 	               ];
 	var scriptTags = [];
-	var version = '1.0';
-	for (var i=0; i<jsFiles.length; i++) {scriptTags.push("<script src='" + jsFiles[i] + "?version=" + version + "'><\/script>");}
+	for (var i=0; i<jsFiles.length; i++) {scriptTags.push("<script src='" + jsFiles[i] + "'><\/script>");}
 	if (scriptTags.length > 0) {document.write(scriptTags.join(""));}
 </script>
   </body>

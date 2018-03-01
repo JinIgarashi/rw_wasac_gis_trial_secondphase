@@ -76,9 +76,20 @@
     	//読みこむスクリプトファイルパスを列挙する
         if (!jsFiles) {
             jsFiles = [
+            	'gis/util.js',
                 'gis/ui.js',
-                'gis/ui/dialog.js',
+                'gis/ui/controlLoader.js',
                 'gis/ui/layerLoader.js',
+                'gis/ui/control.js',
+                'gis/ui/control/coordinates.js',
+                'gis/ui/control/geocoder.js',
+                'gis/ui/control/graphicScale.js',
+                'gis/ui/control/navbar.js',
+                'gis/ui/control/easyPrint.js',
+                'gis/ui/control/polylineMeasure.js',
+                'gis/ui/control/locate.js',
+                'gis/ui/control/zoomToAreas.js',
+                'gis/ui/dialog.js',
                 'gis/ui/dialog/zoomToAdmin.js',
                 'gis/ui/dialog/zoomToWss.js'
             ]; // etc.

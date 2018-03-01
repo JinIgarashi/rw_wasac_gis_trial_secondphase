@@ -1,0 +1,89 @@
+[
+  {
+    "ctrl": "geocoder",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "topright"
+      }
+    }
+  },
+  {
+    "ctrl": "navbar",
+    "settings": {
+      "notRequireSP": true,
+      "options": {
+        "position": "topleft"
+      }
+    }
+  },
+  {
+    "ctrl": "polylineMeasure",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "topleft",
+        "showMeasurementsClearControl": true
+      }
+    }
+  },
+  {
+    "ctrl": "easyPrint",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "topleft",
+        "elementsToHide": [
+          "a",
+          "button",
+          ".leaflet-small-widget",
+          ".leaflet-control-coordinates",
+          ".leaflet-control-attribution",
+          ".leaflet-iconLayers-layer"
+        ]
+      }
+    }
+  },
+  {
+    "ctrl": "locate",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "topleft"
+      }
+    }
+  },
+  {
+    "ctrl": "zoomToAreas",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "topleft"
+      }
+    }
+  },
+  {
+    "ctrl": "graphicScale",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "bottomleft",
+        "fill": "hollow",
+        "showSubunits": true,
+        "labelPlacement": "top"
+      }
+    }
+  },
+  {
+    "ctrl": "coordinates",
+    "settings": {
+      "notRequireSP": true,
+      "options": {
+        "position": "bottomright",
+        "decimals": 6,
+        "labelTemplateLat": "Latitude: {y}",
+        "labelTemplateLng": "Longitude: {x}"
+      }
+    }
+  }
+]
