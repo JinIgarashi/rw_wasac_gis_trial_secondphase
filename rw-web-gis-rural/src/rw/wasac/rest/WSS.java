@@ -15,7 +15,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import rw.wasac.common.ServletListener;
 
@@ -26,8 +27,8 @@ import rw.wasac.common.ServletListener;
  */
 @Path("/WSS")
 public class WSS {
-	private final Logger logger = Logger.getLogger(WSS.class);
-
+	private final Logger logger = LogManager.getLogger(WSS.class);
+	
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public RestResult<ArrayList<HashMap<String,Object>>> get() throws SQLException {

@@ -16,7 +16,8 @@ import javax.ws.rs.WebApplicationException;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response.Status;
 
-import org.apache.log4j.Logger;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import rw.wasac.common.ServletListener;
 
@@ -27,7 +28,7 @@ import rw.wasac.common.ServletListener;
  */
 @Path("/Sectors")
 public class Sectors {
-	private final Logger logger = Logger.getLogger(Sectors.class);
+	private final Logger logger = LogManager.getLogger(Sectors.class);
 
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)

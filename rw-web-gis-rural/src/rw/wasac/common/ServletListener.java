@@ -7,8 +7,8 @@ import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import org.apache.log4j.Logger;
-import org.apache.log4j.PropertyConfigurator;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * ServletListener
@@ -17,7 +17,7 @@ import org.apache.log4j.PropertyConfigurator;
  */
 public class ServletListener implements ServletContextListener {
 	static public ServletContext sc;
-	static public Logger logger = Logger.getLogger(ServletListener.class);
+	static public Logger logger = LogManager.getLogger(ServletListener.class);
 
 	static public String dburl = "";
 	static public String dbuser = "";
@@ -31,13 +31,13 @@ public class ServletListener implements ServletContextListener {
 	@Override
 	public void contextInitialized(ServletContextEvent contextevent) {
 		try{
-			System.out.println(this.getClass().getName()+"#contextInitialized()");
+			logger.info(this.getClass().getName()+"#contextInitialized()");
 
 			sc = contextevent.getServletContext();
 			String Propertiesfile = sc.getRealPath("/WEB-INF/wasac.properties");
-			String log4jPropertiesfile= sc.getRealPath("/WEB-INF/log4j.properties");
+			//String log4jPropertiesfile= sc.getRealPath("/WEB-INF/log4j.properties");
 
-			PropertyConfigurator.configure(log4jPropertiesfile);
+			//PropertyConfigurator.configure(log4jPropertiesfile);
 
 			logger.info("Propertiesfile:" + Propertiesfile);
 			Properties conf = new Properties();
