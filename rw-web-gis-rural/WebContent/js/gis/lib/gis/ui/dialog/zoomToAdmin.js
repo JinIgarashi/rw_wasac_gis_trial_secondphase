@@ -44,6 +44,7 @@ gis.ui.dialog.zoomToAdmin = function(spec,my){
 	my.addOptions = function(option){
 		option.title = 'Zoom To Administrative';
 		option.modal = true;
+		option.resizable = false;
 		option.position = { my: "center", at: "center", of: window };
 		return option;
 	};

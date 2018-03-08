@@ -1,13 +1,9 @@
 var app = {
-
-	/** Initialize * */
 	init : function() {
-		
 		var options = {};
 		if (gis.util.isSmartphone()===true){
 			options.zoomControl = false; //スマホの時はズームコントロールは非表示に
 		}
-		
 		app.map = L.map('map',options).setView([ -1.904962, 30.499550 ], 10);
 		
 		var controlLoader = new gis.ui.controlLoader({

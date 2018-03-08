@@ -20,6 +20,7 @@ gis.ui.dialog.zoomToWss = function(spec,my){
 	my.addOptions = function(option){
 		option.title = 'Zoom To WSS';
 		option.modal = true;
+		option.resizable = false;
 		option.position = { my: "center", at: "center", of: window };
 		return option;
 	};
