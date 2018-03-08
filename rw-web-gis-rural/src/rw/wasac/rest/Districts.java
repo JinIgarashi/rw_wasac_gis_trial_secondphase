@@ -30,6 +30,11 @@ import rw.wasac.common.ServletListener;
 public class Districts {
 	private final Logger logger = LogManager.getLogger(Districts.class);
 
+	/**
+	 * To get list of boundaries for districts in Rwanda
+	 * @return list of boundaries for districts
+	 * @throws SQLException SQL error
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public RestResult<ArrayList<HashMap<String,Object>>> get() throws SQLException {

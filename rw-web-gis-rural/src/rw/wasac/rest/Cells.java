@@ -30,6 +30,11 @@ import rw.wasac.common.ServletListener;
 public class Cells {
 	private final Logger logger = LogManager.getLogger(Cells.class);
 
+	/**
+	 * To get list of boundaries for cells in Rwanda
+	 * @return list of boundaries for cells
+	 * @throws SQLException SQL error
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public RestResult<ArrayList<HashMap<String,Object>>> get() throws SQLException {

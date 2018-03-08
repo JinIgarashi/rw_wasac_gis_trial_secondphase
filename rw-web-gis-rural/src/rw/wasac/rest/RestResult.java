@@ -7,18 +7,40 @@ package rw.wasac.rest;
  */
 public class RestResult<T> {
 
+	/**
+	 * Return code '0' means OK
+	 */
 	public static int ok = 0;
+	
+	/**
+	 * Return code '-1' means application error
+	 */
 	public static int error = -1;
+	
+	/**
+	 * Return code '99' means system error.
+	 */
 	public static int systemerror = 99;
 
+	/**
+	 * Returned code
+	 */
 	private int code;
+	
+	/**
+	 * Returned message
+	 */
 	private String message;
+	
+	/**
+	 * Returned value
+	 */
 	private T value;
 
 	/**
 	 * Constructor
-	 * @param code
-	 * @param message
+	 * @param code returned code
+	 * @param message returned message
 	 */
 	public RestResult(int code, String message){
 		this.code = code;
@@ -36,7 +58,7 @@ public class RestResult<T> {
 
 	/**
 	 * get Code of result
-	 * @return {Integer}
+	 * @return {Integer} returned code
 	 */
 	public int getCode(){
 		return this.code;
@@ -44,7 +66,7 @@ public class RestResult<T> {
 
 	/**
 	 * get Message of result
-	 * @return {String}
+	 * @return {String} returned message
 	 */
 	public String getMessage(){
 		return this.message;
@@ -52,7 +74,7 @@ public class RestResult<T> {
 
 	/**
 	 * get Object of result
-	 * @return {Object}
+	 * @return {Object} returned object
 	 */
 	public T getValue(){
 		return this.value;

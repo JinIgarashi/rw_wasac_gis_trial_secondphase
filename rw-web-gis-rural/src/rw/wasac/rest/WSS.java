@@ -29,6 +29,11 @@ import rw.wasac.common.ServletListener;
 public class WSS {
 	private final Logger logger = LogManager.getLogger(WSS.class);
 	
+	/**
+	 * To get list of centroid of WSSs' boundary in Rwanda
+	 * @return list of centroid of WSSs' boundary
+	 * @throws SQLException SQL error
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public RestResult<ArrayList<HashMap<String,Object>>> get() throws SQLException {
