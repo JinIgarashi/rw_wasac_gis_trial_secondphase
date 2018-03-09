@@ -81,6 +81,7 @@
                 'gis/ui/controlLoader.js',
                 'gis/ui/layerLoader.js',
                 'gis/ui/control.js',
+                'gis/ui/control/bookmarks.js',
                 'gis/ui/control/coordinates.js',
                 'gis/ui/control/geocoder.js',
                 'gis/ui/control/graphicScale.js',

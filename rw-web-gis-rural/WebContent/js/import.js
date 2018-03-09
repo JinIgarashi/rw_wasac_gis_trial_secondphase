@@ -16,8 +16,9 @@ function importJS() {
         './js/external/leaflet/easy-button.js',
         './js/external/leaflet/iconLayers.js',
         './js/external/leaflet/Control.Geocoder.js',
-        //'./js/gis/lib/gis.js',
-        './js/gis/gis.min.js',
+        './js/external/leaflet/Leaflet.Bookmarks.min.js',
+        './js/gis/lib/gis.js',
+        //'./js/gis/gis.min.js',
         './js/app.js',
         ];
 	var scriptTags = [];

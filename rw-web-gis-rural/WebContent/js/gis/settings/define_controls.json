@@ -1,5 +1,14 @@
 [
   {
+    "ctrl": "bookmarks",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "topright"
+      }
+    }
+  },
+  {
     "ctrl": "geocoder",
     "settings": {
       "notRequireSP": false,
