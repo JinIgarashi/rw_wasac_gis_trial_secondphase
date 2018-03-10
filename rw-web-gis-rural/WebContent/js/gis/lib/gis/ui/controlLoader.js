@@ -11,7 +11,7 @@ gis.ui.controlLoader = function(spec,my){
 			type : 'GET',
 			dataType : 'json',
 			cache : false,
-			async : false
+			async : true
 		}).done(function(ctrls_define) {
 			var settings = {map : my.map};
 			for (var i in ctrls_define){

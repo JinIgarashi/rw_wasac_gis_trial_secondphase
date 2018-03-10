@@ -1,11 +1,9 @@
 var app = {
 	init : function() {
 		var options = {};
-		if (gis.util.isSmartphone()===true){
-			options.zoomControl = false; //スマホの時はズームコントロールは非表示に
-		}
+		var mapOptionObj = gis.ui.mapOptionCreator({}).create(options);
 		app.map = L.map('map',options).setView([ -1.904962, 30.499550 ], 10);
-		
+		mapOptionObj.bind(app.map);
 		var controlLoader = new gis.ui.controlLoader({
 			map : app.map,
 			defineurl : './js/gis/settings/define_controls.json'

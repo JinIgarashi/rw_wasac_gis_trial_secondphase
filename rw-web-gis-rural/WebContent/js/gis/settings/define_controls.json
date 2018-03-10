@@ -48,7 +48,9 @@
           ".leaflet-small-widget",
           ".leaflet-control-coordinates",
           ".leaflet-control-attribution",
-          ".leaflet-iconLayers-layer"
+          ".leaflet-iconLayers-layer",
+          ".leaflet-bar",
+          ".leaflet-control-geocoder-icon"
         ]
       }
     }

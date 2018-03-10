@@ -5,7 +5,7 @@
     "url":"https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
     "visible": true,
     "isBaseLayer": true,
-    "icon":"./js/external/leaflet/iconLayers/icons/openstreetmap_mapnik.png",
+    "icon":"./css/leaflet/icons/openstreetmap_mapnik.png",
     "options":{
     	"maxZoom":20,
     	"attribution": "&copy; <a href='http://osm.org/copyright'>OpenStreetMap</a> contributors"
@@ -17,7 +17,7 @@
     "url": "https://{s}.google.com/vt/lyrs=m&x={x}&y={y}&z={z}",
     "visible": false,
     "isBaseLayer": true,
-    "icon":"./js/external/leaflet/iconLayers/icons/here_normalday.png",
+    "icon":"./css/leaflet/icons/here_normalday.png",
     "options":{
     	"maxZoom":20,
     	"subdomains" : [ "mt0", "mt1", "mt2", "mt3" ],
@@ -31,7 +31,7 @@
     "url": "https://{s}.google.com/vt/lyrs=s,h&x={x}&y={y}&z={z}",
     "visible": false,
     "isBaseLayer": true,
-    "icon":"./js/external/leaflet/iconLayers/icons/here_satelliteday.png",
+    "icon":"./css/leaflet/icons/here_satelliteday.png",
     "options":{
     	"maxZoom":20,
     	"subdomains" : [ "mt0", "mt1", "mt2", "mt3" ],
@@ -44,7 +44,7 @@
     "url": "https://{s}.google.com/vt/lyrs=p&x={x}&y={y}&z={z}",
     "visible": false,
     "isBaseLayer": true,
-    "icon":"./js/external/leaflet/iconLayers/icons/esri_worldterrain.png",
+    "icon":"./css/leaflet/icons/esri_worldterrain.png",
     "options":{
     	"maxZoom":20,
     	"subdomains" : [ "mt0", "mt1", "mt2", "mt3" ],
