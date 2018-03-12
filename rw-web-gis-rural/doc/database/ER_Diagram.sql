@@ -1,6 +1,7 @@
 
 /* Drop Tables */
 
+DROP TABLE IF EXISTS bookmarks;
 DROP TABLE IF EXISTS break_pressure;
 DROP TABLE IF EXISTS village;
 DROP TABLE IF EXISTS cell;
@@ -12,6 +13,7 @@ DROP TABLE IF EXISTS pipeline;
 DROP TABLE IF EXISTS province;
 DROP TABLE IF EXISTS pumping_station;
 DROP TABLE IF EXISTS reservoir;
+DROP TABLE IF EXISTS Status;
 DROP TABLE IF EXISTS watersource;
 DROP TABLE IF EXISTS water_connection;
 
@@ -19,6 +21,18 @@ DROP TABLE IF EXISTS water_connection;
 
 
 /* Create Tables */
+
+CREATE TABLE bookmarks
+(
+	id varchar(20) NOT NULL,
+	name varchar(100) NOT NULL,
+	latlng double precision[][] NOT NULL,
+	zoom int NOT NULL,
+	editable boolean NOT NULL,
+	removable boolean NOT NULL,
+	PRIMARY KEY (id)
+) WITHOUT OIDS;
+
 
 CREATE TABLE break_pressure
 (
@@ -31,7 +45,7 @@ CREATE TABLE break_pressure
 	constructed_year int,
 	rehabilitated_year int,
 	material varchar(50),
-	chamber_size int[][][],
+	chamber_size varchar(100),
 	status int,
 	-- chamber, valve
 	method_of_breakpressure varchar(50),
@@ -71,7 +85,7 @@ CREATE TABLE chamber
 	wss_id int NOT NULL,
 	constructed_year int,
 	rehabilitated_year int,
-	chamber_size int[][][],
+	chamber_size varchar(100),
 	material varchar(50),
 	water_meter boolean DEFAULT '0' NOT NULL,
 	status int,
@@ -183,6 +197,18 @@ CREATE TABLE sector
 ) WITHOUT OIDS;
 
 
+-- 0:N/A
+-- 1:Full Functional
+-- 2:Partially Functional
+-- 3:Abandoned
+CREATE TABLE Status
+(
+	Code int NOT NULL,
+	Name varchar(50) NOT NULL,
+	PRIMARY KEY (Code)
+) WITHOUT OIDS;
+
+
 CREATE TABLE village
 (
 	vill_id int NOT NULL,
@@ -264,6 +290,10 @@ H:167m, Q:37m3/h, P:25,5kW';
 COMMENT ON COLUMN reservoir.reservoir_type IS 'Ground
 Underground
 Elevated';
+COMMENT ON TABLE Status IS '0:N/A
+1:Full Functional
+2:Partially Functional
+3:Abandoned';
 
 
 
