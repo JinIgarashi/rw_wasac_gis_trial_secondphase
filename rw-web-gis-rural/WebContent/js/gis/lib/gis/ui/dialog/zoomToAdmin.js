@@ -8,15 +8,18 @@ gis.ui.dialog.zoomToAdmin = function(spec,my){
 	my.comboboxDistId = 'cmbDistId_' + my.dialogId;
 	my.comboboxSectorId = 'cmbSectId_' + my.dialogId;
 	my.comboboxCellId = 'cmbCellId_' + my.dialogId;
+	my.comboboxVillId = 'cmbVillId_' + my.dialogId;
 
 	my.provid_prov_map = {};
 	my.distid_dist_map = {};
 	my.sectid_sect_map = {};
 	my.cellid_cell_map = {};
+	my.villid_vill_map = {};
 	
 	my.prov_dist_map = {};
 	my.dist_sector_map = {};
 	my.sect_cell_map = {};
+	my.cell_vill_map = {};
 	
 	my.selected_bounds = null;
 	
@@ -36,7 +39,9 @@ gis.ui.dialog.zoomToAdmin = function(spec,my){
 			"<br>" +
 			"<label for='"+ my.comboboxSectorId +"'>Sector</label><select id='" + my.comboboxSectorId + "' style='width:100%'></select>" +
 			"<br>" +
-			"<label for='"+ my.comboboxCellId +"'>Cell</label><select id='" + my.comboboxCellId + "' style='width:100%'></select>";
+			"<label for='"+ my.comboboxCellId +"'>Cell</label><select id='" + my.comboboxCellId + "' style='width:100%'></select>"+
+			"<br>" +
+			"<label for='"+ my.comboboxVillId +"'>Village</label><select id='" + my.comboboxVillId + "' style='width:100%'></select>";
 		
 		return html;
 	};
@@ -141,10 +146,41 @@ gis.ui.dialog.zoomToAdmin = function(spec,my){
     	});
 	};
 	
+	my.getVillages = function(){
+		$.ajax({
+			url : './rest/Villages',
+			type : 'GET',
+			dataType : 'json',
+			cache : false
+    	}).done(function(json){
+    		if (json.code !== 0){
+    			alert(json.message);
+    			return;
+    		}
+    		
+    		my.villid_vill_map = {};
+    		my.cell_vill_map = {};
+    		
+    		var villages = json.value;
+    		for (var i in villages){
+    			var vill = villages[i];
+    			if (!my.cell_vill_map[vill.cell_id]){
+    				my.cell_vill_map[vill.cell_id] = [];
+    			}
+    			my.cell_vill_map[vill.cell_id].push(vill);
+    			my.villid_vill_map[vill.vill_id]=vill;
+    		}
+    	}).fail(function(xhr){
+			console.log(xhr.status + ';' + xhr.statusText);
+			return false;
+    	});
+	};
+	
 	my.postCreate = function(){
 		my.getDistricts();
 		my.getSecotrs();
 		my.getCells();
+		my.getVillages();
 		
 		$.ajax({
 			url : './rest/Provinces',
@@ -223,6 +259,8 @@ gis.ui.dialog.zoomToAdmin = function(spec,my){
     		
     		$("#" + my.comboboxCellId).change(function(){
     			var cell_id = $(this).val();
+    			$("#" + my.comboboxVillId + " > option").remove();
+    			$("#" + my.comboboxVillId).append($('<option>').html("Select Village").val(""));
     			if (cell_id == ""){
     				var sector = my.dist_sector_map[dist_id][sect_id];
         			my.set_bounds(sector);
@@ -230,6 +268,22 @@ gis.ui.dialog.zoomToAdmin = function(spec,my){
     			}
     			var cell = my.cellid_cell_map[cell_id];
     			my.set_bounds(cell);
+    			
+    			for (var vill_id in my.cell_vill_map[cell_id]){
+    				var vill = my.cell_vill_map[cell_id][vill_id];
+    				$("#" + my.comboboxVillId).append($('<option>').html(vill.village).val(vill.vill_id));
+    			}
+    		});
+    		
+    		$("#" + my.comboboxVillId).change(function(){
+    			var vill_id = $(this).val();
+    			if (vill_id == ""){
+    				var cell = my.sector_cell_map[sect_id][cell_id];
+        			my.set_bounds(cell);
+    				return;
+    			}
+    			var vill = my.villid_vill_map[vill_id];
+    			my.set_bounds(vill);
     			that.close();
     		});
     		
@@ -238,14 +292,6 @@ gis.ui.dialog.zoomToAdmin = function(spec,my){
 			return false;
     	});
 	};
-
-	/*my.btnZoom_onClick = function(){
-		if (!my.selected_bounds){
-			return;
-		}
-		my.map.flyToBounds(my.selected_bounds);
-		that.close();
-	};*/
 
 	that.CLASS_NAME =  "gis.ui.dialog.zoomToAdmin";
 	return that;
