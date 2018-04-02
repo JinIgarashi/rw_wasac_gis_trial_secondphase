@@ -78,7 +78,7 @@
     "settings": {
       "notRequireSP": false,
       "options": {
-        "position": "bottomleft",
+        "position": "bottomright",
         "fill": "hollow",
         "showSubunits": true,
         "labelPlacement": "top"

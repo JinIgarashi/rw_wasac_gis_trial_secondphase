@@ -77,7 +77,7 @@ gis.ui.layerLoader = function(spec,my){
 			
 			if (my.legends.length>0){
 				L.control.htmllegend({
-					position : 'bottomright',
+					position : 'topright',
 					legends : my.legends,
 					collapseSimple : false,
 					detectStretched : false,
