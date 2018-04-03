@@ -18,8 +18,9 @@ function importJS() {
         './js/external/leaflet/Control.Geocoder.js',
         './js/external/leaflet/Leaflet.Bookmarks.min.js',
         './js/external/leaflet/leaflet.contextmenu.min.js',
-        //'./js/gis/lib/gis.js',
-        './js/gis/gis.min.js',
+        './js/external/leaflet/leaflet.wms.js',
+        './js/gis/lib/gis.js',
+        //'./js/gis/gis.min.js',
         './js/app.js',
         ];
 	var scriptTags = [];
