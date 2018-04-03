@@ -110,7 +110,7 @@ gis.ui.layerLoader = function(spec,my){
 			type : 'GET',
 			dataType : 'json',
 			cache : false,
-			//async : false
+			async : false
 		}).done(function(layers_define) {
 			for (var i in layers_define){
 				my.createLayer(layers_define[i]);
