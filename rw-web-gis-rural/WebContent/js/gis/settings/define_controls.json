@@ -1,10 +1,10 @@
 [
   {
-    "ctrl": "bookmarks",
+    "ctrl": "navbar",
     "settings": {
-      "notRequireSP": false,
+      "notRequireSP": true,
       "options": {
-        "position": "topright"
+        "position": "topleft"
       }
     }
   },
@@ -13,14 +13,14 @@
     "settings": {
       "notRequireSP": false,
       "options": {
-        "position": "topright"
+        "position": "topleft"
       }
     }
   },
   {
-    "ctrl": "navbar",
+    "ctrl": "bookmarks",
     "settings": {
-      "notRequireSP": true,
+      "notRequireSP": false,
       "options": {
         "position": "topleft"
       }

@@ -30,7 +30,7 @@
 .leaflet-html-legend {
     background: #FFF;
     border: 2px solid #FFF;
-    padding: 6px;
+    padding: 8px;
     max-height: 250px;
 	overflow-y: auto;
     line-height: 1.2;

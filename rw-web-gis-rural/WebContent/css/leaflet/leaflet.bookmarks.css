@@ -9,7 +9,7 @@
 }
 .leaflet-bookmarks-control {
   background: #ffffff;
-  padding: 8px;
+  padding: 10px;
   cursor: pointer;
   transition: margin 0.15s ease-out, padding 0.15s ease-out;
   -webkit-transition: margin 0.15s ease-out, padding 0.15s ease-out;
