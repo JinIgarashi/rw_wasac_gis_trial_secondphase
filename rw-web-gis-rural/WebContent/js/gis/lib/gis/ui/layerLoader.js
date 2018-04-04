@@ -82,27 +82,22 @@ gis.ui.layerLoader = function(spec,my){
 	};
 	
 	my.createLayer = function(e){
-		var layers = [];
 		if (e.type === "WMS"){
 			var _layer = L.tileLayer.wms(e.url,e.options).addTo(my.map);
-			layers.push(_layer);
 			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMS_getFeatureInfo"){
 			var source = new my.wmssource(e.url, e.options);
 			for (var i in e.layers){
 				var _layer = source.getLayer(e.layers[i].name).addTo(my.map);
-				layers.push(_layer);
 				my.addLegend(e.layers[i].legend,e.layers[i].title,e.layers[i].name,_layer);
-				my.setLayerControl(e,_layer,e.layers[i].name);
+				my.setLayerControl(e,_layer,e.layers[i].title);
 			}
 		}else if (e.type === "TMS"){
 			var _layer = L.tileLayer(e.url, e.options).addTo(my.map);
-			layers.push(_layer);
 			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
 		}
-		return layers;
 	};
 
 	that.init = function(){
