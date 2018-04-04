@@ -60,14 +60,14 @@ gis.ui.dialog = function(spec,my){
 			option.position = [0,0];
 		}
 		$("#" + my.dialogId).dialog(option);
-
-		my.isInit = true;
-
 		my.postCreate();
 	};
 
 	that.open = function(){
-		my.beforeOpen();
+		if (my.isInit === false){
+			my.beforeOpen();
+			my.isInit = true;
+		}
 		$("#" + my.dialogId).dialog('open');
 	};
 
