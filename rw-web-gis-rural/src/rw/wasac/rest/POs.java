@@ -22,17 +22,17 @@ import org.apache.logging.log4j.Logger;
 import rw.wasac.common.ServletListener;
 
 /**
- * WSS
+ * Private Operators
  * @version 1.00
  * @author Igarashi
  */
-@Path("/WSS")
-public class WSS {
-	private final Logger logger = LogManager.getLogger(WSS.class);
-	
+@Path("/POs")
+public class POs {
+	private final Logger logger = LogManager.getLogger(POs.class);
+
 	/**
-	 * To get list of centroid of WSSs' boundary in Rwanda
-	 * @return list of centroid of WSSs' boundary
+	 * To get list of Private Operators in Rwanda
+	 * @return list of boundaries for districts
 	 * @throws SQLException SQL error
 	 */
 	@GET
@@ -46,25 +46,10 @@ public class WSS {
 			conn = DriverManager.getConnection(ServletListener.dburl, ServletListener.dbuser,ServletListener.dbpassword);
 			StringBuffer sql = new StringBuffer("");
 			sql.append("SELECT ");
-			sql.append("  w.wss_id, ");
-			sql.append("  w.wss_name,");
-			sql.append("  w.dist_id, ");
-			sql.append("  CASE WHEN m.po_id is null THEN -1 else m.po_id END as po_id,");
-			sql.append("  st_ymin(st_extent(w.geom)) as ymin, ");
-			sql.append("  st_xmin(st_extent(w.geom)) as xmin, ");
-			sql.append("  st_ymax(st_extent(w.geom)) as ymax, ");
-			sql.append("  st_xmax(st_extent(w.geom)) as xmax ");
-			sql.append("FROM  wss w ");
-			sql.append("LEFT JOIN management m ");
-			sql.append("ON w.wss_id = m.wss_id ");
-			sql.append("AND m.end_year is null ");
-			sql.append("WHERE w.geom is not null ");
-			sql.append("GROUP BY ");
-			sql.append("   w.wss_id, ");
-			sql.append("   m.po_id ");
-			sql.append("ORDER BY ");
-			sql.append("   w.wss_id ");
-			
+			sql.append("  po_id, ");
+			sql.append("  po_name ");
+			sql.append("FROM private_operator ");
+
 			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
 			ResultSetMetaData rsmd= rs.getMetaData();

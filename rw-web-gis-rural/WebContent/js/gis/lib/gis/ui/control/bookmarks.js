@@ -1,40 +1,20 @@
 gis.ui.control.bookmarks = function(spec,my){
 	my = my || {};
 	var that = gis.ui.control(spec,my);
+	my.url = './rest/Bookmarks/';
 	
 	my.storage = {
 	        getItem: function(id, callback){
-	            $.ajax({
-	                url: './rest/Bookmarks/' + id,
-	                type: 'GET',
-	                dataType: 'json',
-	                success: callback
-	            });
+	        	gis.util.ajaxGet(my.url + id,callback);
 	        },
 	        setItem: function(id, value, callback){
-	        	$.ajax({
-	                url: './rest/Bookmarks/' + id,
-	                type: 'PUT',
-	                data: value,
-	                dataType: 'json',
-	                success: callback
-	            });
+	        	gis.util.ajaxPut(my.url + id,callback,value);
 	        },
 	        removeItem: function(id, callback){
-	        	$.ajax({
-	                url: './rest/Bookmarks/' + id,
-	                type: 'DELETE',
-	                dataType: 'json',
-	                success: callback
-	            });
+	        	gis.util.ajaxDelete(my.url + id,callback);
 	        },
 	        getAllItems: function(callback){
-	            $.ajax({
-	                url: './rest/Bookmarks/',
-	                type: 'GET',
-	                dataType: 'json',
-	                success: callback
-	            });
+	        	gis.util.ajaxGet(my.url,callback);
 	        }
 	};
 	

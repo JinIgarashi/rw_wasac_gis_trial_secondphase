@@ -81,5 +81,59 @@ public class Districts {
 			}
 		}
 	}
+	
+	/**
+	 * To get list of boundaries for districts filtered by WSS in Rwanda
+	 * @return list of boundaries for districts
+	 * @throws SQLException SQL error
+	 */
+	@GET
+	@Path("/ByWss")
+	@Produces(MediaType.APPLICATION_JSON)
+	public RestResult<ArrayList<HashMap<String,Object>>> getByWss() throws SQLException {
 
+		logger.info("get start.");
+		Connection conn = null;
+		try{
+			Class.forName("org.postgresql.Driver");
+			conn = DriverManager.getConnection(ServletListener.dburl, ServletListener.dbuser,ServletListener.dbpassword);
+			StringBuffer sql = new StringBuffer("");
+			sql.append("SELECT ");
+			sql.append("  d.dist_id, ");
+			sql.append("  d.district, ");
+			sql.append("  d.prov_id, ");
+			sql.append("  st_ymin(st_extent(d.geom)) as ymin, ");
+			sql.append("  st_xmin(st_extent(d.geom)) as xmin, ");
+			sql.append("  st_ymax(st_extent(d.geom)) as ymax, ");
+			sql.append("  st_xmax(st_extent(d.geom)) as xmax ");
+			sql.append("FROM  district d ");
+			sql.append("WHERE EXISTS (SELECT wss_id, dist_id from wss where dist_id = d.dist_id) ");
+			sql.append("GROUP BY d.prov_id, d.dist_id ");
+			sql.append("ORDER BY d.prov_id, d.dist_id ");
+
+			PreparedStatement pstmt = conn.prepareStatement(sql.toString());
+			ResultSet rs = pstmt.executeQuery();
+			ResultSetMetaData rsmd= rs.getMetaData();
+			ArrayList<HashMap<String,Object>> res = new ArrayList<HashMap<String,Object>>();
+			while(rs.next()){
+				HashMap<String,Object> data = new HashMap<String,Object>();
+				for (int i = 1; i <= rsmd.getColumnCount(); i++) {
+					String colname = rsmd.getColumnName(i);
+					data.put(colname, rs.getObject(colname));
+				}
+				res.add(data);
+			}
+
+			return new RestResult<ArrayList<HashMap<String,Object>>>(res);
+		}catch(Exception e){
+			logger.error(e.getMessage(), e);
+			throw new WebApplicationException(e, Status.INTERNAL_SERVER_ERROR);
+		}finally{
+			if (conn != null){
+				conn.close();
+				conn = null;
+			}
+		}
+	}
+	
 }

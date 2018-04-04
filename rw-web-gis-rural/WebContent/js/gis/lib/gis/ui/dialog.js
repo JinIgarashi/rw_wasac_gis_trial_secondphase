@@ -13,6 +13,10 @@ gis.ui.dialog = function(spec,my){
 		return "";
 	};
 
+	my.beforeOpen = function(){
+
+	};
+	
 	my.postCreate = function(){
 
 	};
@@ -21,6 +25,14 @@ gis.ui.dialog = function(spec,my){
 		return option;
 	};
 
+	my.set_bounds = function(object){
+		if (!object){
+			my.selected_bounds = null;
+		}
+		my.selected_bounds = [[object.ymin,object.xmin],[object.ymax,object.xmax]];
+		my.map.flyToBounds(my.selected_bounds);
+	}
+	
 	/**
 	 * Dialogを格納するdivを作成しHTMLをセットする
 	 * @param html ダイアログのHTML
@@ -55,6 +67,7 @@ gis.ui.dialog = function(spec,my){
 	};
 
 	that.open = function(){
+		my.beforeOpen();
 		$("#" + my.dialogId).dialog('open');
 	};
 

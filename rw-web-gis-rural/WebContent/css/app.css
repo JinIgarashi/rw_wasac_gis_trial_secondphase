@@ -10,6 +10,10 @@ html, body, #map {
 	position: relative;
 }
 
+.gis-ui-dialog-selectbox{
+	width:100%
+}
+
 table.popup-table-wms-getfeatureinfo, th.popup-table-wms-getfeatureinfo, td.popup-table-wms-getfeatureinfo {
   border-collapse: collapse;
   border: 1px solid #ccc;

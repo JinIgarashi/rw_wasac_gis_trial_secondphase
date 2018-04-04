@@ -13,10 +13,10 @@ gis.ui.control.zoomToAreas = function(spec,my){
 		my.dialogAdmin.create();
 		
 		my.control = L.easyBar([
-			L.easyButton( 'fa-map-pin', function(){
+			L.easyButton( 'fa-tint', function(){
 				my.dialogWss.open();
 			},'Zoom To WSS'),
-			L.easyButton( 'fa-map-o', function(){
+			L.easyButton( 'fa-sitemap', function(){
 				my.dialogAdmin.open();
 			},'Zoom To Administrative Boundary')
 		]);
