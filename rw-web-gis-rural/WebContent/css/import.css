@@ -7,12 +7,11 @@
 @import url("leaflet/Leaflet.Coordinates-0.1.5.css");
 @import url("leaflet/leaflet.groupedlayercontrol.css");
 @import url("leaflet/L.Control.Locate.min.css");
-@import url("leaflet/L.Control.SmallWidget.css");
-@import url("leaflet/L.Control.HtmlLegend.css");
 @import url("leaflet/Leaflet.GraphicScale.min.css");
 @import url("leaflet/easy-button.css");
 @import url("leaflet/iconLayers.css");
 @import url("leaflet/Control.Geocoder.css");
 @import url("leaflet/leaflet.bookmarks.css");
 @import url("leaflet/leaflet.contextmenu.min.css");
+@import url("leaflet/L.Control.SlideMenu.css");
 @import url("app.css");

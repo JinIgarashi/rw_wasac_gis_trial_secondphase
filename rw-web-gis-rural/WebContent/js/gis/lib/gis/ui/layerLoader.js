@@ -47,9 +47,10 @@ gis.ui.layerLoader = function(spec,my){
 	
 	my.legends = [];
 	
-	my.addLegend = function(legend,layername,layer){
+	my.addLegend = function(legend,title,layername,layer){
 		if (legend) {
 			my.legends.push({
+				title : title,
 				name : layername,
 				layer : layer,
 				elements : legend.elements
@@ -85,20 +86,20 @@ gis.ui.layerLoader = function(spec,my){
 		if (e.type === "WMS"){
 			var _layer = L.tileLayer.wms(e.url,e.options).addTo(my.map);
 			layers.push(_layer);
-			my.addLegend(e.legend,e.name,_layer);
+			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMS_getFeatureInfo"){
 			var source = new my.wmssource(e.url, e.options);
 			for (var i in e.layers){
 				var _layer = source.getLayer(e.layers[i].name).addTo(my.map);
 				layers.push(_layer);
-				my.addLegend(e.layers[i].legend,e.layers[i].title,_layer);
-				my.setLayerControl(e,_layer,e.layers[i].title);
+				my.addLegend(e.layers[i].legend,e.layers[i].title,e.layers[i].name,_layer);
+				my.setLayerControl(e,_layer,e.layers[i].name);
 			}
 		}else if (e.type === "TMS"){
 			var _layer = L.tileLayer(e.url, e.options).addTo(my.map);
 			layers.push(_layer);
-			my.addLegend(e.legend,e.name,_layer);
+			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
 		}
 		return layers;
@@ -123,20 +124,24 @@ gis.ui.layerLoader = function(spec,my){
 			    }).addTo(my.map);
 			}
 			
+			if (my.legends.length>0){
+				var html = "<h1>LEGEND</h1>";
+				for (var i in my.legends){
+					var legend = my.legends[i];
+					html += "<hr>"
+					html += "<h2>" + legend.title + "</h2>";
+					html += legend.elements[0].html;
+				}
+				L.control.slideMenu(html,{
+					position:'topright',
+					menuposition: 'topright'
+				}).addTo(my.map);
+			}
+			
 			L.control.groupedLayers({},my.overlays,{
 				exclusiveGroups: ["Area"],
 				groupCheckboxes: true
 			}).addTo(my.map);
-			
-			if (my.legends.length>0){
-				L.control.htmllegend({
-					position : 'topright',
-					legends : my.legends,
-					collapseSimple : false,
-					detectStretched : false,
-					collapsedOnInit : false,
-				}).addTo(my.map);
-			}
 		});
 	};
 
