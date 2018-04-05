@@ -67,13 +67,15 @@
   },
   {
     "name": "Village",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:village",
+      "layer": "rwanda:village",
       "format": "image/png",
       "minZoom": 16,
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://geodata-nisr.opendata.arcgis.com'>NISR</a>"
     },
     "visible": true,
@@ -81,13 +83,15 @@
   },
   {
     "name": "Cell",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:cell",
+      "layer": "rwanda:cell",
       "format": "image/png",
       "minZoom": 14,
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://geodata-nisr.opendata.arcgis.com'>NISR</a>"
     },
     "visible": true,
@@ -95,13 +99,15 @@
   },
   {
     "name": "Sector",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:sector",
+      "layer": "rwanda:sector",
       "format": "image/png",
       "minZoom": 12,
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://geodata-nisr.opendata.arcgis.com'>NISR</a>"
     },
     "visible": true,
@@ -109,13 +115,15 @@
   },
   {
     "name": "District",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:district",
+      "layer": "rwanda:district",
       "format": "image/png",
       "minZoom": 10,
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://geodata-nisr.opendata.arcgis.com'>NISR</a>"
     },
     "visible": true,
@@ -123,12 +131,14 @@
   },
   {
     "name": "Province",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:province",
+      "layer": "rwanda:province",
       "format": "image/png",
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://geodata-nisr.opendata.arcgis.com'>NISR</a>"
     },
     "visible": true,
@@ -136,13 +146,15 @@
   },
   {
     "name": "Contours",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:contours_rw",
+      "layer": "rwanda:contours_rw",
       "format": "image/png",
       "minZoom": 10,
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": false,
@@ -157,13 +169,15 @@
   },
   {
     "name": "Nighttime luminosity(NASA)",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:nasa_light",
+      "layer": "rwanda:nasa_light",
       "format": "image/png",
       "minZoom": 8,
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='https://www.nasa.gov'>NASA</a>"
     },
     "visible": false,
@@ -178,13 +192,15 @@
   },
   {
     "name": "Population(NISR)",
-    "type": "WMS",
-    "url": "https://wasacwebgis.tk/geoserver/rwanda/wms?",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "layers": "rwanda:population",
+      "layer": "rwanda:population",
       "format": "image/png",
       "minZoom": 8,
       "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://geodata-nisr.opendata.arcgis.com'>NISR</a>"
     },
     "visible": false,

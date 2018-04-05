@@ -18,8 +18,9 @@ function importJS() {
         './js/external/leaflet/leaflet.contextmenu.min.js',
         './js/external/leaflet/L.Control.SlideMenu.js',
         './js/external/leaflet/leaflet.wms.js',
-        //'./js/gis/lib/gis.js',
-        './js/gis/gis.min.js',
+        './js/external/leaflet/leaflet-tilelayer-wmts.js',
+        './js/gis/lib/gis.js',
+        //'./js/gis/gis.min.js',
         './js/app.js',
         ];
 	var scriptTags = [];

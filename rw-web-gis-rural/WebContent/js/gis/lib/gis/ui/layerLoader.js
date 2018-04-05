@@ -97,6 +97,10 @@ gis.ui.layerLoader = function(spec,my){
 			var _layer = L.tileLayer(e.url, e.options).addTo(my.map);
 			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
+		}else if (e.type === "WMTS"){
+			var _layer = new L.TileLayer.WMTS(e.url, e.options).addTo(my.map);
+			my.addLegend(e.legend,e.name,e.options.layers,_layer);
+			my.setLayerControl(e,_layer,e.name);
 		}
 	};
 
