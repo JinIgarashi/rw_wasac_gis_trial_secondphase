@@ -72,35 +72,73 @@ gis.ui.layerLoader = function(spec,my){
 				if (!my.overlays[e.group]){
 					my.overlays[e.group] = {};
 				}
-				my.overlays[e.group][name] = layer
+				my.overlays[e.group][name] = layer;
 			}
 		}
 
-		if (e.visible !== true){
+		if (e.visible === true){
+			my.map.addLayer(layer);
+		}else{
 			my.map.removeLayer(layer);
 		}
 	};
 	
 	my.createLayer = function(e){
 		if (e.type === "WMS"){
-			var _layer = L.tileLayer.wms(e.url,e.options).addTo(my.map);
+			var _layer = L.tileLayer.wms(e.url,e.options);
 			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMS_getFeatureInfo"){
 			var source = new my.wmssource(e.url, e.options);
 			for (var i in e.layers){
-				var _layer = source.getLayer(e.layers[i].name).addTo(my.map);
+				var _layer = source.getLayer(e.layers[i].name);
 				my.addLegend(e.layers[i].legend,e.layers[i].title,e.layers[i].name,_layer);
 				my.setLayerControl(e,_layer,e.layers[i].title);
 			}
 		}else if (e.type === "TMS"){
-			var _layer = L.tileLayer(e.url, e.options).addTo(my.map);
+			var _layer = L.tileLayer(e.url, e.options);
 			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMTS"){
-			var _layer = new L.TileLayer.WMTS(e.url, e.options).addTo(my.map);
+			var _layer = new L.TileLayer.WMTS(e.url, e.options);
 			my.addLegend(e.legend,e.name,e.options.layers,_layer);
 			my.setLayerControl(e,_layer,e.name);
+		}else if (e.type === "GeoJSON"){
+			gis.util.ajaxGetAsync(e.url, function(geojson){
+				var options = {
+					onEachFeature : function(feature,layer){
+						if (!feature.properties) {
+					        return;
+					    }
+						
+						var html = "";
+						for (var name in feature.properties){
+			        		var val = feature.properties[name];
+			        		if (!val){
+			        			val = "";
+			        		}
+			        		html += "<tr><th>" + name + "</th><td>" + val + "</td></tr>"
+			        	}
+				        if (html === ""){
+				        	return;
+				        }
+				        html = "<table class='popup-table-wms-getfeatureinfo'>" + html + "</table>";
+						layer.bindPopup(html);
+					}
+				};
+				if (e.style.type === "icon"){
+					options.pointToLayer = function (feature, latlng) {
+				        return L.marker(latlng, {
+				            icon : L.icon(e.style.options)
+				        });
+				    };
+				}
+				var _layer = L.geoJSON(geojson,options);
+				markers = L.markerClusterGroup();
+				markers.addLayer(_layer);
+				my.addLegend(e.legend,e.name,e.name,markers);
+				my.setLayerControl(e,markers,e.name);
+			});
 		}
 	};
 

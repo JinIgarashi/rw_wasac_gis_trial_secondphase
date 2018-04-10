@@ -13,6 +13,13 @@ gis.util.ajaxGet = function(url,callback){
 };
 
 /**
+ * ajax呼び出し用（GET）
+ */
+gis.util.ajaxGetAsync = function(url,callback){
+	gis.util.ajax(url,'GET',callback,null,false);
+};
+
+/**
  * ajax呼び出し用（PUT）
  */
 gis.util.ajaxPut = function(url,callback,data){
@@ -29,12 +36,13 @@ gis.util.ajaxDelete = function(url,callback){
 /**
  * ajax呼び出し用共通部品
  */
-gis.util.ajax = function(url,type,callback,data){
+gis.util.ajax = function(url,type,callback,data,async){
 	$.ajax({
 		url : url,
 		type : type,
 		data : data,
-		dataType : 'json'
+		dataType : 'json',
+		async : async
 	})
 	.done(callback)
 	.fail(function(xhr){

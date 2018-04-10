@@ -14,4 +14,6 @@
 @import url("leaflet/leaflet.bookmarks.css");
 @import url("leaflet/leaflet.contextmenu.min.css");
 @import url("leaflet/L.Control.SlideMenu.css");
+@import url("leaflet/MarkerCluster.css");
+@import url("leaflet/MarkerCluster.Default.css");
 @import url("app.css");

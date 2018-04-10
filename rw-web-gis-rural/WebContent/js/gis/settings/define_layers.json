@@ -213,7 +213,48 @@
       ]
     }
   },
-   {
+  {
+    "name": "Hand Pump",
+    "type": "GeoJSON",
+    "url": "./rest/WaterFacilities/Handpumps",
+    "style": {
+    	"type": "icon",
+    	"options": {
+    		"iconSize": [12, 12],
+		    "iconUrl": "./images/handpump.png"
+    	}
+    },
+    "visible": false,
+    "group": "Water Facilities",
+    "legend": {
+      "elements": [
+        {
+          "html": "<img src='./images/handpump.png' width=12,height=12>"
+        }
+      ]
+    }
+  },
+  {
+    "name": "Improved Spring",
+    "type": "GeoJSON",
+    "url": "./rest/WaterFacilities/ImprovedSprings",
+    "style": {
+    	"type": "icon",
+    	"options": {
+    		"iconSize": [12, 12],
+		    "iconUrl": "./images/spring_water.png"
+    	}
+    },
+    "visible": false,
+    "group": "Water Facilities",
+    "legend": {
+      "elements": [
+        {
+          "html": "<img src='./images/spring_water.png' width=12,height=12>"
+        }
+      ]
+    }
+  },{
     "name": "WSS",
     "type": "WMTS",
     "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
@@ -227,7 +268,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -251,7 +292,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -275,7 +316,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -299,7 +340,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -323,7 +364,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -347,7 +388,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -371,7 +412,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -395,7 +436,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -419,7 +460,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -443,7 +484,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -467,7 +508,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -491,7 +532,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
@@ -515,7 +556,7 @@
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
-    "group": "Water Facilities",
+    "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
