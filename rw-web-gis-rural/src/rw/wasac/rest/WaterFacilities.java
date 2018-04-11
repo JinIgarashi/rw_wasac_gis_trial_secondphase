@@ -33,7 +33,7 @@ public class WaterFacilities {
 	 * To get Hand Pumps Data as geojson format in Rwanda
 	 * @param dist_id optional. Use dist_id which you want to get from district table.
 	 * @return geojson
-	 * @throws SQLException
+	 * @throws SQLException SQL error
 	 */
 	@Path("/Handpumps")
 	@GET
@@ -48,7 +48,7 @@ public class WaterFacilities {
 	 * To get Improved Springs Data as geojson format in Rwanda
 	 * @param dist_id optional. Use dist_id which you want to get from district table.
 	 * @return geojson
-	 * @throws SQLException
+	 * @throws SQLException SQL error
 	 */
 	@Path("/ImprovedSprings")
 	@GET
@@ -65,7 +65,7 @@ public class WaterFacilities {
 	 * @param wsftype required. 'Hand Pump' or 'Improved Spring'
 	 * @param dist_id optional. Use dist_id which you want to get from district table.
 	 * @return geojson
-	 * @throws SQLException
+	 * @throws SQLException SQL error
 	 */
 	public String get_wsf_data(String wsftype, Integer dist_id) throws SQLException {
 

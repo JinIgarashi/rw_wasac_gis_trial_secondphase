@@ -125,15 +125,15 @@ gis.ui.layerLoader = function(spec,my){
 		gis.util.ajaxGetAsync(my.defineurl,function(layers_define){
 			my.layerControl = L.Control.styledLayerControl({}, my.overlays, {
 					container_width 	: "300px",
-					group_maxHeight     : "100%",
-					exclusive       	: true,
+					group_maxHeight     : "90%",
+					exclusive       	: false,
 					group_togglers: {
 			            show: true,
 			            labelAll: 'Select All',
 			            labelNone: 'Deselect All'
 			        },
 				}
-			).addTo(my.map);
+			).addTo(my.map);			
 			
 			for (var i in layers_define){
 				my.createLayer(layers_define[i]);

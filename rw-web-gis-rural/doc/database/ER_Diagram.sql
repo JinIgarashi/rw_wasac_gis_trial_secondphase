@@ -2,26 +2,29 @@
 /* Drop Tables */
 
 DROP TABLE IF EXISTS bookmarks;
-DROP TABLE IF EXISTS break_pressure;
 DROP TABLE IF EXISTS village;
 DROP TABLE IF EXISTS cell;
 DROP TABLE IF EXISTS chamber;
 DROP TABLE IF EXISTS sector;
+DROP TABLE IF EXISTS management;
 DROP TABLE IF EXISTS wss;
 DROP TABLE IF EXISTS district;
 DROP TABLE IF EXISTS pipeline;
+DROP TABLE IF EXISTS private_operator;
 DROP TABLE IF EXISTS province;
 DROP TABLE IF EXISTS pumping_station;
 DROP TABLE IF EXISTS reservoir;
-DROP TABLE IF EXISTS Status;
+DROP TABLE IF EXISTS waterfacilities;
 DROP TABLE IF EXISTS watersource;
 DROP TABLE IF EXISTS water_connection;
+DROP TABLE IF EXISTS Status;
 
 
 
 
 /* Create Tables */
 
+-- the table manages the location of bookmark. it requires for leaflet.bookmark plugin.
 CREATE TABLE bookmarks
 (
 	id varchar(20) NOT NULL,
@@ -34,29 +37,7 @@ CREATE TABLE bookmarks
 ) WITHOUT OIDS;
 
 
-CREATE TABLE break_pressure
-(
-	breakpressure_id serial NOT NULL,
-	dist_id int NOT NULL,
-	sect_id int,
-	cell_id int,
-	vill_id int,
-	wss_id int NOT NULL,
-	constructed_year int,
-	rehabilitated_year int,
-	material varchar(50),
-	chamber_size varchar(100),
-	status int,
-	-- chamber, valve
-	method_of_breakpressure varchar(50),
-	observation varchar(200),
-	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
-	geom  NOT NULL,
-	elevation int,
-	PRIMARY KEY (breakpressure_id)
-) WITHOUT OIDS;
-
-
+-- This table manages boundary of cells in Rwanda. The data requires by NISR.
 CREATE TABLE cell
 (
 	cell_id int NOT NULL,
@@ -77,26 +58,24 @@ CREATE TABLE chamber
 	-- Starting Chamber
 	-- Collection Chamber
 	-- Air Release Chamber
+	-- PRV Chamber
 	chamber_type varchar(50) NOT NULL,
-	dist_id int NOT NULL,
-	sect_id int,
-	cell_id int,
-	vill_id int,
 	wss_id int NOT NULL,
 	constructed_year int,
-	rehabilitated_year int,
+	rehabilitated_year varchar(50),
 	chamber_size varchar(100),
 	material varchar(50),
-	water_meter boolean DEFAULT '0' NOT NULL,
-	status int,
+	status int NOT NULL,
 	observation varchar(200),
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
 	elevation int,
+	is_breakpressure boolean DEFAULT 'false' NOT NULL,
 	PRIMARY KEY (chamber_id)
 ) WITHOUT OIDS;
 
 
+-- This table manages boundary of districts in Rwanda. The data requires by NISR.
 CREATE TABLE district
 (
 	dist_id int NOT NULL,
@@ -107,22 +86,48 @@ CREATE TABLE district
 ) WITHOUT OIDS;
 
 
+-- the table manages the relationship between water supply sytem table and private operator table.
+CREATE TABLE management
+(
+	management_id serial NOT NULL,
+	wss_id int NOT NULL,
+	po_id int NOT NULL,
+	-- it is the year started the contract between water supply system and private operator.
+	start_year int NOT NULL,
+	-- If 'end_year' is null, it means that private operator still be in-charge for the water supply system.
+	-- Please enter the year when the contract between private operator and water supply system.
+	end_year int,
+	PRIMARY KEY (management_id),
+	UNIQUE (wss_id, po_id, start_year)
+) WITHOUT OIDS;
+
+
 CREATE TABLE pipeline
 (
 	pipe_id serial NOT NULL,
-	dist_id int NOT NULL,
 	wss_id int,
 	material varchar(50),
 	pipe_size double precision,
-	pn int,
-	constructed_year int,
+	pressure varchar(50),
+	constructed_year varchar(50),
+	rehabilitated_year varchar(50),
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
-	remarks varchar(200),
+	observation varchar(200),
 	PRIMARY KEY (pipe_id)
 ) WITHOUT OIDS;
 
 
+-- this table manages the data of private operator in Rwanda.
+CREATE TABLE private_operator
+(
+	po_id int NOT NULL,
+	po_name varchar(100) NOT NULL,
+	PRIMARY KEY (po_id)
+) WITHOUT OIDS;
+
+
+-- This table manages boundary of provinces in Rwanda. The data requires by NISR.
 CREATE TABLE province
 (
 	prov_id int NOT NULL,
@@ -135,22 +140,18 @@ CREATE TABLE province
 CREATE TABLE pumping_station
 (
 	pumpingstation_id serial NOT NULL,
-	dist_id int NOT NULL,
-	sect_id int,
-	cell_id int,
-	vill_id int,
 	wss_id int NOT NULL,
 	constructed_year int,
-	rehabilitated_year int,
+	rehabilitated_year varchar(50),
 	water_meter boolean DEFAULT '0' NOT NULL,
-	status int,
-	-- Example:
-	-- H:167m, Q:37m3/h, P:25,5kW
-	specification varchar(100),
+	status int NOT NULL,
+	head_pump varchar(50),
+	power_pump varchar(50),
+	discharge_pump varchar(50),
 	pump_type varchar(50),
 	power_source varchar(50),
 	no_pump int,
-	kva double precision,
+	kva_generator varchar(20),
 	no_generator int DEFAULT 0,
 	observation varchar(200),
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
@@ -167,25 +168,23 @@ CREATE TABLE reservoir
 	-- Underground
 	-- Elevated
 	reservoir_type varchar(50),
-	dist_id int NOT NULL,
-	sect_id int,
-	cell_id int,
-	vill_id int,
 	wss_id int NOT NULL,
 	constructed_year int,
-	rehabilitated_year int,
+	rehabilitated_year varchar(50),
 	capacity int,
 	material varchar(50),
 	water_meter boolean DEFAULT '0' NOT NULL,
-	status int,
+	status int NOT NULL,
 	observation varchar(200),
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
 	elevation int,
+	is_breakpressure boolean DEFAULT 'false' NOT NULL,
 	PRIMARY KEY (reservoir_id)
 ) WITHOUT OIDS;
 
 
+-- This table manages boundary of sectors in Rwanda. The data requires by NISR.
 CREATE TABLE sector
 (
 	sect_id int NOT NULL,
@@ -209,6 +208,7 @@ CREATE TABLE Status
 ) WITHOUT OIDS;
 
 
+-- This table manages boundary of villages in Rwanda. The data requires by NISR.
 CREATE TABLE village
 (
 	vill_id int NOT NULL,
@@ -217,24 +217,44 @@ CREATE TABLE village
 	dist_id int NOT NULL,
 	sect_id int NOT NULL,
 	cell_id int NOT NULL,
+	geom  NOT NULL,
+	population int DEFAULT 0 NOT NULL,
+	household int DEFAULT 0 NOT NULL,
 	PRIMARY KEY (vill_id)
+) WITHOUT OIDS;
+
+
+CREATE TABLE waterfacilities
+(
+	id serial NOT NULL,
+	wsf_code varchar,
+	wsf_type varchar,
+	altitude int,
+	serv_area_villages varchar,
+	serv_popu_personals int,
+	serv_popu_households int,
+	type_water_source varchar,
+	no_water_source int,
+	hand_pump_type_name varchar,
+	year_construction int,
+	fund varchar,
+	status int NOT NULL,
+	observation varchar,
+	geom ,
+	PRIMARY KEY (id)
 ) WITHOUT OIDS;
 
 
 CREATE TABLE watersource
 (
 	watersource_id serial NOT NULL,
-	dist_id int NOT NULL,
-	sect_id int,
-	cell_id int,
-	vill_id int,
 	wss_id int NOT NULL,
 	source_type varchar(50),
 	discharge double precision,
 	constructed_year int,
-	rehabilitated_year int,
+	rehabilitated_year varchar(50),
 	water_meter boolean DEFAULT '0' NOT NULL,
-	status int,
+	status int NOT NULL,
 	observation varchar(200),
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
@@ -246,32 +266,43 @@ CREATE TABLE watersource
 CREATE TABLE water_connection
 (
 	connection_id serial NOT NULL,
-	dist_id int NOT NULL,
-	sect_id int,
-	cell_id int,
-	vill_id int,
+	-- Water Kiosk
+	-- Public Tap
+	connection_type varchar(50),
 	wss_id int NOT NULL,
 	constructed_year int,
-	rehabilitated_year int,
-	material varchar(50),
+	rehabilitated_year varchar(50),
 	no_user int,
 	water_meter boolean DEFAULT '0' NOT NULL,
-	status int,
+	status int NOT NULL,
 	observation varchar(200),
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
 	elevation int,
-	is_waterkiosk boolean DEFAULT '0' NOT NULL,
-	is_publictap boolean DEFAULT '0' NOT NULL,
 	PRIMARY KEY (connection_id)
 ) WITHOUT OIDS;
 
 
+-- This table manages boundary each water supply systems in RWSS. every wss belong to a district id.
+-- 
+-- The following SQL will update all boundaries from pipeline data.
+-- ===========================================
+-- update wss
+-- set geom = a.geom
+-- from(
+-- SELECT wss_id, st_multi(st_buffer(st_union(geom),0.001)) as geom
+--   FROM pipeline
+--   group by wss_id) a
+-- where wss.wss_id = a.wss_id
+-- ===========================================
 CREATE TABLE wss
 (
 	wss_id serial NOT NULL,
 	wss_name varchar(100) NOT NULL,
 	dist_id int NOT NULL,
+	wss_type varchar(100) NOT NULL,
+	status varchar(256),
+	geom ,
 	PRIMARY KEY (wss_id)
 ) WITHOUT OIDS;
 
@@ -279,21 +310,44 @@ CREATE TABLE wss
 
 /* Comments */
 
-COMMENT ON COLUMN break_pressure.method_of_breakpressure IS 'chamber, valve';
+COMMENT ON TABLE bookmarks IS 'the table manages the location of bookmark. it requires for leaflet.bookmark plugin.';
+COMMENT ON TABLE cell IS 'This table manages boundary of cells in Rwanda. The data requires by NISR.';
 COMMENT ON COLUMN chamber.chamber_type IS 'Washout Chamber
 Valve Chamber
 Starting Chamber
 Collection Chamber
-Air Release Chamber';
-COMMENT ON COLUMN pumping_station.specification IS 'Example:
-H:167m, Q:37m3/h, P:25,5kW';
+Air Release Chamber
+PRV Chamber';
+COMMENT ON TABLE district IS 'This table manages boundary of districts in Rwanda. The data requires by NISR.';
+COMMENT ON TABLE management IS 'the table manages the relationship between water supply sytem table and private operator table.';
+COMMENT ON COLUMN management.start_year IS 'it is the year started the contract between water supply system and private operator.';
+COMMENT ON COLUMN management.end_year IS 'If ''end_year'' is null, it means that private operator still be in-charge for the water supply system.
+Please enter the year when the contract between private operator and water supply system.';
+COMMENT ON TABLE private_operator IS 'this table manages the data of private operator in Rwanda.';
+COMMENT ON TABLE province IS 'This table manages boundary of provinces in Rwanda. The data requires by NISR.';
 COMMENT ON COLUMN reservoir.reservoir_type IS 'Ground
 Underground
 Elevated';
+COMMENT ON TABLE sector IS 'This table manages boundary of sectors in Rwanda. The data requires by NISR.';
 COMMENT ON TABLE Status IS '0:N/A
 1:Full Functional
 2:Partially Functional
 3:Abandoned';
+COMMENT ON TABLE village IS 'This table manages boundary of villages in Rwanda. The data requires by NISR.';
+COMMENT ON COLUMN water_connection.connection_type IS 'Water Kiosk
+Public Tap';
+COMMENT ON TABLE wss IS 'This table manages boundary each water supply systems in RWSS. every wss belong to a district id.
+
+The following SQL will update all boundaries from pipeline data.
+===========================================
+update wss
+set geom = a.geom
+from(
+SELECT wss_id, st_multi(st_buffer(st_union(geom),0.001)) as geom
+  FROM pipeline
+  group by wss_id) a
+where wss.wss_id = a.wss_id
+===========================================';
 
 
 
