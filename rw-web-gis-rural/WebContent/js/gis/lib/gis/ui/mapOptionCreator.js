@@ -34,9 +34,9 @@ gis.ui.mapOptionCreator = function(spec,my){
 	
 	that.create = function(options){
 		//Zoom Control
-		if (gis.util.isSmartphone()===true){
-			options.zoomControl = false; //スマホの時はズームコントロールは非表示に
-		}
+		//if (gis.util.isSmartphone()===true){
+		options.zoomControl = false; //ズームコントロールは非表示に
+		//}
 		//Contextmenu
 		options.contextmenu = my.contextmenu;
 		options.contextmenuWidth = my.contextmenuWidth;

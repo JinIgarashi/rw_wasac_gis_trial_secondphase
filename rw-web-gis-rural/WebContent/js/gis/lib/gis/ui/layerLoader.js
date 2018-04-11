@@ -7,7 +7,6 @@ gis.ui.layerLoader = function(spec,my){
 	my.defineurl = spec.defineurl;
 	
 	my.baseMaps = [];
-	my.overlays = {};
 	
 	my.wmssource = L.WMS.Source.extend({
 		'ajax': function(url, callback) {
@@ -45,17 +44,6 @@ gis.ui.layerLoader = function(spec,my){
 	    }
     });
 	
-	my.legends = [];
-	
-	my.addLegend = function(legend,title){
-		if (legend) {
-			my.legends.push({
-				title : title,
-				elements : legend.elements
-			});
-		}
-	};
-	
 	my.setLayerControl = function(e,layer,name){
 		if (e.isBaseLayer && e.isBaseLayer === true){
 			my.baseMaps.push({
@@ -64,14 +52,12 @@ gis.ui.layerLoader = function(spec,my){
 				icon:e.icon
 			});
 		}else{
-			if (!e.group){
-				my.overlays[name] = layer;
-			}else{
-				if (!my.overlays[e.group]){
-					my.overlays[e.group] = {};
-				}
-				my.overlays[e.group][name] = layer;
+			var title = name;
+			if (e.legend) {
+				//凡例がある場合は凡例を挿入
+				title += "<br><div style='width:100%'>" + e.legend.elements[0].html + "</div><hr>";
 			}
+			my.layerControl.addOverlay( layer, title, {groupName : e.group} );
 		}
 
 		if (e.visible === true){
@@ -84,25 +70,21 @@ gis.ui.layerLoader = function(spec,my){
 	my.createLayer = function(e){
 		if (e.type === "WMS"){
 			var _layer = L.tileLayer.wms(e.url,e.options);
-			my.addLegend(e.legend,e.name);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMS_getFeatureInfo"){
 			var source = new my.wmssource(e.url, e.options);
 			for (var i in e.layers){
 				var _layer = source.getLayer(e.layers[i].name);
-				my.addLegend(e.layers[i].legend,e.layers[i].title);
 				my.setLayerControl(e,_layer,e.layers[i].title);
 			}
 		}else if (e.type === "TMS"){
 			var _layer = L.tileLayer(e.url, e.options);
-			my.addLegend(e.legend,e.name);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMTS"){
 			var _layer = new L.TileLayer.WMTS(e.url, e.options);
-			my.addLegend(e.legend,e.name);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "GeoJSON"){
-			gis.util.ajaxGetAsync(e.url, function(geojson){
+			gis.util.ajaxGet(e.url, function(geojson){
 				var options = {
 					onEachFeature : function(feature,layer){
 						if (!feature.properties) {
@@ -134,7 +116,6 @@ gis.ui.layerLoader = function(spec,my){
 				var _layer = L.geoJSON(geojson,options);
 				markers = L.markerClusterGroup();
 				markers.addLayer(_layer);
-				my.addLegend(e.legend,e.name);
 				my.setLayerControl(e,markers,e.name);
 			});
 		}
@@ -142,6 +123,18 @@ gis.ui.layerLoader = function(spec,my){
 
 	that.init = function(){
 		gis.util.ajaxGetAsync(my.defineurl,function(layers_define){
+			my.layerControl = L.Control.styledLayerControl({}, my.overlays, {
+					container_width 	: "300px",
+					group_maxHeight     : "100%",
+					exclusive       	: true,
+					group_togglers: {
+			            show: true,
+			            labelAll: 'Select All',
+			            labelNone: 'Deselect All'
+			        },
+				}
+			).addTo(my.map);
+			
 			for (var i in layers_define){
 				my.createLayer(layers_define[i]);
 			}
@@ -152,25 +145,6 @@ gis.ui.layerLoader = function(spec,my){
 			        maxLayersInRow: 5
 			    }).addTo(my.map);
 			}
-			
-			if (my.legends.length>0){
-				var html = "<h1>LEGEND</h1>";
-				for (var i in my.legends){
-					var legend = my.legends[i];
-					html += "<hr>"
-					html += "<h2>" + legend.title + "</h2>";
-					html += legend.elements[0].html;
-				}
-				L.control.slideMenu(html,{
-					position:'topright',
-					menuposition: 'topright'
-				}).addTo(my.map);
-			}
-			
-			L.control.groupedLayers({},my.overlays,{
-				exclusiveGroups: ["Area"],
-				groupCheckboxes: true
-			}).addTo(my.map);
 		});
 	};
 
