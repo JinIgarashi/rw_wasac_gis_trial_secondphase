@@ -52,6 +52,26 @@ gis.ui.dialog.zoomToWss = function(spec,my){
     				po_name : "No any operator of WSS"
     		};
     		my.poid_po_map[no_po.po_id] = no_po;
+    		
+    		$("#" + my.comboboxPoId).append($('<option>').html("Select Private Operator").val(""));
+    		for (var po_id in my.poid_po_map){
+    			var po = my.poid_po_map[po_id];
+    			$("#" + my.comboboxPoId).append($('<option>').html(po.po_name).val(po.po_id));
+    		}
+    		
+    		$("#" + my.comboboxPoId).change(function(){
+    			var po_id = $(this).val();
+    			$("#" + my.comboboxWssId + " > option").remove();
+    			$("#" + my.comboboxWssId).append($('<option>').html("Select WSS").val(""));
+    			$("#" + my.comboboxDistId).val("");
+    			if (!my.po_wss_map[po_id]){
+    				return;
+    			}
+    			for (var wss_id in my.po_wss_map[po_id]){
+    				var wss = my.po_wss_map[po_id][wss_id];
+    				$("#" + my.comboboxWssId).append($('<option>').html(wss.wss_name).val(wss.wss_id));
+    			}
+    		});
 		});
 	};
 	
@@ -69,6 +89,28 @@ gis.ui.dialog.zoomToWss = function(spec,my){
     			var district = districts[i];
     			my.distid_dist_map[district.dist_id] = district;
     		}
+    		
+    		$("#" + my.comboboxDistId).append($('<option>').html("Select District").val(""));
+    		for (var dist_id in my.distid_dist_map){
+    			var district = my.distid_dist_map[dist_id];
+    			$("#" + my.comboboxDistId).append($('<option>').html(district.district).val(district.dist_id));
+    		}
+    		
+    		$("#" + my.comboboxDistId).change(function(){
+    			var dist_id = $(this).val();
+    			$("#" + my.comboboxWssId + " > option").remove();
+    			$("#" + my.comboboxWssId).append($('<option>').html("Select WSS").val(""));
+    			$("#" + my.comboboxPoId).val("");
+    			if (!my.dist_wss_map[dist_id]){
+    				return;
+    			}
+    			for (var wss_id in my.dist_wss_map[dist_id]){
+    				var wss = my.dist_wss_map[dist_id][wss_id];
+    				$("#" + my.comboboxWssId).append($('<option>').html(wss.wss_name).val(wss.wss_id));
+    			}
+    			var district = my.distid_dist_map[dist_id];
+    			my.set_bounds(district);
+    		});
 		});
 	};
 	
@@ -95,6 +137,16 @@ gis.ui.dialog.zoomToWss = function(spec,my){
     			my.dist_wss_map[wss.dist_id].push(wss);
     			my.wssid_wss_map[wss.wss_id]=wss;
     		}
+    		
+    		$("#" + my.comboboxWssId).change(function(){
+    			var wss_id = $(this).val();
+    			if (wss_id==""){
+    				return;
+    			}
+    			var wss = my.wssid_wss_map[wss_id];
+    			my.set_bounds(wss);
+    			that.close();
+    		});
 		});
 	};
 	
@@ -102,60 +154,6 @@ gis.ui.dialog.zoomToWss = function(spec,my){
 		my.getPos();
 		my.getDistricts();
 		my.getWSSs();
-	};
-	
-	my.beforeOpen = function(){
-		$("#" + my.comboboxPoId).append($('<option>').html("Select Private Operator").val(""));
-		for (var po_id in my.poid_po_map){
-			var po = my.poid_po_map[po_id];
-			$("#" + my.comboboxPoId).append($('<option>').html(po.po_name).val(po.po_id));
-		}
-		
-		$("#" + my.comboboxDistId).append($('<option>').html("Select District").val(""));
-		for (var dist_id in my.distid_dist_map){
-			var district = my.distid_dist_map[dist_id];
-			$("#" + my.comboboxDistId).append($('<option>').html(district.district).val(district.dist_id));
-		}
-		
-		$("#" + my.comboboxPoId).change(function(){
-			var po_id = $(this).val();
-			$("#" + my.comboboxWssId + " > option").remove();
-			$("#" + my.comboboxWssId).append($('<option>').html("Select WSS").val(""));
-			$("#" + my.comboboxDistId).val("");
-			if (!my.po_wss_map[po_id]){
-				return;
-			}
-			for (var wss_id in my.po_wss_map[po_id]){
-				var wss = my.po_wss_map[po_id][wss_id];
-				$("#" + my.comboboxWssId).append($('<option>').html(wss.wss_name).val(wss.wss_id));
-			}
-		});
-		
-		$("#" + my.comboboxDistId).change(function(){
-			var dist_id = $(this).val();
-			$("#" + my.comboboxWssId + " > option").remove();
-			$("#" + my.comboboxWssId).append($('<option>').html("Select WSS").val(""));
-			$("#" + my.comboboxPoId).val("");
-			if (!my.dist_wss_map[dist_id]){
-				return;
-			}
-			for (var wss_id in my.dist_wss_map[dist_id]){
-				var wss = my.dist_wss_map[dist_id][wss_id];
-				$("#" + my.comboboxWssId).append($('<option>').html(wss.wss_name).val(wss.wss_id));
-			}
-			var district = my.distid_dist_map[dist_id];
-			my.set_bounds(district);
-		});
-		
-		$("#" + my.comboboxWssId).change(function(){
-			var wss_id = $(this).val();
-			if (wss_id==""){
-				return;
-			}
-			var wss = my.wssid_wss_map[wss_id];
-			my.set_bounds(wss);
-			that.close();
-		});
 	};
 
 	that.CLASS_NAME =  "gis.ui.dialog.zoomToWss";

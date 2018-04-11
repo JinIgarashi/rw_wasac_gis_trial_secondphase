@@ -47,12 +47,10 @@ gis.ui.layerLoader = function(spec,my){
 	
 	my.legends = [];
 	
-	my.addLegend = function(legend,title,layername,layer){
+	my.addLegend = function(legend,title){
 		if (legend) {
 			my.legends.push({
 				title : title,
-				name : layername,
-				layer : layer,
 				elements : legend.elements
 			});
 		}
@@ -86,22 +84,22 @@ gis.ui.layerLoader = function(spec,my){
 	my.createLayer = function(e){
 		if (e.type === "WMS"){
 			var _layer = L.tileLayer.wms(e.url,e.options);
-			my.addLegend(e.legend,e.name,e.options.layers,_layer);
+			my.addLegend(e.legend,e.name);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMS_getFeatureInfo"){
 			var source = new my.wmssource(e.url, e.options);
 			for (var i in e.layers){
 				var _layer = source.getLayer(e.layers[i].name);
-				my.addLegend(e.layers[i].legend,e.layers[i].title,e.layers[i].name,_layer);
+				my.addLegend(e.layers[i].legend,e.layers[i].title);
 				my.setLayerControl(e,_layer,e.layers[i].title);
 			}
 		}else if (e.type === "TMS"){
 			var _layer = L.tileLayer(e.url, e.options);
-			my.addLegend(e.legend,e.name,e.options.layers,_layer);
+			my.addLegend(e.legend,e.name);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "WMTS"){
 			var _layer = new L.TileLayer.WMTS(e.url, e.options);
-			my.addLegend(e.legend,e.name,e.options.layers,_layer);
+			my.addLegend(e.legend,e.name);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "GeoJSON"){
 			gis.util.ajaxGetAsync(e.url, function(geojson){
@@ -136,20 +134,14 @@ gis.ui.layerLoader = function(spec,my){
 				var _layer = L.geoJSON(geojson,options);
 				markers = L.markerClusterGroup();
 				markers.addLayer(_layer);
-				my.addLegend(e.legend,e.name,e.name,markers);
+				my.addLegend(e.legend,e.name);
 				my.setLayerControl(e,markers,e.name);
 			});
 		}
 	};
 
 	that.init = function(){
-		$.ajax({
-			url : my.defineurl,
-			type : 'GET',
-			dataType : 'json',
-			cache : false,
-			async : false
-		}).done(function(layers_define) {
+		gis.util.ajaxGetAsync(my.defineurl,function(layers_define){
 			for (var i in layers_define){
 				my.createLayer(layers_define[i]);
 			}

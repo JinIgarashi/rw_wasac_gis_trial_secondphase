@@ -64,10 +64,6 @@ gis.ui.dialog = function(spec,my){
 	};
 
 	that.open = function(){
-		if (my.isInit === false){
-			my.beforeOpen();
-			my.isInit = true;
-		}
 		$("#" + my.dialogId).dialog('open');
 	};
 
