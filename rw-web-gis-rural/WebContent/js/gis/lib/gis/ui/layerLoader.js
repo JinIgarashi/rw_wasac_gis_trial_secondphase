@@ -116,8 +116,13 @@ gis.ui.layerLoader = function(spec,my){
 				    };
 				}
 				var _layer = L.geoJSON(geojson,options);
-				markers = L.markerClusterGroup();
+				if (!my.mcgroup){
+					my.mcgroup = L.markerClusterGroup();
+					my.mcgroup.addTo(my.map);
+				}
+				var markers = L.featureGroup.subGroup(my.mcgroup);
 				markers.addLayer(_layer);
+				markers.addTo(my.map);
 				my.setLayerControl(e,markers,e.name);
 			},'text');
 		}

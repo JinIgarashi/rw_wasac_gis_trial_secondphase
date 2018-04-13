@@ -20,6 +20,7 @@ function importJS() {
         './js/external/leaflet/leaflet.markercluster.js',
         './js/external/leaflet/styledLayerControl.js',
         './js/external/leaflet/leaflet.responsive.popup.js',
+        './js/external/leaflet/subgroup.js',
         //'./js/gis/lib/gis.js',
         './js/gis/gis.min.js',
         './js/app.js',
