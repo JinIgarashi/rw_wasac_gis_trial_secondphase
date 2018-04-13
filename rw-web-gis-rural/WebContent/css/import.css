@@ -15,4 +15,5 @@
 @import url("leaflet/MarkerCluster.css");
 @import url("leaflet/MarkerCluster.Default.css");
 @import url("leaflet/styledLayerControl.css");
+@import url("leaflet/leaflet.responsive.popup.css");
 @import url("app.css");

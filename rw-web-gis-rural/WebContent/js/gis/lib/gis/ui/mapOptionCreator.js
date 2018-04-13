@@ -34,9 +34,8 @@ gis.ui.mapOptionCreator = function(spec,my){
 	
 	that.create = function(options){
 		//Zoom Control
-		//if (gis.util.isSmartphone()===true){
 		options.zoomControl = false; //ズームコントロールは非表示に
-		//}
+
 		//スマホからの閲覧時にレイヤコントロールのスクロール動作等がおかしくなるためドラッグとタップ動作を制限する
 		options.dragging= !L.Browser.mobile,
 	    options.tap= !L.Browser.mobile

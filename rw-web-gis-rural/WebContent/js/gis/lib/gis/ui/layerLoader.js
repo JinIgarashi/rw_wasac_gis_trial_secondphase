@@ -84,7 +84,8 @@ gis.ui.layerLoader = function(spec,my){
 			var _layer = new L.TileLayer.WMTS(e.url, e.options);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "GeoJSON"){
-			gis.util.ajaxGet(e.url, function(geojson){
+			gis.util.ajaxGet(e.url, function(res){
+				var geojson = JSON.parse(res);
 				var options = {
 					onEachFeature : function(feature,layer){
 						if (!feature.properties) {
@@ -103,7 +104,8 @@ gis.ui.layerLoader = function(spec,my){
 				        	return;
 				        }
 				        html = "<table class='popup-table-wms-getfeatureinfo'>" + html + "</table>";
-						layer.bindPopup(html);
+				        var popup = L.responsivePopup({offset: [40,40], autoPanPadding: [40,40] }).setContent(html);
+						layer.bindPopup(popup);
 					}
 				};
 				if (e.style.type === "icon"){
@@ -117,7 +119,7 @@ gis.ui.layerLoader = function(spec,my){
 				markers = L.markerClusterGroup();
 				markers.addLayer(_layer);
 				my.setLayerControl(e,markers,e.name);
-			});
+			},'text');
 		}
 	};
 

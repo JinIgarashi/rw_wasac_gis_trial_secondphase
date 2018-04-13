@@ -20,12 +20,12 @@ table.popup-table-wms-getfeatureinfo, th.popup-table-wms-getfeatureinfo, td.popu
   line-height: 1.5;
 }
 table.popup-table-wms-getfeatureinfo th {
-  width: 150px;
+  width: 130px;
   font-weight: bold;
   vertical-align: top;
 }
 table.popup-table-wms-getfeatureinfo td {
-  width: 350px;
+  width: 300px;
   vertical-align: top;
  }
 table.popup-table-wms-getfeatureinfo tr:nth-child(even) {

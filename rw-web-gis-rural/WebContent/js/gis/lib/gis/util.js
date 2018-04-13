@@ -8,15 +8,15 @@ gis.util = function(spec,my){
 /**
  * ajax呼び出し用（GET）
  */
-gis.util.ajaxGet = function(url,callback){
-	gis.util.ajax(url,'GET',callback);
+gis.util.ajaxGet = function(url,callback,dataType){
+	gis.util.ajax(url,'GET',callback,null,dataType);
 };
 
 /**
  * ajax呼び出し用（GET）
  */
-gis.util.ajaxGetAsync = function(url,callback){
-	gis.util.ajax(url,'GET',callback,null,false);
+gis.util.ajaxGetAsync = function(url,callback,dataType){
+	gis.util.ajax(url,'GET',callback,null,dataType,false);
 };
 
 /**
@@ -36,12 +36,15 @@ gis.util.ajaxDelete = function(url,callback){
 /**
  * ajax呼び出し用共通部品
  */
-gis.util.ajax = function(url,type,callback,data,async){
+gis.util.ajax = function(url,type,callback,data,dataType,async){
+	if (!dataType){
+		dataType = 'json';
+	}
 	$.ajax({
 		url : url,
 		type : type,
 		data : data,
-		dataType : 'json',
+		dataType : dataType,
 		async : async
 	})
 	.done(callback)
@@ -49,23 +52,4 @@ gis.util.ajax = function(url,type,callback,data,async){
 		console.log(xhr.status + ';' + xhr.statusText);
 		return false;
 	});
-};
-
-/**
- * スマートフォンかどうかを判定する。スマホの時はTrueを返す。
- */
-gis.util.isSmartphone = function(){
-	var isSmartPhone = false;
-	var ua = navigator.userAgent;
-	if (ua.indexOf('iPhone') > 0 || ua.indexOf('iPod') > 0 || ua.indexOf('Android') > 0 && ua.indexOf('Mobile') > 0) {
-        // スマートフォン用コード
-    	isSmartPhone=true;
-    } else if (ua.indexOf('iPad') > 0 || ua.indexOf('Android') > 0) {
-        // タブレット用コード
-    	isSmartPhone=true;
-    } else {
-        // PC用コード
-    	isSmartPhone=false;
-    }
-    return isSmartPhone;
 };

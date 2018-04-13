@@ -26,7 +26,7 @@ gis.ui.control = function(spec,my){
 		if (my.control == null){
 			return;
 		}
-		if (gis.util.isSmartphone() == true && my.notRequireSP == true){
+		if (L.Browser.mobile && my.notRequireSP == true){
 			//スマホの時に、スマホ時に不要フラグが立ってたら追加しない。
 			return;
 		}

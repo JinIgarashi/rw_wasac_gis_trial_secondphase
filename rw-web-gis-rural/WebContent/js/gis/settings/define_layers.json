@@ -220,7 +220,7 @@
     "style": {
     	"type": "icon",
     	"options": {
-    		"iconSize": [12, 12],
+    		"iconSize": [24, 24],
 		    "iconUrl": "./images/handpump.png"
     	}
     },
@@ -229,7 +229,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<img src='./images/handpump.png' width=12,height=12>"
+          "html": "<img src='./images/handpump.png' width=24,height=24>"
         }
       ]
     }
@@ -241,7 +241,7 @@
     "style": {
     	"type": "icon",
     	"options": {
-    		"iconSize": [12, 12],
+    		"iconSize": [24, 24],
 		    "iconUrl": "./images/spring_water.png"
     	}
     },
@@ -250,7 +250,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<img src='./images/spring_water.png' width=12,height=12>"
+          "html": "<img src='./images/spring_water.png' width=24,height=24>"
         }
       ]
     }
