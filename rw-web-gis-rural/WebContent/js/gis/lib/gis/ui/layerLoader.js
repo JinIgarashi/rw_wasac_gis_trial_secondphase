@@ -139,13 +139,6 @@ gis.ui.layerLoader = function(spec,my){
 			        },
 				}
 			).addTo(my.map);
-			//レイヤコントロールを開いている間は地図のスクロールは制限する
-			L.DomEvent.on(my.layerControl._container, 'mouseenter', function(){
-				my.map.scrollWheelZoom.disable();
-			});
-			L.DomEvent.on(my.layerControl._container, 'mouseleave', function(){
-				my.map.scrollWheelZoom.enable();
-			});
 			
 			for (var i in layers_define){
 				my.createLayer(layers_define[i]);
