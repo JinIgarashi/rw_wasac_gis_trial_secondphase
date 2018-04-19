@@ -36,18 +36,20 @@ gis.ui.controlLoader = function(spec,my){
 	};
 	
 	my.createBookmarks = function(options){
-		options.getItem = function(id, callback){
-        	gis.util.ajaxGet('./rest/Bookmarks/' + id,callback);
-        };
-        options.setItem = function(id, value, callback){
-        	gis.util.ajaxPut('./rest/Bookmarks/' + id,callback,value);
-        };
-        options.removeItem = function(id, callback){
-        	gis.util.ajaxDelete('./rest/Bookmarks/' + id,callback);
-        };
-        options.getAllItems = function(callback){
-        	gis.util.ajaxGet('./rest/Bookmarks/',callback);
-        };
+		options.storage = {
+				getItem : function(id, callback){
+		        	gis.util.ajaxGet('./rest/Bookmarks/' + id,callback);
+		        },
+		        setItem : function(id, value, callback){
+		        	gis.util.ajaxPut('./rest/Bookmarks/' + id,callback,value);
+		        },
+		        removeItem : function(id, callback){
+		        	gis.util.ajaxDelete('./rest/Bookmarks/' + id,callback);
+		        },
+		        getAllItems : function(callback){
+		        	gis.util.ajaxGet('./rest/Bookmarks/',callback);
+		        }
+		};
 		
 		return new L.Control.Bookmarks(options);
 	};
