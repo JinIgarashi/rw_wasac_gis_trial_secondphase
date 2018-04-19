@@ -84,9 +84,7 @@ gis.ui.layerLoader = function(spec,my){
 			var _layer = new L.TileLayer.WMTS(e.url, e.options);
 			my.setLayerControl(e,_layer,e.name);
 		}else if (e.type === "GeoJSON"){
-			gis.util.ajaxGet(e.url, function(res){
-				var geojson = JSON.parse(res);
-				var options = {
+			var options = {
 					onEachFeature : function(feature,layer){
 						if (!feature.properties) {
 					        return;
@@ -115,16 +113,16 @@ gis.ui.layerLoader = function(spec,my){
 				        });
 				    };
 				}
-				var _layer = L.geoJSON(geojson,options);
-				if (!my.mcgroup){
-					my.mcgroup = L.markerClusterGroup();
-					my.mcgroup.addTo(my.map);
-				}
-				var markers = L.featureGroup.subGroup(my.mcgroup);
-				markers.addLayer(_layer);
-				markers.addTo(my.map);
-				my.setLayerControl(e,markers,e.name);
-			},'text');
+			
+			var _layer = new L.GeoJSON.AJAX(e.url,options);
+			if (!my.mcgroup){
+				my.mcgroup = L.markerClusterGroup();
+				my.mcgroup.addTo(my.map);
+			}
+			var markers = L.featureGroup.subGroup(my.mcgroup);
+			markers.addLayer(_layer);
+			markers.addTo(my.map);
+			my.setLayerControl(e,markers,e.name);
 		}
 	};
 

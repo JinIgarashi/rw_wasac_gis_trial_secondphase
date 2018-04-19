@@ -1,0 +1,17 @@
+table.leaflet-tilelayer-wmts-getfeatureinfo, th.leaflet-tilelayer-wmts-getfeatureinfo, td.leaflet-tilelayer-wmts-getfeatureinfo {
+  border-collapse: collapse;
+  border: 1px solid #ccc;
+  line-height: 1.5;
+}
+table.leaflet-tilelayer-wmts-getfeatureinfo th {
+  width: 130px;
+  font-weight: bold;
+  vertical-align: top;
+}
+table.leaflet-tilelayer-wmts-getfeatureinfo td {
+  width: 300px;
+  vertical-align: top;
+ }
+table.leaflet-tilelayer-wmts-getfeatureinfo tr:nth-child(even) {
+  background: #d9d9d9;
+ }

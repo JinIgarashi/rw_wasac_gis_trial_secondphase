@@ -3,6 +3,7 @@ function importJS() {
         './js/external/jquery-3.3.1.min.js',
         './js/external/jquery-ui.min.js',
         './js/external/leaflet/leaflet.js',
+        './js/external/leaflet/leaflet.ajax.min.js',
         './js/external/leaflet/leaflet-hash.js',
         './js/external/leaflet/Leaflet.NavBar.js',
         './js/external/leaflet/Leaflet.PolylineMeasure.js',
