@@ -28,10 +28,10 @@ gis.ui.dialog = function(spec,my){
 	my.set_bounds = function(object){
 		if (!object){
 			my.selected_bounds = null;
-		}
+		};
 		my.selected_bounds = [[object.ymin,object.xmin],[object.ymax,object.xmax]];
 		my.map.flyToBounds(my.selected_bounds);
-	}
+	};
 	
 	/**
 	 * Dialogを格納するdivを作成しHTMLをセットする
@@ -42,23 +42,23 @@ gis.ui.dialog = function(spec,my){
 		option = option || {};
 		if (my.isInit === true){
 			return;
-		}
+		};
 		$(document.body).append("<div id='" + my.dialogId + "'></div>");
 		$("#" + my.dialogId).html(my.getHtml());
 
 		option = my.addOptions(option);
 		if (!option){
 			option = {};
-		}
+		};
 		if (!option.autoOpen){
 			option.autoOpen = false;
-		}
+		};
 		if (!option.modal){
 			option.modal = false;
-		}
+		};
 		if (!option.position){
 			option.position = [0,0];
-		}
+		};
 		$("#" + my.dialogId).dialog(option);
 		my.postCreate();
 	};

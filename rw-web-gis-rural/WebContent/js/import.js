@@ -7,7 +7,6 @@ function importJS() {
         './js/external/leaflet/leaflet-hash.js',
         './js/external/leaflet/Leaflet.NavBar.js',
         './js/external/leaflet/Leaflet.PolylineMeasure.js',
-        './js/external/leaflet/Leaflet.Coordinates-0.1.5.min.js',
         './js/external/leaflet/leaflet.easyPrint.js',
         './js/external/leaflet/L.Control.Locate.js',
         './js/external/leaflet/Leaflet.GraphicScale.min.js',

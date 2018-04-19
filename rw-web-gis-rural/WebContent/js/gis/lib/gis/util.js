@@ -39,7 +39,7 @@ gis.util.ajaxDelete = function(url,callback){
 gis.util.ajax = function(url,type,callback,data,dataType,async){
 	if (!dataType){
 		dataType = 'json';
-	}
+	};
 	$.ajax({
 		url : url,
 		type : type,
