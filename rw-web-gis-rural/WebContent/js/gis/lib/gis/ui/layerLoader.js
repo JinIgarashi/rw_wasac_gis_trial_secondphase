@@ -8,15 +8,14 @@ gis.ui.layerLoader = function(spec,my){
 	
 	my.baseMaps = [];
 	
-	my.setLayerControl = function(e,layer,name){
+	my.setLayerControl = function(e,layer,title){
 		if (e.isBaseLayer && e.isBaseLayer === true){
 			my.baseMaps.push({
-				title: name,
+				title: title,
 				layer:layer,
 				icon:e.icon
 			});
 		}else{
-			var title = name;
 			if (e.legend) {
 				//凡例がある場合は凡例を挿入
 				title += "<br><div style='width:100%'>" + e.legend.elements[0].html + "</div><hr>";
@@ -78,7 +77,7 @@ gis.ui.layerLoader = function(spec,my){
 			        if (html === ""){
 			        	return;
 			        };
-			        html = "<table class='popup-table-wms-getfeatureinfo'>" + html + "</table>";
+			        html = "<table class='leaflet-tilelayer-wmts-getfeatureinfo'>" + html + "</table>";
 			        var popup = L.responsivePopup({offset: [40,40], autoPanPadding: [40,40] }).setContent(html);
 					layer.bindPopup(popup);
 				}

@@ -24,8 +24,8 @@ var app = {
 			//ズームコントロールは非表示に
 			zoomControl : false, 
 			//スマホからの閲覧時にレイヤコントロールのスクロール動作等がおかしくなるためドラッグとタップ動作を制限する
-			dragging : !L.Browser.mobile,
-			tap : !L.Browser.mobile,
+			//dragging : !L.Browser.mobile,
+			//tap : !L.Browser.mobile,
 			//Contextmenu
 			contextmenu : true,
 			contextmenuWidth : 150,

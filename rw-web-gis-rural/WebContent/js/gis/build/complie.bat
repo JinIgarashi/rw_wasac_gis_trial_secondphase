@@ -1,1 +1,1 @@
-C:\Python27\python build.py -c jsmin full gis.min.js
+C:\Python27\ArcGIS10.4\python build.py -c jsmin full gis.min.js
