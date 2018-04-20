@@ -8,42 +8,6 @@ gis.ui.layerLoader = function(spec,my){
 	
 	my.baseMaps = [];
 	
-	my.wmssource = L.WMS.Source.extend({
-		'ajax': function(url, callback) {
-	        $.ajax(url, {
-	            'context': this,
-	            'success': function(result) {
-	            	callback.call(this, result);
-	             }
-	        });
-	    },
-	    'showFeatureInfo': function(latlng, info) {
-	        if (!this._map) {
-	            return;
-	        };
-	        if (info && info.length === 0){
-	        	return;
-	        };
-	        var html = "";
-	        for (var i in info.features){
-	        	var f = info.features[i];
-	        	for (var name in f.properties){
-	        		var val = f.properties[name];
-	        		if (!val){
-	        			val = "";
-	        		};
-	        		html += "<tr><th>" + name + "</th><td>" + val + "</td></tr>"
-	        	};
-	        	
-	        };
-	        if (html === ""){
-	        	return;
-	        };
-	        html = "<table class='popup-table-wms-getfeatureinfo'>" + html + "</table>";
-	        this._map.openPopup(html, latlng);
-	    }
-    });
-	
 	my.setLayerControl = function(e,layer,name){
 		if (e.isBaseLayer && e.isBaseLayer === true){
 			my.baseMaps.push({
@@ -74,7 +38,7 @@ gis.ui.layerLoader = function(spec,my){
 			my.setLayerControl(e,_layer,e.name);
 			break;
 		case 'WMS_getFeatureInfo':
-			var source = new my.wmssource(e.url, e.options);
+			var source = new L.WMS.Source(e.url, e.options);
 			for (var i in e.layers){
 				var _layer = source.getLayer(e.layers[i].name);
 				my.setLayerControl(e,_layer,e.layers[i].title);

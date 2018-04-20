@@ -78,7 +78,6 @@
             jsFiles = [
             	'gis/util.js',
                 'gis/ui.js',
-                'gis/ui/mapOptionCreator.js',
                 'gis/ui/controlLoader.js',
                 'gis/ui/layerLoader.js',
                 'gis/ui/dialog.js',
