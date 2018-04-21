@@ -1,5 +1,6 @@
 function importJS() {
 	var jsFiles = [
+		'./js/external/d3.min.js',
         './js/external/jquery-3.3.1.min.js',
         './js/external/jquery-ui.min.js',
         './js/external/leaflet/leaflet.js',
@@ -21,6 +22,7 @@ function importJS() {
         './js/external/leaflet/styledLayerControl.js',
         './js/external/leaflet/leaflet.responsive.popup.js',
         './js/external/leaflet/subgroup.js',
+        './js/external/leaflet/leaflet.elevation-0.0.4.src.js',
         //'./js/gis/lib/gis.js',
         './js/gis/gis.min.js',
         './js/app.js',

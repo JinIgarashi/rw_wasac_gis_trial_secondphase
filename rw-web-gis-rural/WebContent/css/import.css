@@ -16,4 +16,5 @@
 @import url("leaflet/styledLayerControl.css");
 @import url("leaflet/leaflet.responsive.popup.css");
 @import url("leaflet/leaflet-tilelayer-wmts.css");
+@import url("leaflet/leaflet.elevation-0.0.4.css");
 @import url("app.css");

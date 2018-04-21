@@ -26,6 +26,10 @@ gis.ui.controlLoader = function(spec,my){
 			ctrl = L.control.navbar(options);
 			break;
 		case 'polylineMeasure':
+			if (!L.Browser.mobile) {
+				options.measure_addpoint = my.measure_addpoint;
+				options.measure_cleared = my.measure_cleared;
+			};
 			ctrl = L.control.polylineMeasure(options);
 			break;
 		case 'zoomToAreas':				
@@ -69,6 +73,65 @@ gis.ui.controlLoader = function(spec,my){
 				my.dialogAdmin.open();
 			},'Zoom To Administrative Boundary')
 		],options);
+	};
+	
+	my.measure_addpoint = function(e){
+		var coordinates = e.polylinePath._latlngs;
+		if (coordinates.length === 0){
+			return;
+		};
+	    var wkt = "";
+	    for (var i in coordinates){
+	    	var coord = coordinates[i];
+	    	if ( i > 0){
+	    		wkt += ",";
+	    	};
+	    	wkt += coord.lng + " " + coord.lat;
+	    };
+	    wkt = "LineString(" + wkt + ")";
+	    var params ={
+	    		wkt : wkt
+	    };
+	    gis.util.ajaxPut('./rest/Elevation/LineString', getLineWithElevation,params);
+	    
+	    function getLineWithElevation(json){
+	    	var geojson = {"name":"NewFeatureType","type":"FeatureCollection","features":[{"type":"Feature","geometry":json}]};
+	    	if (!my.el){
+	    		my.el = L.control.elevation({
+					margins: {
+						top: 10,
+						right: 20,
+						bottom: 30,
+						left: 50
+					},
+					collapsed: false,
+					useHeightIndicator: true,
+					imperial: false
+				});
+				my.el.addTo(app.map);
+	    	}else{
+	    		my.el.clear();
+	    	};
+	    	
+	    	if (my.elevjson){
+	    		my.map.removeLayer(my.elevjson);
+	    		my.elevjson = null;
+	    	};
+	    	my.elevjson = L.geoJson(geojson,{
+			    onEachFeature: my.el.addData.bind(my.el) //working on a better solution
+			}).addTo(my.map);
+	    }
+	},
+	
+	my.measure_cleared = function(e){
+		if (my.el){
+    		my.map.removeControl(my.el);
+    		my.el = null;
+    	};
+    	if (my.elevjson){
+    		my.map.removeLayer(my.elevjson);
+    		my.elevjson = null;
+    	};
 	};
 	
 	that.init = function(){

@@ -325,7 +325,19 @@
                  * @default
                  */
                 radius: 3
-            }
+            },
+            /**
+             * Callback after completing measure
+             * @type {function}
+             * @default
+             */
+            measure_addpoint: null,
+            /**
+             * Callback after clearing
+             * @type {function}
+             * @default
+             */
+            measure_cleared:null
         },
         
         /**
@@ -459,6 +471,9 @@
                 this._layerPaint.clearLayers();
             }
             this._arrPolylines = [];
+            if (this.options.measure_cleared){
+            	this.options.measure_cleared(this);
+            }
         },
         
         _changeUnit: function() {
@@ -843,6 +858,9 @@
                 this._startLine (e.latlng);
             }
             this._currentLine.addPoint (e.latlng);
+            if (this.options.measure_addpoint){
+            	this.options.measure_addpoint(this._currentLine);
+            }
         },
 
         /**
