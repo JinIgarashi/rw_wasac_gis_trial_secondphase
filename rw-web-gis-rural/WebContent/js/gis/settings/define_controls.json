@@ -85,5 +85,23 @@
         "labelPlacement": "top"
       }
     }
+  },
+  {
+    "ctrl": "elevation",
+    "settings": {
+      "notRequireSP": true,
+      "options": {
+        "position": "topright",
+        "margins": {
+        	"top": 10,
+        	"right": 20,
+        	"bottom": 30,
+        	"left": 50
+        },
+		"collapsed": true,
+		"useHeightIndicator": true,
+		"imperial": false
+      }
+    }
   }
 ]

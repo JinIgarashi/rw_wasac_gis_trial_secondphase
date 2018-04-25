@@ -237,17 +237,16 @@
   },
   {
     "name": "Pipeline",
-    "type": "WFS",
+    "type": "WMTS",
+    "url": "https://wasacwebgis.tk/geoserver/gwc/service/wmts?",
     "options": {
-      "url": "https://wasacwebgis.tk/geoserver/rwanda/ows?",
-      "typeNS":"rwanda",
-      "typeName": "pipeline",
-      "crs": "EPSG4326",
-      "geometryField": "geom",
-      "style": {
-        "color": "blue",
-        "weight": 1.5
-      },
+      "layer": "rwanda:pipeline_view",
+      "format": "image/png",
+      "minZoom": 10,
+      "maxZoom": 20,
+      "transparent": true,
+      "style": "normal",
+      "tilematrixSet": "EPSG:900913",
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
@@ -255,7 +254,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<img src='https://wasacwebgis.tk/geoserver/rwanda/wms?SERVICE=WMS&VERSION=1.3.0&SLD_VERSION=1.1.0&REQUEST=GetLegendGraphic&format=image/png&format_options=layout:legend&legend_options=countMatched:true;fontAntiAliasing:true&LAYER=rwanda:pipeline'>"
+          "html": "<img src='https://wasacwebgis.tk/geoserver/rwanda/wms?SERVICE=WMS&VERSION=1.3.0&SLD_VERSION=1.1.0&REQUEST=GetLegendGraphic&format=image/png&format_options=layout:legend&legend_options=countMatched:true;fontAntiAliasing:true&LAYER=rwanda:pipeline_view'>"
         }
       ]
     }
@@ -267,7 +266,7 @@
     "options": {
       "layer": "rwanda:watersource",
       "format": "image/png",
-      "minZoom": 12,
+      "minZoom": 10,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -291,7 +290,7 @@
     "options": {
       "layer": "rwanda:pumping_station",
       "format": "image/png",
-      "minZoom": 12,
+      "minZoom": 10,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -315,7 +314,7 @@
     "options": {
       "layer": "rwanda:reservoir",
       "format": "image/png",
-      "minZoom": 12,
+      "minZoom": 10,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -339,7 +338,7 @@
     "options": {
       "layer": "rwanda:air_release_chamber",
       "format": "image/png",
-      "minZoom": 14,
+      "minZoom": 12,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -363,7 +362,7 @@
     "options": {
       "layer": "rwanda:valve_chamber",
       "format": "image/png",
-      "minZoom": 14,
+      "minZoom": 12,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -387,7 +386,7 @@
     "options": {
       "layer": "rwanda:prv_chamber",
       "format": "image/png",
-      "minZoom": 14,
+      "minZoom": 12,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -411,7 +410,7 @@
     "options": {
       "layer": "rwanda:washout_chamber",
       "format": "image/png",
-      "minZoom": 14,
+      "minZoom": 12,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -435,7 +434,7 @@
     "options": {
       "layer": "rwanda:starting_chamber",
       "format": "image/png",
-      "minZoom": 14,
+      "minZoom": 12,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -459,7 +458,7 @@
     "options": {
       "layer": "rwanda:collection_chamber",
       "format": "image/png",
-      "minZoom": 14,
+      "minZoom": 12,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -483,7 +482,7 @@
     "options": {
       "layer": "rwanda:waterkiosk",
       "format": "image/png",
-      "minZoom": 15,
+      "minZoom": 14,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",
@@ -507,7 +506,7 @@
     "options": {
       "layer": "rwanda:public_tap",
       "format": "image/png",
-      "minZoom": 15,
+      "minZoom": 14,
       "maxZoom": 20,
       "transparent": true,
       "style": "normal",

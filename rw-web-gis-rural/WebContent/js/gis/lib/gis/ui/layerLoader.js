@@ -5,6 +5,7 @@ gis.ui.layerLoader = function(spec,my){
 	
 	my.map = spec.map;
 	my.defineurl = spec.defineurl;
+	my.controlLoader = spec.controlLoader || null;
 	
 	my.baseMaps = [];
 	
@@ -55,10 +56,64 @@ gis.ui.layerLoader = function(spec,my){
 			var _layer = my.createGeoJSON(e);
 			my.setLayerControl(e,_layer,e.name);
 			break;
+		case 'WFS':
+			e.options.crs = L.CRS[e.options.crs];
+			 var _layer = new L.WFST(e.options);
+			 _layer.on({
+					'click': function (e) {
+						my.create_profile(e.layer);
+		  			}
+				});
+			 my.setLayerControl(e,_layer,e.name);
 		default:
 			break;
 		};
 	};
+	
+	my.create_profile = function(layer){
+		var latlngs = layer._latlngs;
+		if (latlngs.length === 0){
+			return;
+		};
+		var coords = latlngs[0];
+		if (coords.length === 0){
+			return;
+		}
+	    var wkt = "";
+	    for (var i in coords){
+	    	var coord = coords[i];
+	    	if ( i > 0){
+	    		wkt += ",";
+	    	};
+	    	wkt += coord.lng + " " + coord.lat;
+	    };
+	    wkt = "LineString(" + wkt + ")";
+	    var params ={
+	    		wkt : wkt
+	    };
+	    gis.util.ajaxPut('./rest/Elevation/LineString', getLineWithElevation,params);
+	    
+	    function getLineWithElevation(json){
+	    	var geojson = {"name":"NewFeatureType","type":"FeatureCollection","features":[{"type":"Feature","geometry":json}]};
+	    	if (!my.controlLoader){
+	    		return;
+	    	}
+	    	var el = my.controlLoader.getControl('elevation');
+	    	if (!el){
+	    		return;
+	    	}
+	    	el.clear();
+	    	el._expand();
+	    	
+	    	if (my.elevjson){
+	    		my.map.removeLayer(my.elevjson);
+	    		my.elevjson = null;
+	    	};
+	    	my.elevjson = L.geoJson(geojson,{
+			    onEachFeature: el.addData.bind(el) //working on a better solution
+			}).addTo(my.map);
+	    }
+	},
 	
 	my.createGeoJSON = function(e){
 		var options = {
@@ -126,6 +181,7 @@ gis.ui.layerLoader = function(spec,my){
 			    }).addTo(my.map);
 			};
 		});
+		return that;
 	};
 
 	that.CLASS_NAME =  "gis.ui.layerLoader";

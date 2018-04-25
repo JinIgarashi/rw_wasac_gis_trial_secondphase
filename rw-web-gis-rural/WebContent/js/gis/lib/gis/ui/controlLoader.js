@@ -4,6 +4,8 @@ gis.ui.controlLoader = function(spec,my){
 
 	my.map = spec.map;
 	my.defineurl = spec.defineurl;
+	
+	my.controlMap = {};
 
 	my.getControl = function(ctrltype, options){
 		switch(ctrltype) {
@@ -35,7 +37,13 @@ gis.ui.controlLoader = function(spec,my){
 		case 'zoomToAreas':				
 			ctrl = my.createZoomToArea(options);
 			break;
+		case 'elevation':
+			ctrl = L.control.elevation(options);
+			break;
 		};
+		if (ctrl){
+			my.controlMap[ctrltype] = ctrl;
+		}
 		return ctrl;
 	};
 	
@@ -96,38 +104,22 @@ gis.ui.controlLoader = function(spec,my){
 	    
 	    function getLineWithElevation(json){
 	    	var geojson = {"name":"NewFeatureType","type":"FeatureCollection","features":[{"type":"Feature","geometry":json}]};
-	    	if (!my.el){
-	    		my.el = L.control.elevation({
-					margins: {
-						top: 10,
-						right: 20,
-						bottom: 30,
-						left: 50
-					},
-					collapsed: false,
-					useHeightIndicator: true,
-					imperial: false
-				});
-				my.el.addTo(app.map);
-	    	}else{
-	    		my.el.clear();
-	    	};
-	    	
+	    	var el = my.controlMap['elevation'];
+	    	el.clear();
+	    	el._expand();
 	    	if (my.elevjson){
 	    		my.map.removeLayer(my.elevjson);
 	    		my.elevjson = null;
 	    	};
 	    	my.elevjson = L.geoJson(geojson,{
-			    onEachFeature: my.el.addData.bind(my.el) //working on a better solution
+			    onEachFeature: el.addData.bind(el) //working on a better solution
 			}).addTo(my.map);
 	    }
 	},
 	
 	my.measure_cleared = function(e){
-		if (my.el){
-    		my.map.removeControl(my.el);
-    		my.el = null;
-    	};
+		var el = my.controlMap['elevation'];
+    	el.clear();
     	if (my.elevjson){
     		my.map.removeLayer(my.elevjson);
     		my.elevjson = null;
@@ -151,6 +143,11 @@ gis.ui.controlLoader = function(spec,my){
 				ctrl.addTo(my.map);
 			};
 		});
+		return that;
+	};
+	
+	that.getControl = function(name){
+		return my.controlMap[name];
 	};
 
 	that.CLASS_NAME =  "gis.ui.controlLoader";

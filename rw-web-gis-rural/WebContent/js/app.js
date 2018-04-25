@@ -14,6 +14,7 @@ var app = {
 		
 		var layerLoader = new gis.ui.layerLoader({
 			map : app.map,
+			controlLoader : controlLoader,
 			defineurl : './js/gis/settings/define_layers.json'
 		}).init();
 		var hash = new L.Hash(app.map);
