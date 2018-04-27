@@ -73,13 +73,19 @@ gis.ui.controlLoader = function(spec,my){
 		my.dialogAdmin = gis.ui.dialog.zoomToAdmin({ divid : "dialogZoomToAdmin", map : my.map });
 		my.dialogAdmin.create();
 		
+		my.dialogEpanet = gis.ui.dialog.epanet({ divid : "dialogEpanet", map : my.map });
+		my.dialogEpanet.create();
+		
 		return L.easyBar([
 			L.easyButton( 'fa-tint', function(){
 				my.dialogWss.open();
 			},'Zoom To WSS'),
 			L.easyButton( 'fa-sitemap', function(){
 				my.dialogAdmin.open();
-			},'Zoom To Administrative Boundary')
+			},'Zoom To Administrative Boundary'),
+			L.easyButton( 'fa-download', function(){
+				my.dialogEpanet.open();
+			},'Download Epanet File')
 		],options);
 	};
 	

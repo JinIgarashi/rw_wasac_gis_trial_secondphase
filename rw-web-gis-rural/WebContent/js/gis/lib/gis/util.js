@@ -53,3 +53,26 @@ gis.util.ajax = function(url,type,callback,data,dataType,async){
 		return false;
 	});
 };
+
+gis.util.ajaxGetFile = function(url){
+	$.ajax({
+		url : url,
+		type:'GET'
+	}).done((data, status, jqXHR) => {
+	  let downloadData = new Blob([data], {type: 'text/csv'});
+	  let filename = 'epanet.inp'
+
+	  if (window.navigator.msSaveBlob) {
+	    window.navigator.msSaveBlob(downloadData, filename); // IE用
+	  } else {
+	    let downloadUrl  = (window.URL || window.webkitURL).createObjectURL(downloadData);
+	    let link = document.createElement('a');
+	    link.href = downloadUrl;
+	    link.download = filename;
+	    link.click();
+	    (window.URL || window.webkitURL).revokeObjectURL(downloadUrl);
+	  }
+	}).fail((data, status, jqXHR) => {
+	  alert('It failed to download EPANET file.');
+	});
+};

@@ -82,7 +82,8 @@
                 'gis/ui/layerLoader.js',
                 'gis/ui/dialog.js',
                 'gis/ui/dialog/zoomToAdmin.js',
-                'gis/ui/dialog/zoomToWss.js'
+                'gis/ui/dialog/zoomToWss.js',
+                'gis/ui/dialog/epanet.js'
             ]; // etc.
         }
 

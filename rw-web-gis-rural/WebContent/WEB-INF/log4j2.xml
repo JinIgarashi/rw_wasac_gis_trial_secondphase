@@ -20,7 +20,7 @@
     
     <!-- パッケージごとにAppenderとログレベルを組み合わせる -->
     <Loggers>
-        <Root level="debug">
+        <Root level="all">
             <AppenderRef ref="console-appender"/>
             <AppenderRef ref="file-appender" />
         </Root>
