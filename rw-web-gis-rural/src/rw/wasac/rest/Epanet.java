@@ -18,8 +18,10 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import rw.wasac.epanet.CoordinateList;
+import rw.wasac.epanet.Options;
 import rw.wasac.epanet.PipeList;
 import rw.wasac.epanet.PumpList;
+import rw.wasac.epanet.ReservoirList;
 import rw.wasac.epanet.TankList;
 
 /**
@@ -33,14 +35,17 @@ public class Epanet {
 	
 	@GET
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
-	public Response get_epanet_file(@QueryParam("wss_id") Integer wss_id) throws SQLException {
+	public Response get(@QueryParam("wss_id") Integer wss_id) throws SQLException {
 
-		logger.info("get_epanet_file start.");
+		logger.info("get start.");
 		logger.info("wss_id:" + wss_id);
 		Connection conn = null;
 		try{
 			CoordinateList coords = new CoordinateList(wss_id);
 			coords.getData();
+			
+			ReservoirList reservoirList = new ReservoirList(wss_id, coords);
+			reservoirList.getData();
 			
 			TankList tankList = new TankList(wss_id, coords);
 			tankList.getData();
@@ -51,13 +56,17 @@ public class Epanet {
 			PumpList pumpList = new PumpList(wss_id,coords,pipeList);
 			pumpList.getData();
 			
+			Options options = new Options();
+			
 			ByteArrayOutputStream baos = new ByteArrayOutputStream();
 		    OutputStreamWriter osw = new OutputStreamWriter(baos, "UTF-8");
 		    
 		    coords.export_junctions(osw);
-		    tankList.export_tanks(osw);
-		    pipeList.export_pipes(osw);
-		    pumpList.export_pumps(osw);
+		    reservoirList.export(osw);
+		    tankList.export(osw);
+		    pipeList.export(osw);
+		    pumpList.export(osw);
+		    options.export(osw);
 		    coords.export_coordinates(osw);
 
 		    osw.flush();

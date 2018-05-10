@@ -24,7 +24,7 @@ public class Pipe {
 		this.status = "Open";
 	}
 	
-	public static void create_header_pipes(OutputStreamWriter osw) throws IOException {
+	public static void create_header(OutputStreamWriter osw) throws IOException {
 		osw.write("[PIPES]\r\n");
 		osw.write(String.format(";%s\t%s\t%s\t%s\t%s\t%s\t%s\t%s\r\n", 
 				Util.padding("ID", 15),
@@ -38,7 +38,7 @@ public class Pipe {
 			));
 	}
 	
-	public void add_pipes(OutputStreamWriter osw) throws IOException {
+	public void add(OutputStreamWriter osw) throws IOException {
 		osw.write(String.format(" %s\t%s\t%s\t%s\t%s\t%s\t%s\t%s;\r\n", 
 				Util.padding(this.id, 15),
 				Util.padding(String.valueOf(this.node1), 15),

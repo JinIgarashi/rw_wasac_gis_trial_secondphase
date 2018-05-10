@@ -75,10 +75,10 @@ public class TankList {
 		}
 	}
 	
-	public void export_tanks(OutputStreamWriter osw) throws IOException {
-		Tank.create_header_tank(osw);
+	public void export(OutputStreamWriter osw) throws IOException {
+		Tank.create_header(osw);
 	    for (Tank t: this.getTanks()) {
-	    	t.add_tank(osw);
+	    	t.add(osw);
 	    }
 	    osw.write("\r\n");
 	}

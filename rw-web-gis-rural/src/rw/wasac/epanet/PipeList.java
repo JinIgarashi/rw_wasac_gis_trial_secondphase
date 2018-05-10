@@ -104,10 +104,10 @@ public class PipeList {
 		}
 	}
 	
-	public void export_pipes(OutputStreamWriter osw) throws IOException {
-		Pipe.create_header_pipes(osw);
+	public void export(OutputStreamWriter osw) throws IOException {
+		Pipe.create_header(osw);
 	    for (Pipe pipe:this.getPipes()) {
-	    	pipe.add_pipes(osw);
+	    	pipe.add(osw);
 	    }
 	    osw.write("\r\n");
 	}

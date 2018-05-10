@@ -18,7 +18,7 @@ public class Tank {
 		this.lat = Util.setScale(lat,6);
 	}
 	
-	public static void create_header_tank(OutputStreamWriter osw) throws IOException {
+	public static void create_header(OutputStreamWriter osw) throws IOException {
 		osw.write("[TANKS]\r\n");
 		osw.write(String.format(";%s\t%s\t%s\t%s\t%s\r\n", 
 				Util.padding("ID", 15),
@@ -29,7 +29,7 @@ public class Tank {
 				));
 	}
 	
-	public void add_tank(OutputStreamWriter osw) throws IOException {
+	public void add(OutputStreamWriter osw) throws IOException {
 		osw.write(String.format(" %s\t%s\t%s\t%s\t%s;\r\n", 
 				Util.padding(String.valueOf(this.id), 15),
 				Util.padding(String.valueOf(this.elevation), 10),
