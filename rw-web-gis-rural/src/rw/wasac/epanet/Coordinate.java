@@ -11,7 +11,7 @@ public class Coordinate {
 	public Double lon_utm;
 	public Double lat_utm;
 	public Integer demand;
-	public Integer pattern;
+	public String pattern;
 	
 	public Coordinate(String id,Double lon,Double lat, Integer altitude,Double lon_utm, Double lat_utm) {
 		this.id = id;
@@ -21,7 +21,7 @@ public class Coordinate {
 		this.lon_utm = Util.setScale(lon_utm,3);
 		this.lat_utm = Util.setScale(lat_utm,3);
 		this.demand = 0;
-		this.pattern = 0;
+		this.pattern = "";
 	}
 	
 	public static void create_header_junction(OutputStreamWriter osw) throws IOException {
@@ -39,7 +39,7 @@ public class Coordinate {
 				Util.padding(String.valueOf(this.id), 15),
 				Util.padding(String.valueOf(this.altitude), 10),
 				Util.padding(String.valueOf(this.demand), 10),
-				Util.padding(String.valueOf(this.pattern), 10)
+				Util.padding(this.pattern, 10)
 			));
 	}
 	
