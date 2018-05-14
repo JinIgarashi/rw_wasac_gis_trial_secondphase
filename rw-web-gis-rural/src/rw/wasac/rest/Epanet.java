@@ -33,6 +33,12 @@ import rw.wasac.epanet.TankList;
 public class Epanet {
 	private final Logger logger = LogManager.getLogger(Epanet.class);
 	
+	/**
+	 * To get INP file of epanet from GIS data
+	 * @param wss_id WSS ID which require to export epanet format.
+	 * @return INP file of epanet
+	 * @throws SQLException SQL error
+	 */
 	@GET
 	@Produces(MediaType.APPLICATION_OCTET_STREAM)
 	public Response get(@QueryParam("wss_id") Integer wss_id) throws SQLException {
