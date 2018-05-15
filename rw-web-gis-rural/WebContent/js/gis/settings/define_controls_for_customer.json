@@ -7,16 +7,12 @@
         "position": "topleft"
       }
     }
-  },
-  {
-    "ctrl": "graphicScale",
+  },{
+    "ctrl": "feedback",
     "settings": {
       "notRequireSP": false,
       "options": {
-        "position": "bottomright",
-        "fill": "hollow",
-        "showSubunits": true,
-        "labelPlacement": "top"
+        "position": "topleft"
       }
     }
   }

@@ -40,11 +40,27 @@ gis.ui.controlLoader = function(spec,my){
 		case 'elevation':
 			ctrl = L.control.elevation(options);
 			break;
+		case 'feedback':
+			ctrl = L.easyButton('fa-comment', function(btn, map){
+			    my.map.locate();
+			    my.map.on('locationfound', my.onLocationFound, this);
+			    my.map.on('locationerror', my.onLocationError, this);
+			});
 		};
 		if (ctrl){
 			my.controlMap[ctrltype] = ctrl;
 		}
 		return ctrl;
+	};
+	
+	my.onLocationFound = function(e){
+		var lat = e.latlng.lat;
+		var lng = e.latlng.lng;
+		window.open('./survey.html?lat=' + lat + '&lng=' + lng, '_blank');
+	};
+	
+	my.onLocationError = function(e){
+		window.open('./survey.html', '_blank');
 	};
 	
 	my.createBookmarks = function(options){
