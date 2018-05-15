@@ -7,6 +7,17 @@ gis.ui.layerLoader = function(spec,my){
 	my.defineurl = spec.defineurl;
 	my.controlLoader = spec.controlLoader || null;
 	
+	my.layerControlOptions = spec.layerControlOptions || {
+		container_width 	: "300px",
+		group_maxHeight     : "90%",
+		exclusive       	: false,
+		group_togglers: {
+            show: true,
+            labelAll: 'Select All',
+            labelNone: 'Deselect All'
+        },
+	};
+	
 	my.baseMaps = [];
 	
 	my.setLayerControl = function(e,layer,title){
@@ -21,12 +32,14 @@ gis.ui.layerLoader = function(spec,my){
 				//凡例がある場合は凡例を挿入
 				title += "<br><div style='width:100%'>" + e.legend.elements[0].html + "</div><hr>";
 			};
-			my.layerControl.addOverlay( layer, title, {groupName : e.group} );
+			var expanded = false;
+			if (e.expanded){
+				expanded = e.expanded;
+			}
+			my.layerControl.addOverlay( layer, title, {groupName : e.group,expanded:expanded} );
 		};
 
-		if (e.visible === true){
-			my.map.addLayer(layer);
-		}else{
+		if (e.visible !== true){
 			my.map.removeLayer(layer);
 		};
 	};
@@ -35,30 +48,36 @@ gis.ui.layerLoader = function(spec,my){
 		switch(e.type){
 		case 'WMS':
 			var _layer = L.tileLayer.wms(e.url,e.options);
+			_layer.addTo(my.map)
 			my.setLayerControl(e,_layer,e.name);
 			break;
 		case 'WMS_getFeatureInfo':
 			var source = new L.WMS.Source(e.url, e.options);
 			for (var i in e.layers){
 				var _layer = source.getLayer(e.layers[i].name);
+				_layer.addTo(my.map)
 				my.setLayerControl(e,_layer,e.layers[i].title);
 			};
 			break;
 		case 'TMS':
 			var _layer = L.tileLayer(e.url, e.options);
+			_layer.addTo(my.map)
 			my.setLayerControl(e,_layer,e.name);
 			break;
 		case 'WMTS':
 			var _layer = new L.TileLayer.WMTS(e.url, e.options);
+			_layer.addTo(my.map)
 			my.setLayerControl(e,_layer,e.name);
 			break;
 		case 'GeoJSON':
 			var _layer = my.createGeoJSON(e);
+			_layer.addTo(my.map)
 			my.setLayerControl(e,_layer,e.name);
 			break;
 		case 'WFS':
 			e.options.crs = L.CRS[e.options.crs];
 			 var _layer = new L.WFST(e.options);
+			 _layer.addTo(my.map)
 			 _layer.on({
 					'click': function (e) {
 						my.create_profile(e.layer);
@@ -158,17 +177,7 @@ gis.ui.layerLoader = function(spec,my){
 
 	that.init = function(){
 		gis.util.ajaxGetAsync(my.defineurl,function(layers_define){
-			my.layerControl = L.Control.styledLayerControl({}, my.overlays, {
-					container_width 	: "300px",
-					group_maxHeight     : "90%",
-					exclusive       	: false,
-					group_togglers: {
-			            show: true,
-			            labelAll: 'Select All',
-			            labelNone: 'Deselect All'
-			        },
-				}
-			).addTo(my.map);
+			my.layerControl = L.Control.styledLayerControl({}, my.overlays, my.layerControlOptions).addTo(my.map);
 			
 			for (var i in layers_define){
 				my.createLayer(layers_define[i]);

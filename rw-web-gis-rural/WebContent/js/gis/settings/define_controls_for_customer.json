@@ -1,0 +1,23 @@
+[
+  {
+    "ctrl": "locate",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "topleft"
+      }
+    }
+  },
+  {
+    "ctrl": "graphicScale",
+    "settings": {
+      "notRequireSP": false,
+      "options": {
+        "position": "bottomright",
+        "fill": "hollow",
+        "showSubunits": true,
+        "labelPlacement": "top"
+      }
+    }
+  }
+]
