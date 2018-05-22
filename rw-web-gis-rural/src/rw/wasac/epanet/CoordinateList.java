@@ -18,20 +18,46 @@ import org.apache.logging.log4j.Logger;
 
 import rw.wasac.common.ServletListener;
 
+/**
+ * Managing for list of epanet Coordinate and Junction object
+ * @author Jin Igarashi
+ * @version 1.0
+ */
 public class CoordinateList {
 	private final Logger logger = LogManager.getLogger(CoordinateList.class);
 	
+	/**
+	 * WSS ID
+	 */
 	private Integer wss_id;
+	
+	/**
+	 * HashMap for Coodinate object.<br>
+	 * KEY: Longitude,Latitude
+	 * VALUE: Coordinate class object
+	 */
 	private HashMap<String,Coordinate> coordMap;
 	
+	/**
+	 * Returning hashMap for cooridnate objects
+	 * @return KEY: Longitude,Latitude VALUE: Coordinate class object
+	 */
 	public HashMap<String,Coordinate> getCoordMap() {
 		return this.coordMap;
 	}
 	
+	/**
+	 * Constructor
+	 * @param wss_id WSS ID
+	 */
 	public CoordinateList(Integer wss_id) {
 		this.wss_id = wss_id;
 	}
 	
+	/**
+	 * Getting data from GIS database.
+	 * @throws SQLException SQL Exception
+	 */
 	public void getData() throws SQLException {
 		logger.info("getData start.");
 		Connection conn = null;
@@ -79,6 +105,10 @@ public class CoordinateList {
 		}
 	}
 	
+	/**
+	 * add coordinate object into hashmap.
+	 * @param val Coordinate object
+	 */
 	public void add_coordinate(Coordinate val) {
 		String[] target_latlng = {val.lon.toString(),val.lat.toString()};
 		String target_key = String.join(",",target_latlng);
@@ -97,6 +127,11 @@ public class CoordinateList {
 		this.coordMap.put(target_key,val);
 	}
 	
+	/**
+	 * Exporting list of JUNCTIONS into inp file
+	 * @param osw OutputStreamWriter
+	 * @throws IOException IOException
+	 */
 	public void export_junctions(OutputStreamWriter osw) throws IOException {
 		Coordinate.create_header_junction(osw);
 	    for (Coordinate coord: this.getCoordMap().values()) {
@@ -109,6 +144,11 @@ public class CoordinateList {
 	    osw.write("\r\n");
 	}
 	
+	/**
+	 * Exporting list of COORDINATES into inp file
+	 * @param osw OutputStreamWriter
+	 * @throws IOException IOException
+	 */
 	public void export_coordinates(OutputStreamWriter osw) throws IOException {
 		Coordinate.create_header_coordinates(osw);
 	    for (Coordinate coord: this.getCoordMap().values()) {

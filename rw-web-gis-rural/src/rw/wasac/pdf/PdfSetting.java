@@ -11,86 +11,120 @@ import com.itextpdf.text.Rectangle;
 import net.arnx.jsonic.JSON;
 
 /**
- * <pre>
- *  クラス名  ：PdfSetting
- *  クラス説明：PDFの設定情報を管理するクラス
- * </pre>
- *
+ * PdfSetting class
  * @version 1.00
  * @author Igarashi
  *
  */
 public class PdfSetting {
 
+	/**
+	 * a path of folder for exporting
+	 */
 	private String exportPath = "";
 
 	/**
-	 * 出力先フォルダを取得
-	 * @return 出力先フォルダ
+	 * To get a path of folder for exporting
+	 * @return a path of folder for exporting
 	 */
 	public String getExportPath(){
 		return exportPath;
 	}
 
+	/**
+	 * a real path of foloder for exporting
+	 */
 	private String exportRealPath = "";
 
 	/**
-	 * 出力先フォルダの実際のパスを取得
-	 * @return 出力先フォルダの実際のパス
+	 * To get a real path of foloder for exporting
+	 * @return a real path of foloder for exporting
 	 */
 	public String getExportRealPath(){
 		return exportRealPath;
 	}
 
 
+	/**
+	 * a path of JSON layout setting file for PDF format
+	 */
 	private String jsonLayoutPath ="";
 
 	/**
-	 * PDFのJSONレイアウト定義ファイルパスを取得
-	 * @return PDFのJSONレイアウト定義ファイルパス
+	 * To get a path of JSON layout setting file for PDF format
+	 * @return a path of JSON layout setting file for PDF format
 	 */
 	public String getJsonLayoutPath(){
 		return jsonLayoutPath;
 	}
 
+	/**
+	 * a path of mapfile for Mapserver
+	 */
 	private String mapfile = "";
 
 	/**
-	 * Mapfileパスを取得
-	 * @return Mapfileパス
+	 * To get a path of mapfile for Mapserver
+	 * @return a path of mapfile for Mapserver
 	 */
 	public String getMapfile(){
 		return mapfile;
 	}
 
+	/**
+	 * a list of layers to be visible
+	 */
 	private String layers = "";
 
 	/**
-	 * 表示するレイヤ名を取得
-	 * @return 表示するレイヤ名
+	 * To get a list of layers to be visible
+	 * @return a list of layers to be visible
 	 */
 	public String getLayers(){
 		return layers;
 	}
 
+	/**
+	 * page size of PDF. Default is A4
+	 */
 	private Rectangle pageSize = PageSize.A4;
+	
+	/**
+	 * To get page size of PDF
+	 * @return page size of PDF. Default is A4
+	 */
 	public Rectangle getPageSize(){
 		return pageSize;
 	}
 
+	/**
+	 * width of map in PDF
+	 */
 	private Integer mapWidth = 0;
+	/**
+	 * To get width of map in PDF
+	 * @return width of map in PDF
+	 */
 	public Integer getMapWidth(){
 		return this.mapWidth;
 	}
 
+	/**
+	 * height of map in PDF
+	 */
 	private Integer mapHeight = 0;
+	
+	/**
+	 * To get height of map in PDF
+	 * @return height of map in PDF
+	 */
 	public Integer getMapHeight(){
 		return  this.mapHeight;
 	}
 
 	/**
-	 * コンストラクタ
-	 * @param config JSON設定定義
+	 * Constructor
+	 * @param config JSON format for PDF layout settings
 	 * @param sc ServletContext
 	 */
 	public PdfSetting(String config,ServletContext sc){
@@ -98,7 +132,7 @@ public class PdfSetting {
 
 		exportPath = map.get("exportPath");
 		exportRealPath = sc.getRealPath(exportPath);
-		//地図出力用のフォルダがなかったら作成する
+		//Create folder for exporting if it does not exist
 		File exportFile = new File(exportRealPath);
 		if (!exportFile.exists()){
 			exportFile.mkdir();

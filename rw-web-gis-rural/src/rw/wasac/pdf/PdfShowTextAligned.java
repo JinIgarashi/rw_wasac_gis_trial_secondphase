@@ -3,11 +3,7 @@ package rw.wasac.pdf;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfShowTextAligned
- *  クラス説明：指定テキストを指定位置、指定スタイルで描画する
- * </pre>
- *
+ * PdfShowTextAligned class
  * @version 1.00
  * @author Igarashi
  *
@@ -15,21 +11,21 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfShowTextAligned extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfShowTextAligned() {
 		super("showTextAligned");
 	}
 
 	/**
-	 * 指定テキストを指定位置、指定スタイルで描画する
-	 * コマンドの指定方法は以下の通り。
+	 * To draw text at target position by target style
+	 * the parameters are as follows。
 	 * <br>method:showTextAligned
-	 * <br>text:表示テキスト
-	 * <br>x:X座標(ミリ)
-	 * <br>y:Y座標（ミリ）
-	 * <br>rotation:角度
-	 * <br>align:表示位置。Center:中央、Right:右、Left及びそれ以外：左
+	 * <br>text:text drawn
+	 * <br>x:x-coordinate. unit is mm.
+	 * <br>y:y-coordinate. unit is mm.
+	 * <br>rotation:rotation of text.
+	 * <br>align:position of text Center/Right/Left
 	 */
 	@Override
 	public void execute(PdfContentByte cb) throws Exception{

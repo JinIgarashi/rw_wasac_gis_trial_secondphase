@@ -17,22 +17,51 @@ import org.apache.logging.log4j.Logger;
 
 import rw.wasac.common.ServletListener;
 
+/**
+ * Managing for list of epanet tank object
+ * @author Jin Igarashi
+ * @version 1.0
+ */
 public class TankList {
 	private final Logger logger = LogManager.getLogger(TankList.class);
 	
+	/**
+	 * WSS ID
+	 */
 	private Integer wss_id;
+	
+	/**
+	 * CoordinateList class object
+	 */
 	private CoordinateList coords;
 	
+	/**
+	 * List of Tank objects
+	 */
 	private ArrayList<Tank> tanks;
+	
+	/**
+	 * Returning List of Tank objects
+	 * @return List of Tank objects
+	 */
 	public ArrayList<Tank> getTanks(){
 		return this.tanks;
 	}
 	
+	/**
+	 * Constructor
+	 * @param wss_id WSS ID
+	 * @param coords CoodinateList object
+	 */
 	public TankList(Integer wss_id, CoordinateList coords) {
 		this.wss_id = wss_id;
 		this.coords = coords;
 	}
 	
+	/**
+	 * Getting data from GIS database.
+	 * @throws SQLException SQL Exception
+	 */
 	public void getData() throws SQLException {
 		logger.info("getData start.");
 		Connection conn = null;
@@ -75,6 +104,11 @@ public class TankList {
 		}
 	}
 	
+	/**
+	 * Exporting list of data into inp file
+	 * @param osw OutputStreamWriter
+	 * @throws IOException IOException
+	 */
 	public void export(OutputStreamWriter osw) throws IOException {
 		Tank.create_header(osw);
 	    for (Tank t: this.getTanks()) {

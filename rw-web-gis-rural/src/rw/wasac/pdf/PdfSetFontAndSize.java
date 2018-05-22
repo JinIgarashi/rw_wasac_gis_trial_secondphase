@@ -4,11 +4,7 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfSetFontAndSize
- *  クラス説明：iTextの使用フォント及びサイズを指定する
- * </pre>
- *
+ * PdfSetFontAndSize class
  * @version 1.00
  * @author Igarashi
  *
@@ -16,25 +12,25 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfSetFontAndSize extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfSetFontAndSize() {
 		super("setFontAndSize");
 	}
 
 	/**
-	 * iTextの使用フォント及びサイズを指定する。
-	 * コマンドの指定方法は以下の通り。
+	 * To set font and size of iText
+	 * the parameters are as follows。
 	 * <br>method:setFontAndSize
-	 * <br>fontname:フォント名
-	 * <br>   HeiseiKakuGo-W5；ゴシック体
-	 * <br>   HeiseiMin-W3:明朝体
-	 * <br>fontencoding:文字コードの種別。
-	 * <br>   UniJIS-UCS2-H:Adobe日本語文字のUniCode用エンコーディング
+	 * <br>fontname: Name of font
+	 * <br>   HeiseiKakuGo-W5； gothic
+	 * <br>   HeiseiMin-W3: Mincho
+	 * <br>fontencoding: Type of ENCODE
+	 * <br>   UniJIS-UCS2-H:Adobe UniCode for Japanese language
 	 * <br>   UniJIS-UCS2-V:UniJIS-UCS2-Hの縦書きエンコーディング
 	 * <br>   UniJIS-UCS2-HW-H:UniJIS-UCS2-Hのうち、プロポーショナル文字のみ半角文字に変更したエンコーディング
 	 * <br>   UniJIS-UCS2-HW-V:UniJIS-UCS2-HW-Hの縦書きエンコーディング
-	 * <br>fontsize:フォントサイズ(pt)
+	 * <br>fontsize:Size of font(pt)
 	 */
 	@Override
 	public void execute(PdfContentByte cb) throws Exception{

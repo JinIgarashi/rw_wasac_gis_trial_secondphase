@@ -5,11 +5,8 @@ import java.util.HashMap;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfCmdBase
- *  クラス説明：iTextのコマンド実行クラスのスーパークラス
- * </pre>
- *
+ * PdfCmdBase class<br>
+ * This is the super class for running command of iText
  * @version 1.00
  * @author Igarashi
  *
@@ -17,30 +14,30 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public abstract class PdfCmdBase {
 
 	/**
-	 * メソッド名
+	 * Name of method
 	 */
 	private String MethodName = "";
 
 	/**
-	 * コマンドのパラメータ
+	 * Parameters of command
 	 */
 	protected HashMap<String,String> CmdParams = null;
 
 	/**
-	 * メソッド名の取得
-	 * @return メソッド名
+	 * Get method name
+	 * @return method name
 	 */
 	public String getMethodName(){
 		return this.MethodName;
 	}
 
 	/**
-	 * パラメーターの設定
-	 * @param params コマンド名とパラメータが格納されたマップ
-	 * <br>コマンド用のテキストファイルにはJSONのマップ形式で1コマンド1マップで記述すること。
-	 * <br>各コマンドの詳細な設定の仕方はPdfCmdBaseを継承するサブクラスを参照すること。
-	 * <br>設定例）
-	 * <br>座標(288,51)までラインを引きたい場合は下記のように指定する。
+	 * Set parameter of command
+	 * @param params hashmap of command name and parameters
+	 * <br>To set parameter as JSON object each command in setting text file.
+	 * <br>Refer to sub class about details operation each command.
+	 * <br>Example）
+	 * <br>If you want to put line until coordinate(288,51), you can set command as follows.
 	 * <br>{"method":"lineTo","x":"288","y":"51"}
 	 */
 	public void setCmdParams(HashMap<String,String> params){
@@ -48,24 +45,24 @@ public abstract class PdfCmdBase {
 	}
 
 	/**
-	 * コンストラクタ
-	 * @param method メソッド名
+	 * Constructor
+	 * @param method Name of method
 	 */
 	public PdfCmdBase(String method){
 		this.MethodName = method;
 	}
 
 	/**
-	 * コマンド実行
-	 * @param cb 実行対象となるPdfContentByteオブジェクト
+	 * Running command
+	 * @param cb target PdfContentByte object
 	 * @throws Exception Error
 	 */
 	public abstract void execute(PdfContentByte cb) throws Exception;
 
 	/**
-	 * ミリメートルをピクセルに変換
-	 * @param mm ミリメートル
-	 * @return ピクセル
+	 * transfering mm to pixel
+	 * @param mm mm value
+	 * @return pixel value
 	 */
 	protected float mm2pixel(final float mm){
         //1インチ = 25.4 ミリメートル
@@ -73,9 +70,9 @@ public abstract class PdfCmdBase {
     }
 
 	/**
-	 * ピクセルをミリメートルに変換
-	 * @param pixel ピクセル
-	 * @return ミリメートル
+	 * transfering pixel to mm
+	 * @param pixel pixel value
+	 * @return mm value
 	 */
 	protected float pixel2mm(final float pixel){
         //1インチ = 25.4 ミリメートル

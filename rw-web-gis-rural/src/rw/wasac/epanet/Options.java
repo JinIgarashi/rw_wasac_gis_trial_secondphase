@@ -4,9 +4,20 @@ import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.util.HashMap;
 
+/**
+ * Managing for epanet settings
+ * @author Jin Igarashi
+ * @version 1.0
+ */
 public class Options {
+	/**
+	 * HashMap for OPTIONS
+	 */
 	public HashMap<String, String> options;
 	
+	/**
+	 * Contructor
+	 */
 	public Options(){
 		options = new HashMap<String, String>();
 		options.put("Units", "LPS");
@@ -27,6 +38,11 @@ public class Options {
 		options.put("Tolerance", "0.01");
 	}
 	
+	/**
+	 * Export OPTIONS into inp file.
+	 * @param osw OutputStreamWriter
+	 * @throws IOException IOException
+	 */
 	public void export(OutputStreamWriter osw) throws IOException {
 		osw.write("[OPTIONS]\r\n");
 		for (String key : this.options.keySet()) {

@@ -20,11 +20,7 @@ import com.itextpdf.text.pdf.PdfContentByte;
 import com.itextpdf.text.pdf.PdfWriter;
 
 /**
- * <pre>
- *  クラス名  ：PdfCommandExecutor
- *  クラス説明：コマンド定義ファイルを実行しPDFを作成する
- * </pre>
- *
+ * PdfCommandExecutor
  * @version 1.00
  * @author Igarashi
  *
@@ -33,18 +29,37 @@ public class PdfCommandExecutor {
 	private final Logger logger = LogManager.getLogger(PdfCommandExecutor.class);
 
 	private PdfContentByte cb;
+	
+	/**
+	 * a path of PDF for exporting
+	 */
 	private String FileName = "";
+	
+	/**
+	 * a path of JSON file for PDF settings
+	 */
 	private String LayoutFilePath = "";
+	
+	/**
+	 * a size of PDF
+	 */
 	private Rectangle PageSize = null;
+	
+	/**
+	 * a list of text parameters which will be replaced from PDF settings
+	 */
 	private HashMap<String,String> MapParams = null;
 
+	/**
+	 * Array of PdfCmdBase class object of commanding on PDF creator
+	 */
 	private PdfCmdBase[] CommandObjArray = null;
 
 	/**
-	 * コンストラクタ
-	 * @param filename 出力先ファイル名
-	 * @param setting レイアウト定義ファイルパス
-	 * @param params 実行時に置き換えるパラメータ
+	 * Constructor
+	 * @param filename a path of PDF for exporting
+	 * @param setting a setting object of JSON file for PDF settings
+	 * @param params a list of text parameters which will be replaced from PDF settings
 	 */
 	public PdfCommandExecutor(String filename,PdfSetting setting,HashMap<String,String> params){
 		this.FileName = filename;
@@ -68,7 +83,7 @@ public class PdfCommandExecutor {
 	}
 
 	/**
-	 * PDF作成
+	 * To create PDF
 	 * @throws Exception Error
 	 */
 	public void create() throws Exception{
@@ -96,9 +111,9 @@ public class PdfCommandExecutor {
 	}
 
 	/**
-	 * レイアウト定義ファイルの%で囲った文字列を置き換えて返す
-	 * @param layouttext レイアウト定義
-	 * @return 置き換え後の定義
+	 * To replace parameter of new text from layout setting file. old text should be written between '%' on JSON file
+	 * @param layouttext JSON setting
+	 * @return JSON setting after replacing parameters
 	 */
 	private String replaceParam(String layouttext){
 		if (MapParams != null){
@@ -111,8 +126,8 @@ public class PdfCommandExecutor {
 	}
 
 	/**
-	 * 指定位置にPDFを描画する
-	 * @param param JSON形式のパラメータ。実行可能コマンドについて以下に示す
+	 * To draw PDF
+	 * @param param Parameters of JSON format.
 	 * @throws Exception Error
 	 */
 	private void draw(String param) throws Exception{
@@ -134,9 +149,9 @@ public class PdfCommandExecutor {
 	}
 
 	/**
-	 * テキストファイルを読み込む
-	 * @param filename ファイル名
-	 * @return 読みこんだ結果のテキスト
+	 * To load text file to memory
+	 * @param filename a path of file
+	 * @return text after loading from file
 	 * @throws IOException IO Error
 	 */
 	private String readTextFile(String filename) throws IOException {
@@ -146,17 +161,15 @@ public class PdfCommandExecutor {
 		BufferedReader br = null;
 		String resultString = "";
         try {
-            // 入力元ファイル
+            //file for loading
             File file = new File(filename);
 
             br = new BufferedReader(new InputStreamReader(new FileInputStream(file), "UTF-8"));
             String line;
-            // １行づつ読み込みます。
             while ((line = br.readLine()) != null) {
             	resultString += line;
             }
         } finally {
-        	// ストリームは必ず finally で close します。
         	if (br != null ){
         		br.close();
         	}

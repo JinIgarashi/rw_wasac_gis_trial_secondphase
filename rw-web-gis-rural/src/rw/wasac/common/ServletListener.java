@@ -19,15 +19,32 @@ public class ServletListener implements ServletContextListener {
 	static public ServletContext sc;
 	static public Logger logger = LogManager.getLogger(ServletListener.class);
 
+	/**
+	 * URL for database
+	 */
 	static public String dburl = "";
+	
+	/**
+	 * User ID for database
+	 */
 	static public String dbuser = "";
+	
+	/**
+	 * Password for database
+	 */
 	static public String dbpassword = "";
 	
+	/**
+	 * destructor
+	 */
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
 		logger.info("contextDestroyed()");
 	}
 
+	/**
+	 * constructor
+	 */
 	@Override
 	public void contextInitialized(ServletContextEvent contextevent) {
 		try{

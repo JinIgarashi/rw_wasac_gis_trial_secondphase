@@ -3,11 +3,7 @@ package rw.wasac.pdf;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfShowText
- *  クラス説明：指定テキストを描画する
- * </pre>
- *
+ * PdfShowText class
  * @version 1.00
  * @author Igarashi
  *
@@ -15,17 +11,17 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfShowText extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfShowText() {
 		super("showText");
 	}
 
 	/**
-	 * 指定テキストを描画する
-	 * コマンドの指定方法は以下の通り。
+	 * To draw text
+	 * the parameters are as follows
 	 * <br>method:showText
-	 * <br>text:表示テキスト
+	 * <br>text:text drawn
 	 */
 	@Override
 	public void execute(PdfContentByte cb) throws Exception{

@@ -18,24 +18,58 @@ import org.apache.logging.log4j.Logger;
 
 import rw.wasac.common.ServletListener;
 
+/**
+ * Managing for list of epanet pump object
+ * @author Jin Igarashi
+ * @version 1.0
+ */
 public class PumpList {
 	private final Logger logger = LogManager.getLogger(PumpList.class);
 	
+	/**
+	 * WSS ID
+	 */
 	private Integer wss_id;
+	
+	/**
+	 * CoordinateList class object
+	 */
 	private CoordinateList coords;
+	
+	/**
+	 * List of Pipe objects
+	 */
 	private PipeList pipes;
 	
+	/**
+	 * List of Pump objects
+	 */
 	private ArrayList<Pump> pumps;
+	
+	/**
+	 * Returning List of Pump objects
+	 * @return List of Pump objects
+	 */
 	public ArrayList<Pump> getPumps(){
 		return this.pumps;
 	}
 	
+	/**
+	 * Constructor
+	 * @param wss_id WSS ID
+	 * @param coords CoodinateList object
+	 * @param pipes PipeList object
+	 */
 	public PumpList(Integer wss_id, CoordinateList coords,PipeList pipes) {
 		this.wss_id = wss_id;
 		this.coords = coords;
 		this.pipes = pipes;
 	}
 	
+	/**
+	 * Getting data from GIS database.
+	 * @throws SQLException SQL Exception
+	 */
 	public void getData() throws SQLException {
 		logger.info("getData start.");
 		Connection conn = null;
@@ -95,6 +129,11 @@ public class PumpList {
 		}
 	}
 	
+	/**
+	 * Exporting list of data into inp file
+	 * @param osw OutputStreamWriter
+	 * @throws IOException IOException
+	 */
 	public void export(OutputStreamWriter osw) throws IOException {
 		Pump.create_header(osw);
 	    for (Pump p: this.getPumps()) {

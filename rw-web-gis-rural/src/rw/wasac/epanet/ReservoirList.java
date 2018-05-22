@@ -17,22 +17,51 @@ import org.apache.logging.log4j.Logger;
 
 import rw.wasac.common.ServletListener;
 
+/**
+ * Managing for list of epanet reservoir object
+ * @author Jin Igarashi
+ * @version 1.0
+ */
 public class ReservoirList {
 	private final Logger logger = LogManager.getLogger(ReservoirList.class);
 	
+	/**
+	 * WSS ID
+	 */
 	private Integer wss_id;
+	
+	/**
+	 * CoordinateList class object
+	 */
 	private CoordinateList coords;
 	
+	/**
+	 * List of Reservoir objects
+	 */
 	private ArrayList<Reservoir> reservoirs;
+	
+	/**
+	 * Returning List of Reservoir objects
+	 * @return List of Reservoir objects
+	 */
 	public ArrayList<Reservoir> getReservoirs(){
 		return this.reservoirs;
 	}
 	
+	/**
+	 * Constructor
+	 * @param wss_id WSS ID
+	 * @param coords CoodinateList object
+	 */
 	public ReservoirList(Integer wss_id, CoordinateList coords) {
 		this.wss_id = wss_id;
 		this.coords = coords;
 	}
 	
+	/**
+	 * Getting data from GIS database.
+	 * @throws SQLException SQLException
+	 */
 	public void getData() throws SQLException {
 		logger.info("getData start.");
 		Connection conn = null;
@@ -75,6 +104,11 @@ public class ReservoirList {
 		}
 	}
 	
+	/**
+	 * Exporting list of data into inp file
+	 * @param osw OutputStreamWriter
+	 * @throws IOException IOException
+	 */
 	public void export(OutputStreamWriter osw) throws IOException {
 		Reservoir.create_header(osw);
 	    for (Reservoir r: this.getReservoirs()) {

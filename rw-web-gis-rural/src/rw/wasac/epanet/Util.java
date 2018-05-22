@@ -8,15 +8,35 @@ import java.math.BigDecimal;
  * @version 1.0
  */
 public class Util {
+	
+	/**
+	 * Default EPSG is 4326
+	 */
 	public static final Integer epsg = 4326;
+	
+	/**
+	 * Default UTM's EPSG is 32736
+	 */
 	public static final Integer epsg_utm = 32736;
 	
+	/**
+	 * set scale of the value by target precision
+	 * @param val numeric value
+	 * @param precision digit of precision
+	 * @return double numeric value scaled.
+	 */
 	public static Double setScale(Double val, Integer precision) {
 		BigDecimal x = new BigDecimal(val);
 		x = x.setScale(precision, BigDecimal.ROUND_HALF_UP);
 		return x.doubleValue();
 	}
 	
+	/**
+	 * Function for padding the space for the string value
+	 * @param val string value
+	 * @param num number of spaces
+	 * @return value of padding spaces
+	 */
 	public static String padding(String val,Integer num) {
 		String fillUppedString = val; 
         int len = 0;

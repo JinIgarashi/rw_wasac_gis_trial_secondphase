@@ -22,22 +22,51 @@ import com.vividsolutions.jts.geom.MultiLineString;
 import rw.wasac.common.ServletListener;
 import rw.wasac.geometryOp.Util;
 
+/**
+ * Managing for list of epanet pipe object
+ * @author Jin Igarashi
+ * @version 1.0
+ */
 public class PipeList {
 	private final Logger logger = LogManager.getLogger(PipeList.class);
 	
+	/**
+	 * WSS ID
+	 */
 	private Integer wss_id;
+	
+	/**
+	 * CoordinateList class object
+	 */
 	private CoordinateList coords;
 	
+	/**
+	 * List of Pipe objects
+	 */
 	private ArrayList<Pipe> pipes;
+	
+	/**
+	 * Returning List of Pipe objects
+	 * @return List of Pipe objects
+	 */
 	public ArrayList<Pipe> getPipes() {
 		return this.pipes;
 	}
 	
+	/**
+	 * Constructor
+	 * @param wss_id WSS ID
+	 * @param coords CoodinateList object
+	 */
 	public PipeList(Integer wss_id, CoordinateList coords) {
 		this.wss_id = wss_id;
 		this.coords = coords;
 	}
 	
+	/**
+	 * Getting data from GIS database.
+	 * @throws SQLException SQL Exception
+	 */
 	public void getData() throws SQLException {
 		logger.info("getData start.");
 		Connection conn = null;
@@ -104,6 +133,11 @@ public class PipeList {
 		}
 	}
 	
+	/**
+	 * Exporting list of data into inp file
+	 * @param osw OutputStreamWriter
+	 * @throws IOException IOException
+	 */
 	public void export(OutputStreamWriter osw) throws IOException {
 		Pipe.create_header(osw);
 	    for (Pipe pipe:this.getPipes()) {

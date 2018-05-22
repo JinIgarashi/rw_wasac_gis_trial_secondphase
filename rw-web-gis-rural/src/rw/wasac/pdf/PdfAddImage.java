@@ -4,11 +4,7 @@ import com.itextpdf.text.Image;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfAddImage
- *  クラス説明：イメージを追加するコマンドを実行する
- * </pre>
- *
+ * PdfAddImage class
  * @version 1.00
  * @author Igarashi
  *
@@ -16,23 +12,23 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfAddImage extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfAddImage() {
 		super("addImage");
 	}
 
 	/**
-	 * イメージを追加する。
-	 * コマンドの指定方法は以下の通り。
+	 * To add image
+	 * the parameters are as follows
 	 * <br>method:addImage
-	 * <br>path:イメージファイルのパス
-	 * <br>x:左下のX座標(ミリ)
-	 * <br>y:左下のY座標（ミリ）
-	 * <br>width:画像の幅（ミリ）
-	 * <br>height:画像の高さ（ミリ）
-	 * <br>scaleAbsoluteWidth:解像度の幅（ピクセル）
-	 * <br>scaleAbsoluteHeight:解像度の高さ（ピクセル）
+	 * <br>path:path of image file
+	 * <br>x:x-coodinate of bottom-left.unit is mm.
+	 * <br>y:y-coodinate of bottom-left.unit is mm.
+	 * <br>width:width(mm) of image
+	 * <br>height:height(mm) of image
+	 * <br>scaleAbsoluteWidth:width(pixel) of resolution
+	 * <br>scaleAbsoluteHeight:height(pixel) of resolution
 	 */
 	@Override
 	public void execute(PdfContentByte cb) throws Exception{

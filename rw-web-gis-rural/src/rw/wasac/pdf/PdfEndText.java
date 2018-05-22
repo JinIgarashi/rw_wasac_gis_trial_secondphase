@@ -3,11 +3,7 @@ package rw.wasac.pdf;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfEndText
- *  クラス説明：テキスト入力を終了するコマンドを実行する
- * </pre>
- *
+ * PdfEndText class
  * @version 1.00
  * @author Igarashi
  *
@@ -15,15 +11,15 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfEndText extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfEndText() {
 		super("endText");
 	}
 
 	/**
-	 * テキストの描画を終了する
-	 * コマンドの指定方法は以下の通り。
+	 * To end drawing text
+	 * the parameters are as follows
 	 * <br>method:endText
 	 */
 	@Override

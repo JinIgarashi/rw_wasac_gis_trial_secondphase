@@ -6,11 +6,7 @@ package rw.wasac.pdf;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfBeginText
- *  クラス説明：テキストの入力開始コマンドを実行する
- * </pre>
- *
+ * PdfBeginText class
  * @version 1.00
  * @author Igarashi
  *
@@ -18,15 +14,15 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfBeginText extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfBeginText() {
 		super("beginText");
 	}
 
 	/**
-	 * テキストの描画を開始する
-	 * コマンドの指定方法は以下の通り。
+	 * To start drawing text
+	 * the parameters are as follows
 	 * <br>method:beginText
 	 */
 	@Override

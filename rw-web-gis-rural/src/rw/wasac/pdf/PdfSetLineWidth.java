@@ -3,11 +3,7 @@ package rw.wasac.pdf;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfSetLineWidth
- *  クラス説明：ラインの幅を指定する
- * </pre>
- *
+ * PdfSetLineWidth class
  * @version 1.00
  * @author Igarashi
  *
@@ -15,17 +11,17 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfSetLineWidth extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfSetLineWidth() {
 		super("setLineWidth");
 	}
 
 	/**
-	 * ラインの幅を指定する
-	 * コマンドの指定方法は以下の通り。
+	 * To set width of line
+	 * the parameters are as follows。
 	 * <br>method:setLineWidth
-	 * <br>linewidth:ライン幅
+	 * <br>linewidth:width of line
 	 */
 	@Override
 	public void execute(PdfContentByte cb) throws Exception{

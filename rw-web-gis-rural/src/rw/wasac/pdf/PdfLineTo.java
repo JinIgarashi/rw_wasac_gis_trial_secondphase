@@ -3,11 +3,7 @@ package rw.wasac.pdf;
 import com.itextpdf.text.pdf.PdfContentByte;
 
 /**
- * <pre>
- *  クラス名  ：PdfLineTo
- *  クラス説明：指定位置までラインを引くコマンドを実行する
- * </pre>
- *
+ * PdfLineTo
  * @version 1.00
  * @author Igarashi
  *
@@ -15,18 +11,18 @@ import com.itextpdf.text.pdf.PdfContentByte;
 public class PdfLineTo extends PdfCmdBase {
 
 	/**
-	 * コンストラクタ
+	 * Constructor
 	 */
 	public PdfLineTo() {
 		super("lineTo");
 	}
 
 	/**
-	 * 指定座標まで線を引く。
-	 * コマンドの指定方法は以下の通り。
+	 * To draw line until target coordinate
+	 * the parameters are as follows
 	 * <br>method:lineTo
-	 * <br>x:X座標(ミリ)
-	 * <br>y:Y座標（ミリ）
+	 * <br>x:x-coordinate, unit is mm.
+	 * <br>y:y-coordinate, unit is mm.
 	 */
 	@Override
 	public void execute(PdfContentByte cb) throws Exception{
