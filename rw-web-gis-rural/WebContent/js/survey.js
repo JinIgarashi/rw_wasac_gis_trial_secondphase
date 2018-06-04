@@ -1,82 +1,126 @@
 var survey = {
 		json:{
-		    questions: [
-		        {
-		            name: "name",
-		            type: "text",
-		            title: "Please enter your name:",
-		            placeHolder: "Jon Snow",
-		            isRequired: true
-		        }, {
-		            name: "mobilenumber",
-		            type: "text",
-		            inputType: "number",
-		            title: "Your mobile phone number:",
-		            placeHolder: "0712345678",
-		            isRequired: true,
-		            validators: [
-		                {
-		                    type: "number"
+			questionTitleTemplate: "{no}) {title} {require}:",
+		    questionStartIndex: "1",
+		    showProgressBar: "top",
+		    requiredText: "(required)",
+			pages:[
+				{
+					title: "Feedback form for water services in Rwanda:",
+					questions: [
+						{
+		                    "type": "rating",
+		                    "name": "satisfaction",
+		                    "title": "How satisfied are you with the our Services?",
+		                    "mininumRateDescription": "Not Satisfied",
+		                    "maximumRateDescription": "Completely satisfied",
+		                    isRequired: true,
 		                }
-		            ]
-		        }, {
-		            name: "email",
-		            type: "text",
-		            inputType: "email",
-		            title: "Your e-mail (optional):",
-		            placeHolder: "info@wasac.rw",
-		            isRequired: false,
-		            validators: [
-		                {
-		                    type: "email"
-		                }
-		            ]
-		        }, {
-		            type: "dropdown",
-		            name: "type_facility",
-		            title: "Please select type of facility which you want to report:",
-		            isRequired: true,
-		            colCount: 0,
-		            choices: [
-		                "Public Tap",
-		                "Water Kiosk",
-		                "Hand Pump",
-		                "Improved Spring",
-		                "Pipeline",
-		                "Others"
-		            ]
-		        }, {
-		            type: "dropdown",
-		            name: "status_facility",
-		            title: "Please select status of facility:",
-		            isRequired: true,
-		            colCount: 0,
-		            choices: [
-		                "No water",
-		                "No operator",
-		                "Water meter is not functional",
-		                "There is leakage",
-		                "Others"
-		            ]
-		        }, {
-		            type: "dropdown",
-		            name: "whenhappened",
-		            title: "When did it happened?:",
-		            isRequired: true,
-		            colCount: 0,
-		            choices: [
-		                "1 day ago",
-		                "3 days ago",
-		                "7 days ago",
-		                "15 days ago",
-		                "30 days ago",
-		                "Always",
-		            ]
-		        }, {
-		            type: "comment",
-		            name: "suggestions",
-		            title: "Please leave your comments for our services?"
-		        }
+					]
+				},{
+					title: "Feedback form for water services in Rwanda:",
+					questions: [
+						{
+        		            type: "radiogroup",
+        		            name: "type_facility",
+        		            title: "Please select water facility",
+        		            isRequired: true,
+        		            colCount: 3,
+        		            choices: [
+        		                "Public Tap",
+        		                "Water Kiosk",
+        		                "Hand Pump",
+        		                "Improved Spring",
+        		                "Your connection",
+        		                "Pipeline",
+        		                "Others"
+        		            ]
+        		        }, {
+        		            type: "checkbox",
+        		            name: "status_facility",
+        		            title: "How is status of the facility (multipul selection)?",
+        		            isRequired: true,
+        		            colCount: 4,
+        		            choices: [
+        		                "No water",
+        		                "No operator",
+        		                "Water is dirty",
+        		                "Meter is not functional",
+        		                "Leakage",
+        		                "My bill has probrems",
+        		                "Others"
+        		            ]
+        		        }, {
+        		            "type": "nouislider",
+        		            "name": "range",
+        		            "title": "When did it happened?"
+        		        }, {
+        		            type: "radiogroup",
+        		            name: "howmanydaysago",
+        		            title: "How many days ago did it happened?",
+        		            isRequired: true,
+        		            colCount: 0,
+        		            choices: [
+        		                "1 day",
+        		                "3 days",
+        		                "7 days",
+        		                "15 days",
+        		                "30 days",
+        		                "Always",
+        		            ]
+        		        }, {
+        		            type: "comment",
+        		            name: "suggestions",
+        		            title: "Please leave your comments for our services. (optional)"
+        		        }
+					]
+				},{
+					title: "Feedback form for water services in Rwanda:",
+					questions: [
+						{
+        		            type: "radiogroup",
+        		            name: "sex",
+        		            title: "Please select your sex",
+        		            isRequired: true,
+        		            colCount: 3,
+        		            choices: [
+        		                "Male",
+        		                "Female",
+        		                "Other"
+        		            ]
+        		        },{
+        		            name: "name",
+        		            type: "text",
+        		            title: "Please enter your name",
+        		            placeHolder: "Jon Snow",
+        		            isRequired: false
+        		        }, {
+        		            name: "mobilenumber",
+        		            type: "text",
+        		            inputType: "number",
+        		            title: "Your mobile phone number (optional)",
+        		            placeHolder: "0712345678",
+        		            isRequired: false,
+        		            validators: [
+        		                {
+        		                    type: "number"
+        		                }
+        		            ]
+        		        }, {
+        		            name: "email",
+        		            type: "text",
+        		            inputType: "email",
+        		            title: "Your e-mail (optional)",
+        		            placeHolder: "info@wasac.rw",
+        		            isRequired: false,
+        		            validators: [
+        		                {
+        		                    type: "email"
+        		                }
+        		            ]
+        		        }
+					]
+				}
 		    ]
 		},
 		
@@ -96,31 +140,27 @@ var survey = {
 		
 		init:function(){
 			var params = survey.getParams();
-			if (params){
-				survey.json.questions.push({
-		            name: "lng",
-		            type: "text",
-		            inputType: "number",
-		            defaultValue:params['lng'],
-		        	visible: false
-		        });
-				survey.json.questions.push({
-		            name: "lat",
-		            type: "text",
-		            inputType: "number",
-		            defaultValue:params['lat'],
-		            visible: false
-		        });
-			}
-			
+			survey.location = "POINT(" + params['lng'] + " " + params['lat'] + ")";
 			var model = new Survey.Model(survey.json);
 			model
 			    .onComplete
 			    .add(function (result) {
-			    	//send data JSON.stringify(result.data)
-			    	alert("Thanks, " + result.data.name + ". We will reply to you later about the issue.");	
-			    	window.open('', '_self', ''); 
-			    	window.close();
+			    	result.data['location'] = survey.location;
+			    	var data = {
+			    			location : survey.location,
+			    			contents: JSON.stringify(result.data)
+			    	};
+			    	$.post("./rest/Feedbacks",data);
+			    	
+			    	var html = "<div align='center'><button id='btnClose_surveyform'>Close</button></div>"
+			    	document
+		            .querySelector('#surveyResult')
+		            .innerHTML = html;
+			    	
+			    	$("#btnClose_surveyform").on('click', function(e){
+			    		window.open('', '_self', ''); 
+			    		window.close();
+			    	});
 			    });
 
 			$("#surveyElement").Survey({model: model});

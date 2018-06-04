@@ -15,11 +15,11 @@ gis.ui.dialog.epanet = function(spec,my){
 		        	var wss_id = $("#" + my.comboboxWssId).val();
 		        	if (wss_id === ""){
 		        		return;
-		        	}
+		        	};
 		        	gis.util.ajaxGetFile('./rest/Epanet?wss_id=' + wss_id);
 		        }
 		      }
-		    ]
+		    ];
 		return option;
 	};
 	

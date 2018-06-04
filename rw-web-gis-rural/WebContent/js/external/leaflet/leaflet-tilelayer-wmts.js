@@ -167,7 +167,7 @@ L.TileLayer.WMTS = L.TileLayer.extend({
     },
     
     getTileInfo: function(latlng) {
-        var zoom = this._tileZoom;
+    	var zoom = this._tileZoom || this._map.getZoom();
         var ident = this.matrixIds[zoom].identifier;
         var tilematrix = this.wmtsParams.tilematrixSet + ":" + ident;
         var res = this.matrixIds[zoom].resolution;

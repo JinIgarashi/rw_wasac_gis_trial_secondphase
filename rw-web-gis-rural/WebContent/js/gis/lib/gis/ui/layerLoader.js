@@ -15,10 +15,11 @@ gis.ui.layerLoader = function(spec,my){
             show: true,
             labelAll: 'Select All',
             labelNone: 'Deselect All'
-        },
+        }
 	};
 	
 	my.baseMaps = [];
+	my.overlays = [];
 	
 	my.setLayerControl = function(e,layer,title){
 		if (e.isBaseLayer && e.isBaseLayer === true){
@@ -35,146 +36,61 @@ gis.ui.layerLoader = function(spec,my){
 			var expanded = false;
 			if (e.expanded){
 				expanded = e.expanded;
-			}
+			};
 			my.layerControl.addOverlay( layer, title, {groupName : e.group,expanded:expanded} );
 		};
 
 		if (e.visible !== true){
 			my.map.removeLayer(layer);
 		};
+		my.overlays.push(layer);
 	};
 	
 	my.createLayer = function(e){
-		switch(e.type){
-		case 'WMS':
-			var _layer = L.tileLayer.wms(e.url,e.options);
-			_layer.addTo(my.map)
-			my.setLayerControl(e,_layer,e.name);
-			break;
-		case 'WMS_getFeatureInfo':
-			var source = new L.WMS.Source(e.url, e.options);
-			for (var i in e.layers){
-				var _layer = source.getLayer(e.layers[i].name);
-				_layer.addTo(my.map)
-				my.setLayerControl(e,_layer,e.layers[i].title);
-			};
-			break;
-		case 'TMS':
-			var _layer = L.tileLayer(e.url, e.options);
-			_layer.addTo(my.map)
-			my.setLayerControl(e,_layer,e.name);
-			break;
-		case 'WMTS':
-			var _layer = new L.TileLayer.WMTS(e.url, e.options);
-			_layer.addTo(my.map)
-			my.setLayerControl(e,_layer,e.name);
-			break;
-		case 'GeoJSON':
-			var _layer = my.createGeoJSON(e);
-			_layer.addTo(my.map)
-			my.setLayerControl(e,_layer,e.name);
-			break;
-		case 'WFS':
-			e.options.crs = L.CRS[e.options.crs];
-			 var _layer = new L.WFST(e.options);
-			 _layer.addTo(my.map)
-			 _layer.on({
-					'click': function (e) {
-						my.create_profile(e.layer);
-		  			}
-				});
-			 my.setLayerControl(e,_layer,e.name);
-		default:
-			break;
-		};
-	};
-	
-	my.create_profile = function(layer){
-		var latlngs = layer._latlngs;
-		if (latlngs.length === 0){
-			return;
-		};
-		var coords = latlngs[0];
-		if (coords.length === 0){
-			return;
-		}
-	    var wkt = "";
-	    for (var i in coords){
-	    	var coord = coords[i];
-	    	if ( i > 0){
-	    		wkt += ",";
-	    	};
-	    	wkt += coord.lng + " " + coord.lat;
-	    };
-	    wkt = "LineString(" + wkt + ")";
-	    var params ={
-	    		wkt : wkt
-	    };
-	    gis.util.ajaxPut('./rest/Elevation/LineString', getLineWithElevation,params);
-	    
-	    function getLineWithElevation(json){
-	    	var geojson = {"name":"NewFeatureType","type":"FeatureCollection","features":[{"type":"Feature","geometry":json}]};
-	    	if (!my.controlLoader){
-	    		return;
-	    	}
-	    	var el = my.controlLoader.getControl('elevation');
-	    	if (!el){
-	    		return;
-	    	}
-	    	el.clear();
-	    	el._expand();
-	    	
-	    	if (my.elevjson){
-	    		my.map.removeLayer(my.elevjson);
-	    		my.elevjson = null;
-	    	};
-	    	my.elevjson = L.geoJson(geojson,{
-			    onEachFeature: el.addData.bind(el) //working on a better solution
-			}).addTo(my.map);
-	    }
-	},
-	
-	my.createGeoJSON = function(e){
 		var options = {
-				onEachFeature : function(feature,layer){
-					if (!feature.properties) {
-				        return;
-				    };
-					var html = "";
-					for (var name in feature.properties){
-		        		var val = feature.properties[name];
-		        		if (!val){
-		        			val = "";
-		        		};
-		        		html += "<tr><th>" + name + "</th><td>" + val + "</td></tr>"
-		        	};
-			        if (html === ""){
-			        	return;
-			        };
-			        html = "<table class='leaflet-tilelayer-wmts-getfeatureinfo'>" + html + "</table>";
-			        var popup = L.responsivePopup({offset: [40,40], autoPanPadding: [40,40] }).setContent(html);
-					layer.bindPopup(popup);
-				}
+				map:my.map,
+				config:e,
+				controlLoader:my.controlLoader
 			};
-			if (e.style.type === "icon"){
-				options.pointToLayer = function (feature, latlng) {
-			        return L.marker(latlng, {
-			            icon : L.icon(e.style.options)
-			        });
-			    };
-			};
-			
-			var _layer = new L.GeoJSON.AJAX(e.url,options);
-			if (!my.mcgroup){
-				my.mcgroup = L.markerClusterGroup();
-				my.mcgroup.addTo(my.map);
-			};
-			var markers = L.featureGroup.subGroup(my.mcgroup);
-			markers.addLayer(_layer);
-			markers.addTo(my.map);
-			return markers;
+		var layerObj = gis.ui.layer[e.type];
+		if (!layerObj){
+			layerObj = gis.ui.layer.vector[e.type];
+		};
+		if (layerObj){
+			layerObj = layerObj(options);
+			layerObj.create(my.setLayerControl);
+		};
 	};
 
+	my.layersetting_onzoomchanged = function(e){
+		var currentZoom = my.map.getZoom();
+		for (var j in my.overlays){
+			var layer = my.overlays[j];
+			if (layer instanceof L.WFS || layer instanceof L.WFST){
+				var minzoom = layer.options.minZoom;
+				var maxzoom = layer.options.maxZoom;
+				if (!minzoom || !maxzoom){
+					continue;
+				};
+				var isVisible = false;
+				if (currentZoom >= minzoom && currentZoom <= maxzoom){
+					isVisible = true;
+				};
+				if (isVisible){
+					layer.disabled = false;
+					if (!my.map.hasLayer(layer)){
+						my.map.addLayer(layer);
+					};
+				}else{
+					layer.disabled = true;
+					if (my.map.hasLayer(layer)){
+						my.map.removeLayer(layer);
+					};
+				};
+			};
+		};
+	};
+	
 	that.init = function(){
 		gis.util.ajaxGetAsync(my.defineurl,function(layers_define){
 			my.layerControl = L.Control.styledLayerControl({}, my.overlays, my.layerControlOptions).addTo(my.map);
@@ -182,13 +98,15 @@ gis.ui.layerLoader = function(spec,my){
 			for (var i in layers_define){
 				my.createLayer(layers_define[i]);
 			};
-
+			
 			if (my.baseMaps.length > 0){
 				var iconLayersControl = new L.Control.IconLayers(my.baseMaps, {
 			        position: 'bottomleft',
 			        maxLayersInRow: 5
 			    }).addTo(my.map);
 			};
+			my.map.on('zoomend', my.layersetting_onzoomchanged);
+			my.layersetting_onzoomchanged();
 		});
 		return that;
 	};

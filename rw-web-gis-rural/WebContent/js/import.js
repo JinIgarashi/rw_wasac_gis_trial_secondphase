@@ -24,6 +24,7 @@ function importJS() {
         './js/external/leaflet/subgroup.js',
         './js/external/leaflet/leaflet.elevation-0.0.4.src.js',
         './js/external/leaflet/leaflet-wfst.min.js',
+        './js/gis/settings/leaflet-color-markers.js',
         //'./js/gis/lib/gis.js'
         './js/gis/gis.min.js'
         ];

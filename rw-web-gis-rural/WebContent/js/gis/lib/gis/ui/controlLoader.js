@@ -49,7 +49,7 @@ gis.ui.controlLoader = function(spec,my){
 		};
 		if (ctrl){
 			my.controlMap[ctrltype] = ctrl;
-		}
+		};
 		return ctrl;
 	};
 	
@@ -60,7 +60,10 @@ gis.ui.controlLoader = function(spec,my){
 	};
 	
 	my.onLocationError = function(e){
-		window.open('./survey.html', '_blank');
+		var center = my.map.getCenter();
+		var lat = center.lat;
+		var lng = center.lng;
+		window.open('./survey.html?lat=' + lat + '&lng=' + lng, '_blank');
 	};
 	
 	my.createBookmarks = function(options){

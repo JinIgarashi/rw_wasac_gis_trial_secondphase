@@ -83,7 +83,16 @@
                 'gis/ui/dialog.js',
                 'gis/ui/dialog/zoomToAdmin.js',
                 'gis/ui/dialog/zoomToWss.js',
-                'gis/ui/dialog/epanet.js'
+                'gis/ui/dialog/epanet.js',
+                'gis/ui/layer.js',
+                'gis/ui/layer/WMS.js',
+                'gis/ui/layer/WMS_getFeatureInfo.js',
+                'gis/ui/layer/WMTS.js',
+                'gis/ui/layer/TMS.js',
+                'gis/ui/layer/vector.js',
+                'gis/ui/layer/vector/GeoJSON.js',
+                'gis/ui/layer/vector/WFS.js',
+                'gis/ui/layer/vector/WFST.js',
             ]; // etc.
         }
 
