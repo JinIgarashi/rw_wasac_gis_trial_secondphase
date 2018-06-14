@@ -1,3 +1,7 @@
+/***
+ * This plugin requires the following leaflet plugins;
+ * L.responsivePopup
+ */
 L.TileLayer.WMTS = L.TileLayer.extend({
     defaultWmtsParams: {
         service: 'WMTS',
@@ -204,12 +208,12 @@ L.TileLayer.WMTS = L.TileLayer.extend({
         if (!this._map) {
             return;
         }
+        var html = "";
         if (this.options.infoformat === "application/json"){
         	info = JSON.parse(info);
         	if (!info){
 	        	return;
 	        }
-	        var html = "";
 	        for (var i in info.features){
 	        	var f = info.features[i];
 	        	for (var name in f.properties){
@@ -225,10 +229,10 @@ L.TileLayer.WMTS = L.TileLayer.extend({
 	        	return;
 	        }
 	        html = "<table class='leaflet-tilelayer-wmts-getfeatureinfo'>" + html + "</table>";
-	        this._map.openPopup(html, latlng);
         }else{
-        	this._map.openPopup(info, latlng);
+        	html = info;
         }
+        L.responsivePopup({offset: [40,40], autoPanPadding: [40,40] }).setLatLng(latlng).setContent(html).openOn(this._map);
     },
 
     showWaiting: function() {

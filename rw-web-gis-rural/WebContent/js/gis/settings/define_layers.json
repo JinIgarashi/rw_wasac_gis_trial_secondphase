@@ -265,78 +265,114 @@
   },
   {
     "name": "Water Source",
-    "type": "WMTS",
-    "url": "../geoserver/gwc/service/wmts?",
+    "type": "WFS",
+    "type_feature":"Point",
+    "icon" : {
+      "watersource_functional":{
+        "field":"status",
+    	"value":1
+      },
+      "watersource_partialyfunctional":{
+        "field":"status",
+    	"value":2
+      },
+      "watersource_abandoned":{
+        "field":"status",
+    	"value":3
+      }
+    },
     "options": {
-      "layer": "rwanda:watersource",
-      "format": "image/png",
+      "url": "../geoserver/rwanda/ows?",
+      "typeNS":"rwanda",
+      "typeName": "watersource",
+      "crs": "EPSG4326",
+      "geometryField": "geom",
       "minZoom": 12,
       "maxZoom": 20,
-      "transparent": true,
-      "style": "normal",
-      "tilematrixSet": "EPSG:900913",
-      "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>",
-      "getfeatureinfo":true,
-      "infoformat":"application/json"
+      "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
     "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
-          "html": "<img src='../geoserver/rwanda/wms?SERVICE=WMS&VERSION=1.3.0&SLD_VERSION=1.1.0&REQUEST=GetLegendGraphic&format=image/png&format_options=layout:legend&legend_options=countMatched:true;fontAntiAliasing:true&LAYER=rwanda:watersource'>"
+          "html": "<table><tr><td><img src='./images/watericon/watersource_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/watersource_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/watersource_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
   },
   {
     "name": "Pumping Station",
-    "type": "WMTS",
-    "url": "../geoserver/gwc/service/wmts?",
+    "type": "WFS",
+    "type_feature":"Point",
+    "icon" : {
+      "pumpingstation_functional":{
+        "field":"status",
+    	"value":1
+      },
+      "pumpingstation_partialyfunctional":{
+        "field":"status",
+    	"value":2
+      },
+      "pumpingstation_abandoned":{
+        "field":"status",
+    	"value":3
+      }
+    },
     "options": {
-      "layer": "rwanda:pumping_station",
-      "format": "image/png",
+      "url": "../geoserver/rwanda/ows?",
+      "typeNS":"rwanda",
+      "typeName": "pumping_station",
+      "crs": "EPSG4326",
+      "geometryField": "geom",
       "minZoom": 12,
       "maxZoom": 20,
-      "transparent": true,
-      "style": "normal",
-      "tilematrixSet": "EPSG:900913",
-      "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>",
-      "getfeatureinfo":true,
-      "infoformat":"application/json"
+      "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
     "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
-          "html": "<img src='../geoserver/rwanda/wms?SERVICE=WMS&VERSION=1.3.0&SLD_VERSION=1.1.0&REQUEST=GetLegendGraphic&format=image/png&format_options=layout:legend&legend_options=countMatched:true;fontAntiAliasing:true&LAYER=rwanda:pumping_station'>"
+          "html": "<table><tr><td><img src='./images/watericon/pumpingstation_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/pumpingstation_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/pumpingstation_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
   },
   {
     "name": "Reservoir",
-    "type": "WMTS",
-    "url": "../geoserver/gwc/service/wmts?",
+    "type": "WFS",
+    "type_feature":"Point",
+    "icon" : {
+      "reservoir_functional":{
+        "field":"status",
+    	"value":1
+      },
+      "reservoir_partialyfunctional":{
+        "field":"status",
+    	"value":2
+      },
+      "reservoir_abandoned":{
+        "field":"status",
+    	"value":3
+      }
+    },
     "options": {
-      "layer": "rwanda:reservoir",
-      "format": "image/png",
+      "url": "../geoserver/rwanda/ows?",
+      "typeNS":"rwanda",
+      "typeName": "reservoir",
+      "crs": "EPSG4326",
+      "geometryField": "geom",
       "minZoom": 12,
       "maxZoom": 20,
-      "transparent": true,
-      "style": "normal",
-      "tilematrixSet": "EPSG:900913",
-      "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>",
-      "getfeatureinfo":true,
-      "infoformat":"application/json"
+      "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
     "visible": true,
     "group": "Water Pipe Networks",
     "legend": {
       "elements": [
         {
-          "html": "<img src='../geoserver/rwanda/wms?SERVICE=WMS&VERSION=1.3.0&SLD_VERSION=1.1.0&REQUEST=GetLegendGraphic&format=image/png&format_options=layout:legend&legend_options=countMatched:true;fontAntiAliasing:true&LAYER=rwanda:reservoir'>"
+          "html": "<table><tr><td><img src='./images/watericon/reservoir_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/reservoir_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/reservoir_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
@@ -510,7 +546,7 @@
         "field":"status",
     	"value":2
       },
-      "kiosk_abondoned":{
+      "kiosk_abandoned":{
         "field":"status",
     	"value":3
       }
@@ -530,7 +566,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/kiosk_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/kiosk_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/kiosk_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/kiosk_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/kiosk_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/kiosk_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
@@ -548,7 +584,7 @@
         "field":"status",
     	"value":2
       },
-      "publictap_abondoned":{
+      "publictap_abandoned":{
         "field":"status",
     	"value":3
       }
@@ -568,7 +604,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/publictap_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/publictap_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/publictap_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/publictap_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/publictap_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/publictap_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
@@ -586,7 +622,7 @@
         "field":"statuscode",
     	"value":2
       },
-      "handpump_abondoned":{
+      "handpump_abandoned":{
         "field":"statuscode",
     	"value":3
       }
@@ -606,7 +642,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/handpump_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/handpump_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/handpump_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/handpump_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/handpump_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/handpump_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
@@ -624,7 +660,7 @@
         "field":"statuscode",
     	"value":2
       },
-      "improved_spring_abondoned":{
+      "improved_spring_abandoned":{
         "field":"statuscode",
     	"value":3
       }
@@ -644,7 +680,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/improvedspring_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/improvedspring_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
