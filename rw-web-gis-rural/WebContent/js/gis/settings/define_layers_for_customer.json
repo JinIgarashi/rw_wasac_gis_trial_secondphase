@@ -78,13 +78,13 @@
         "field":"status",
     	"value":2
       },
-      "kiosk_abondoned":{
+      "kiosk_abandoned":{
         "field":"status",
     	"value":3
       }
     },
     "options": {
-      "url": "http://localhost/geoserver/rwanda/ows?",
+      "url": "../geoserver/rwanda/ows?",
       "typeNS":"rwanda",
       "typeName": "waterkiosk",
       "crs": "EPSG4326",
@@ -98,7 +98,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/kiosk_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/kiosk_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/kiosk_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/kiosk_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/kiosk_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/kiosk_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
@@ -116,13 +116,13 @@
         "field":"status",
     	"value":2
       },
-      "publictap_abondoned":{
+      "publictap_abandoned":{
         "field":"status",
     	"value":3
       }
     },
     "options": {
-      "url": "http://localhost/geoserver/rwanda/ows?",
+      "url": "../geoserver/rwanda/ows?",
       "typeNS":"rwanda",
       "typeName": "public_tap",
       "crs": "EPSG4326",
@@ -136,7 +136,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/publictap_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/publictap_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/publictap_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/publictap_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/publictap_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/publictap_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
@@ -154,18 +154,18 @@
         "field":"statuscode",
     	"value":2
       },
-      "handpump_abondoned":{
+      "handpump_abandoned":{
         "field":"statuscode",
     	"value":3
       }
     },
     "options": {
-      "url": "http://localhost/geoserver/rwanda/ows?",
+      "url": "../geoserver/rwanda/ows?",
       "typeNS":"rwanda",
       "typeName": "handpump",
       "crs": "EPSG4326",
       "geometryField": "geom",
-      "minZoom": 12,
+      "minZoom": 13,
       "maxZoom": 20,
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
@@ -174,7 +174,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/handpump_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/handpump_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/handpump_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/handpump_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/handpump_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/handpump_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
@@ -192,18 +192,18 @@
         "field":"statuscode",
     	"value":2
       },
-      "improved_spring_abondoned":{
+      "improved_spring_abandoned":{
         "field":"statuscode",
     	"value":3
       }
     },
     "options": {
-      "url": "http://localhost/geoserver/rwanda/ows?",
+      "url": "../geoserver/rwanda/ows?",
       "typeNS":"rwanda",
       "typeName": "improved_spring",
       "crs": "EPSG4326",
       "geometryField": "geom",
-      "minZoom": 12,
+      "minZoom": 13,
       "maxZoom": 20,
       "attribution": "&copy; <a href='http://www.wasac.rw/'>WASAC</a>"
     },
@@ -212,7 +212,7 @@
     "legend": {
       "elements": [
         {
-          "html": "<table><tr><td><img src='./images/watericon/improvedspring_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_abondoned.png' width=15,height=15><td><td>Abondoned</td></tr></table>"
+          "html": "<table><tr><td><img src='./images/watericon/improvedspring_functional.png' width=15,height=15><td><td>Full Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_partialyfunctional.png' width=15,height=15><td><td>Partialy Functional</td></tr><tr><td><img src='./images/watericon/improvedspring_abandoned.png' width=15,height=15><td><td>abandoned</td></tr></table>"
         }
       ]
     }
