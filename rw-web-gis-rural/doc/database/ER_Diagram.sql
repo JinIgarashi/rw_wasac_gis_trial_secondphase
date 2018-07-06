@@ -69,8 +69,8 @@ CREATE TABLE chamber
 	-- PRV Chamber
 	chamber_type varchar(50) NOT NULL,
 	wss_id int NOT NULL,
-	constructed_year int,
-	rehabilitated_year varchar(50),
+	construction_year int,
+	rehabilitation_year varchar(50),
 	chamber_size varchar(100),
 	material varchar(50),
 	status int NOT NULL,
@@ -81,6 +81,7 @@ CREATE TABLE chamber
 	-- true: using for breaking pressure,
 	-- false: not using for breaking pressure.
 	is_breakpressure boolean DEFAULT 'false' NOT NULL,
+	chlorination_unit boolean DEFAULT 'false',
 	PRIMARY KEY (chamber_id)
 ) WITHOUT OIDS;
 
@@ -139,8 +140,8 @@ CREATE TABLE pipeline
 	material varchar(50),
 	pipe_size double precision,
 	pressure varchar(50),
-	constructed_year varchar(50),
-	rehabilitated_year varchar(50),
+	construction_year varchar(50),
+	rehabilitation_year varchar(50),
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
 	observation varchar(200),
@@ -172,8 +173,8 @@ CREATE TABLE pumping_station
 (
 	pumpingstation_id serial NOT NULL,
 	wss_id int NOT NULL,
-	constructed_year int,
-	rehabilitated_year varchar(50),
+	construction_year int,
+	rehabilitation_year varchar(50),
 	-- true: there is water meter,
 	-- false: thre is no water meter
 	water_meter boolean DEFAULT '0' NOT NULL,
@@ -190,6 +191,9 @@ CREATE TABLE pumping_station
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
 	elevation int,
+	pump_installation_date date,
+	meter_installation_date date,
+	chlorination_unit boolean DEFAULT 'false',
 	PRIMARY KEY (pumpingstation_id)
 ) WITHOUT OIDS;
 
@@ -203,8 +207,8 @@ CREATE TABLE reservoir
 	-- Elevated
 	reservoir_type varchar(50),
 	wss_id int NOT NULL,
-	constructed_year int,
-	rehabilitated_year varchar(50),
+	construction_year int,
+	rehabilitation_year varchar(50),
 	capacity int,
 	material varchar(50),
 	-- true: there is water meter,
@@ -218,6 +222,8 @@ CREATE TABLE reservoir
 	-- true: using for breaking pressure,
 	-- false: not using for breaking pressure.
 	is_breakpressure boolean DEFAULT 'false' NOT NULL,
+	meter_installation_date date,
+	chlorination_unit boolean DEFAULT 'false',
 	PRIMARY KEY (reservoir_id)
 ) WITHOUT OIDS;
 
@@ -295,8 +301,8 @@ CREATE TABLE watersource
 	-- Spring
 	source_type varchar(50),
 	discharge double precision,
-	constructed_year int,
-	rehabilitated_year varchar(50),
+	construction_year int,
+	rehabilitation_year varchar(50),
 	-- true: there is water meter,
 	-- false: thre is no water meter
 	water_meter boolean DEFAULT '0' NOT NULL,
@@ -305,6 +311,8 @@ CREATE TABLE watersource
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
 	elevation int,
+	chlorination_unit boolean DEFAULT 'false',
+	source_protected boolean DEFAULT 'false',
 	PRIMARY KEY (watersource_id)
 ) WITHOUT OIDS;
 
@@ -317,8 +325,8 @@ CREATE TABLE water_connection
 	-- Public Tap
 	connection_type varchar(50),
 	wss_id int NOT NULL,
-	constructed_year int,
-	rehabilitated_year varchar(50),
+	construction_year int,
+	rehabilitation_year varchar(50),
 	no_user int,
 	-- true: there is water meter,
 	-- false: thre is no water meter
@@ -328,6 +336,7 @@ CREATE TABLE water_connection
 	input_date date DEFAULT CURRENT_TIMESTAMP NOT NULL,
 	geom  NOT NULL,
 	elevation int,
+	meter_installation_date date,
 	PRIMARY KEY (connection_id)
 ) WITHOUT OIDS;
 
