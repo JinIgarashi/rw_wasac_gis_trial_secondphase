@@ -194,6 +194,8 @@ CREATE TABLE pumping_station
 	pump_installation_date date,
 	meter_installation_date date,
 	chlorination_unit boolean DEFAULT 'false',
+	installation_antihummer boolean DEFAULT 'false' NOT NULL,
+	capacity_antihummber varchar(50),
 	PRIMARY KEY (pumpingstation_id)
 ) WITHOUT OIDS;
 
@@ -323,6 +325,7 @@ CREATE TABLE water_connection
 	connection_id serial NOT NULL,
 	-- Water Kiosk
 	-- Public Tap
+	-- Household
 	connection_type varchar(50),
 	wss_id int NOT NULL,
 	construction_year int,
@@ -337,6 +340,12 @@ CREATE TABLE water_connection
 	geom  NOT NULL,
 	elevation int,
 	meter_installation_date date,
+	connection_date date,
+	disconnection_date date,
+	customer_name varchar(100),
+	national_id varchar(50),
+	phone_number int,
+	meter_serialno varchar(50),
 	PRIMARY KEY (connection_id)
 ) WITHOUT OIDS;
 
@@ -426,7 +435,8 @@ COMMENT ON COLUMN watersource.water_meter IS 'true: there is water meter,
 false: thre is no water meter';
 COMMENT ON TABLE water_connection IS 'This table manages the location of water connections which is water kiosk or public tap.';
 COMMENT ON COLUMN water_connection.connection_type IS 'Water Kiosk
-Public Tap';
+Public Tap
+Household';
 COMMENT ON COLUMN water_connection.water_meter IS 'true: there is water meter,
 false: thre is no water meter';
 COMMENT ON TABLE wss IS 'This table manages boundary each water supply systems in RWSS. every wss belong to a district id.

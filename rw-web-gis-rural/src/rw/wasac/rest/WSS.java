@@ -57,7 +57,7 @@ public class WSS {
 			sql.append("FROM  wss w ");
 			sql.append("LEFT JOIN management m ");
 			sql.append("ON w.wss_id = m.wss_id ");
-			sql.append("AND m.end_year is null ");
+			//sql.append("AND m.end_year is null ");
 			sql.append("WHERE w.geom is not null ");
 			sql.append("GROUP BY ");
 			sql.append("   w.wss_id, ");
