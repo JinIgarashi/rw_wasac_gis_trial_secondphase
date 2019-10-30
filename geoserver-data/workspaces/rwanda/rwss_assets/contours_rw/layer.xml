@@ -1,0 +1,15 @@
+<layer>
+  <name>contours_rw</name>
+  <id>LayerInfoImpl--5acb2fd2:1628513ef04:6d50</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5acb2fd2:1628513ef04:6d51</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5acb2fd2:1628513ef04:6d4f</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

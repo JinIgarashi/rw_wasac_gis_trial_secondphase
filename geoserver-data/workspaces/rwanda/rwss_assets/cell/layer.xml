@@ -1,0 +1,17 @@
+<layer>
+  <name>cell</name>
+  <id>LayerInfoImpl--68e12a1c:15e547ba190:-7fea</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--68e12a1c:15e547ba190:-7fe5</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--68e12a1c:15e547ba190:-7feb</id>
+  </resource>
+  <queryable>true</queryable>
+  <opaque>false</opaque>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

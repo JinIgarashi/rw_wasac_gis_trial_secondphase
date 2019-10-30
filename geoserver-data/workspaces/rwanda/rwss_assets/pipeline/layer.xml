@@ -1,0 +1,15 @@
+<layer>
+  <name>pipeline</name>
+  <id>LayerInfoImpl-33d6f89d:162f0de2987:-7764</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--570ae188:124761b8d78:-7fe3</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-33d6f89d:162f0de2987:-7765</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

@@ -1,0 +1,15 @@
+<layer>
+  <name>handpump</name>
+  <id>LayerInfoImpl--5499b1b8:1636124f114:-4f0b</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5499b1b8:1636124f114:-4f0a</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5499b1b8:1636124f114:-4f0c</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

@@ -1,0 +1,15 @@
+<layer>
+  <name>improved_spring</name>
+  <id>LayerInfoImpl--5499b1b8:1636124f114:-7267</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5499b1b8:1636124f114:-7264</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5499b1b8:1636124f114:-7268</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

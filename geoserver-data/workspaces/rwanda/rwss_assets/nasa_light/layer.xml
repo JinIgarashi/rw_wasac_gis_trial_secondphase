@@ -1,0 +1,15 @@
+<layer>
+  <name>nasa_light</name>
+  <id>LayerInfoImpl--5799ee2c:16275cd5d20:-3c55</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5799ee2c:16275cd5d20:20cd</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5799ee2c:16275cd5d20:-3c56</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

@@ -1,0 +1,15 @@
+<layer>
+  <name>reservoir</name>
+  <id>LayerInfoImpl--36f95bbc:16289bbc527:-4855</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-472612c0:15e8e2c2864:-10b6</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--36f95bbc:16289bbc527:-4856</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

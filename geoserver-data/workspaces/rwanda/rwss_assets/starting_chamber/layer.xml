@@ -1,0 +1,15 @@
+<layer>
+  <name>starting_chamber</name>
+  <id>LayerInfoImpl--5799ee2c:1628450c6d0:-4c2c</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5799ee2c:16283f3026b:6478</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5799ee2c:1628450c6d0:-4c2d</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

@@ -1,0 +1,15 @@
+<layer>
+  <name>village</name>
+  <id>LayerInfoImpl--5799ee2c:162505f5316:-7ff9</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5799ee2c:162505f5316:-7ffc</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5799ee2c:162505f5316:-7ffa</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

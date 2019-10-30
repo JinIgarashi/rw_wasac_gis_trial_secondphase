@@ -1,0 +1,15 @@
+<layer>
+  <name>air_release_chamber</name>
+  <id>LayerInfoImpl--5799ee2c:16283f3026b:646f</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5799ee2c:16283f3026b:6474</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5799ee2c:16283f3026b:646e</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

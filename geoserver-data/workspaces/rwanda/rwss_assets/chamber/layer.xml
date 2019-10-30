@@ -1,0 +1,15 @@
+<layer>
+  <name>chamber</name>
+  <id>LayerInfoImpl-472612c0:15e8e083130:-7ffd</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-472612c0:15e8e083130:-7ffb</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl-472612c0:15e8e083130:-7ffe</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

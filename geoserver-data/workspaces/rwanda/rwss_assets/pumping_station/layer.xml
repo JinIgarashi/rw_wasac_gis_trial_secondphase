@@ -1,0 +1,15 @@
+<layer>
+  <name>pumping_station</name>
+  <id>LayerInfoImpl--36f95bbc:16289ab4cf0:-398</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--33fb5adf:15f198a6d95:-7ffa</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--36f95bbc:16289ab4cf0:-399</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

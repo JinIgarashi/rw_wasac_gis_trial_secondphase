@@ -1,0 +1,15 @@
+<layer>
+  <name>watersource</name>
+  <id>LayerInfoImpl--5acb2fd2:1628973acb5:-519e</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl-45c4d20:15e8d372940:-3e7a</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5acb2fd2:1628973acb5:-519f</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

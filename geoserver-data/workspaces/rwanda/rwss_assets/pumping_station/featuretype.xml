@@ -1,0 +1,88 @@
+<featureType>
+  <id>FeatureTypeInfoImpl--36f95bbc:16289ab4cf0:-399</id>
+  <name>pumping_station</name>
+  <nativeName>pumping_station</nativeName>
+  <namespace>
+    <id>NamespaceInfoImpl--68e12a1c:15e547ba190:-7ffe</id>
+  </namespace>
+  <title>pumping_station</title>
+  <keywords>
+    <string>features</string>
+    <string>pumping_station</string>
+  </keywords>
+  <nativeCRS>GEOGCS[&quot;WGS 84&quot;, &#xd;
+  DATUM[&quot;World Geodetic System 1984&quot;, &#xd;
+    SPHEROID[&quot;WGS 84&quot;, 6378137.0, 298.257223563, AUTHORITY[&quot;EPSG&quot;,&quot;7030&quot;]], &#xd;
+    AUTHORITY[&quot;EPSG&quot;,&quot;6326&quot;]], &#xd;
+  PRIMEM[&quot;Greenwich&quot;, 0.0, AUTHORITY[&quot;EPSG&quot;,&quot;8901&quot;]], &#xd;
+  UNIT[&quot;degree&quot;, 0.017453292519943295], &#xd;
+  AXIS[&quot;Geodetic longitude&quot;, EAST], &#xd;
+  AXIS[&quot;Geodetic latitude&quot;, NORTH], &#xd;
+  AUTHORITY[&quot;EPSG&quot;,&quot;4326&quot;]]</nativeCRS>
+  <srs>EPSG:4326</srs>
+  <nativeBoundingBox>
+    <minx>-180.0</minx>
+    <maxx>180.0</maxx>
+    <miny>-90.0</miny>
+    <maxy>90.0</maxy>
+    <crs>EPSG:4326</crs>
+  </nativeBoundingBox>
+  <latLonBoundingBox>
+    <minx>-180.0</minx>
+    <maxx>180.0</maxx>
+    <miny>-90.0</miny>
+    <maxy>90.0</maxy>
+    <crs>EPSG:4326</crs>
+  </latLonBoundingBox>
+  <projectionPolicy>FORCE_DECLARED</projectionPolicy>
+  <enabled>true</enabled>
+  <metadata>
+    <entry key="JDBC_VIRTUAL_TABLE">
+      <virtualTable>
+        <name>pumping_station</name>
+        <sql>SELECT &#xd;
+a.pumpingstation_id as &quot;Pumping Station ID&quot;&#xd;
+, a.wss_id as &quot;WSS ID&quot;&#xd;
+, b.wss_name as &quot;WSS Name&quot;&#xd;
+, a.construction_year as &quot;Construction Year&quot;&#xd;
+, a.rehabilitation_year as &quot;Rehabilitation Year&quot;&#xd;
+, CASE WHEN a.water_meter = 1 THEN &apos;Yes&apos; ELSE &apos;No&apos; END as &quot;Meter Installation&quot;&#xd;
+, a.meter_installation_date as &quot;Meter Installation Date&quot;&#xd;
+, a.pump_installation_date as &quot;Pump Installation Date&quot;&#xd;
+, a.head_pump as &quot;Head of Pump(m)&quot;&#xd;
+, a.power_pump as &quot;Power of Pump(kW)&quot;&#xd;
+, a.discharge_pump as &quot;Discharge of Pump(m3)&quot;&#xd;
+, a.pump_type as &quot;Type of Pump&quot;&#xd;
+, a.power_source as &quot;Source of Power&quot;&#xd;
+, a.no_pump as &quot;Number of Pumps&quot;&#xd;
+, a.kva as &quot;kVA of Generator&quot;&#xd;
+, a.no_generator as &quot;Number of Generator&quot;&#xd;
+, a.observation as &quot;Observation&quot;&#xd;
+, a.input_date as &quot;Inputted Date&quot;&#xd;
+, a.geom&#xd;
+, a.elevation as &quot;Elevation&quot;&#xd;
+,CASE WHEN a.chlorination_unit = 1 THEN &apos;Yes&apos; ELSE &apos;No&apos; END as &quot;Installation of Chlorination Unit&quot;&#xd;
+, a.status&#xd;
+  FROM pumping_station a&#xd;
+  INNER JOIN wss b&#xd;
+  ON a.wss_id = b.wss_id
+</sql>
+        <escapeSql>false</escapeSql>
+        <geometry>
+          <name>geom</name>
+          <type>Point</type>
+          <srid>4326</srid>
+        </geometry>
+      </virtualTable>
+    </entry>
+    <entry key="cachingEnabled">false</entry>
+  </metadata>
+  <store class="dataStore">
+    <id>DataStoreInfoImpl--68e12a1c:15e547ba190:-7ffb</id>
+  </store>
+  <maxFeatures>0</maxFeatures>
+  <numDecimals>0</numDecimals>
+  <overridingServiceSRS>false</overridingServiceSRS>
+  <skipNumberMatched>false</skipNumberMatched>
+  <circularArcPresent>false</circularArcPresent>
+</featureType>

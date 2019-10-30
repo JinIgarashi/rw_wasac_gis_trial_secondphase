@@ -1,0 +1,15 @@
+<layer>
+  <name>population</name>
+  <id>LayerInfoImpl--5799ee2c:16275f5d6a6:78cf</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5799ee2c:16275f5d6a6:78d2</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5799ee2c:16275f5d6a6:78ce</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

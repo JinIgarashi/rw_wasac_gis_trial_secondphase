@@ -1,0 +1,15 @@
+<layer>
+  <name>washout_chamber</name>
+  <id>LayerInfoImpl--5799ee2c:16283f3026b:6465</id>
+  <type>VECTOR</type>
+  <defaultStyle>
+    <id>StyleInfoImpl--5799ee2c:16283f3026b:647c</id>
+  </defaultStyle>
+  <resource class="featureType">
+    <id>FeatureTypeInfoImpl--5799ee2c:16283f3026b:6464</id>
+  </resource>
+  <attribution>
+    <logoWidth>0</logoWidth>
+    <logoHeight>0</logoHeight>
+  </attribution>
+</layer>

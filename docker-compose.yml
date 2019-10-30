@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+   geoserver:
+      image: oscarfonts/geoserver
+      volumes:
+        - ./geoserver-data:/var/local/geoserver
+        - ./webapp/rural.war:/usr/local/tomcat/webapps/rural.war
+      ports:
+        - "8600:8080"
+      restart: on-failure
+
